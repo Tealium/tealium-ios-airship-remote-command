@@ -1,0 +1,9 @@
+Carthage/
+*.DS_Store*
+*.xcuserstate
+*.xcbkptlist
+*.xcuserdatad*
+.idea
+Pods/
+build/
+
