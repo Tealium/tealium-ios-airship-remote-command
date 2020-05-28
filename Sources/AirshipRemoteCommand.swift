@@ -19,45 +19,45 @@ import TealiumRemoteCommands
 public enum AirshipCommands: String {
     
     case initialize
-    case trackEvent
-    case trackScreenView
-    case enableAnalytics
-    case disableAnalytics
-    case setNamedUser
-    case setCustomIdentifiers
-    case enableAdvertisingIdentifiers
-    case enableInAppMessaging
-    case disableInAppMessaging
-    case pauseInAppMessaging
-    case unpauseInAppMessaging
-    case setInAppMessagingDisplayInterval
-    case enableUserPushNotifications
-    case disableUserPushNotifications
-    case enableBackgroundPushNotifications
-    case disableBackgroundPushNotifications
-    case setPushNotificationOptions
-    case setForegroundPresentationOptions
-    case setBadgeNumber
-    case resetBadgeNumber
-    case enableAutoBadge
-    case disableAutoBadge
-    case enableQuietTime
-    case disableQuietTime
-    case setQuietTimeStart
-    case setChannelTags
-    case setNamedUserTags
-    case addTag
-    case removeTag
-    case addTagGroup
-    case removeTagGroup
-    case setAttributes
-    case displayMessageCenter
-    case setMessageCenterTitle
-    case setMessageCenterStyle
-    case enableLocation
-    case disableLocation
-    case enableBackgroundLocation
-    case disableBackgroundLocation
+    case trackEvent = "trackevent"
+    case trackScreenView = "trackscreenview"
+    case enableAnalytics = "enableanalytics"
+    case disableAnalytics = "disableanalytics"
+    case setNamedUser = "setnameduser"
+    case setCustomIdentifiers = "setcustomidentifiers"
+    case enableAdvertisingIdentifiers = "enableadvertisingidentifiers"
+    case enableInAppMessaging = "enableinappmessaging"
+    case disableInAppMessaging = "disableinappmessaging"
+    case pauseInAppMessaging = "pauseinappmessaging"
+    case unpauseInAppMessaging = "unpauseinappmessaging"
+    case setInAppMessagingDisplayInterval = "setinappmessagingdisplayinterval"
+    case enableUserPushNotifications = "enableuserpushnotifications"
+    case disableUserPushNotifications = "disableuserpushnotifications"
+    case enableBackgroundPushNotifications = "enablebackgroundpushnotifications"
+    case disableBackgroundPushNotifications = "disablebackgroundpushnotifications"
+    case setPushNotificationOptions = "setpushnotificationoptions"
+    case setForegroundPresentationOptions = "setforegroundpresentationoptions"
+    case setBadgeNumber = "setbadgenumber"
+    case resetBadgeNumber = "resetbadgenumber"
+    case enableAutoBadge = "enableautobadge"
+    case disableAutoBadge = "disableautobadge"
+    case enableQuietTime = "enablequiettime"
+    case disableQuietTime = "disablequiettime"
+    case setQuietTimeStart = "setquiettimestart"
+    case setChannelTags = "setchanneltags"
+    case setNamedUserTags = "setnamedusertags"
+    case addTag = "addtag"
+    case removeTag = "removetag"
+    case addTagGroup = "addtaggroup"
+    case removeTagGroup = "removetaggroup"
+    case setAttributes = "setattributes"
+    case displayMessageCenter = "displaymessagecenter"
+    case setMessageCenterTitle = "setmessagecentertitle"
+    case setMessageCenterStyle = "setmessagecenterstyle"
+    case enableLocation = "enablelocation"
+    case disableLocation = "disablelocation"
+    case enableBackgroundLocation = "enablebackgroundlocation"
+    case disableBackgroundLocation = "disablebackgroundlocation"
 }
 
 public enum AirshipKey: String {

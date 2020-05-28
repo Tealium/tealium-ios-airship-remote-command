@@ -87,7 +87,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "trackEvent",
+                                                        "command_name": "trackevent",
                                                         "event_name": "Test Event"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -107,7 +107,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "trackEvent"
+                                                        "command_name": "trackevent"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -126,7 +126,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "trackEvent",
+                                                        "command_name": "trackevent",
                                                         "event_name": "Test Event",
                                                         "event_value": "4.5",
                                                         "event_properties": testDictionary
@@ -149,7 +149,7 @@ class AirshipCommandRunnerTests: XCTestCase {
          if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                        config: ["response_id": "1234"],
                                                         payload: [
-                                                         "command_name": "trackEvent",
+                                                         "command_name": "trackevent",
                                                          "event_name": "Test Event",
                                                          "event_value": 4,
                                                          "event_properties": testDictionary
@@ -172,7 +172,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "trackEvent",
+                                                        "command_name": "trackevent",
                                                         "event_name": "Test Event",
                                                         "event_value": 4.5,
                                                         "event_properties": testDictionary
@@ -195,7 +195,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "trackEvent",
+                                                        "command_name": "trackevent",
                                                         "event_value": "4.5",
                                                         "event_properties": testDictionary
                                                         ])?.description {
@@ -216,7 +216,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "trackScreenView",
+                                                        "command_name": "trackscreenview",
                                                         "screen_name": "Test Screen"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -235,7 +235,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "trackScreenView"
+                                                        "command_name": "trackscreenview"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -253,7 +253,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "enableAnalytics"
+                                                        "command_name": "enableanalytics"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -270,7 +270,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "disableAnalytics"
+                                                        "command_name": "disableanalytics"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -288,7 +288,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setNamedUser",
+                                                        "command_name": "setnameduser",
                                                         "named_user_identifier": "tealium1234"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -306,7 +306,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setNamedUser"
+                                                        "command_name": "setnameduser"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -325,7 +325,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setCustomIdentifiers",
+                                                        "command_name": "setcustomidentifiers",
                                                         "custom_identifiers": customIdentifiers
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -347,7 +347,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setCustomIdentifiers",
+                                                        "command_name": "setcustomidentifiers",
                                                         "custom_identifiers": customIdentifiers
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -365,7 +365,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "enableAdvertisingIdentifiers",
+                                                        "command_name": "enableadvertisingidentifiers",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -382,7 +382,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "enableInAppMessaging",
+                                                        "command_name": "enableinappmessaging",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -399,7 +399,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "disableInAppMessaging",
+                                                        "command_name": "disableinappmessaging",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -416,7 +416,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "pauseInAppMessaging",
+                                                        "command_name": "pauseinappmessaging",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -433,7 +433,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "unpauseInAppMessaging",
+                                                        "command_name": "unpauseinappmessaging",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -450,7 +450,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setInAppMessagingDisplayInterval",
+                                                        "command_name": "setinappmessagingdisplayinterval",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -467,7 +467,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setInAppMessagingDisplayInterval",
+                                                        "command_name": "setinappmessagingdisplayinterval",
                                                         "in_app_messaging_display_interval": "10"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -485,7 +485,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "enableUserPushNotifications",
+                                                        "command_name": "enableuserpushnotifications",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -502,7 +502,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "enableUserPushNotifications",
+                                                        "command_name": "enableuserpushnotifications",
                                                         "push_notification_options": ["alert", "badge"],
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -521,7 +521,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "disableUserPushNotifications",
+                                                        "command_name": "disableuserpushnotifications",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -538,7 +538,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "enableBackgroundPushNotifications",
+                                                        "command_name": "enablebackgroundpushnotifications",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -555,7 +555,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "disableBackgroundPushNotifications",
+                                                        "command_name": "disablebackgroundpushnotifications",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -572,7 +572,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setPushNotificationOptions",
+                                                        "command_name": "setpushnotificationoptions",
                                                         "push_notification_options": ["alert", "badge"],
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -590,7 +590,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setPushNotificationOptions",
+                                                        "command_name": "setpushnotificationoptions",
                                                         "push_notification_options": "",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -608,7 +608,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setForegroundPresentationOptions",
+                                                        "command_name": "setforegroundpresentationoptions",
                                                         "foreground_presentation_options": ["alert", "badge"],
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -626,7 +626,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setForegroundPresentationOptions",
+                                                        "command_name": "setforegroundpresentationoptions",
                                                         "foreground_presentation_options": ""
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -644,7 +644,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setBadgeNumber",
+                                                        "command_name": "setbadgenumber",
                                                         "badge_number": 5
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -662,7 +662,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setBadgeNumber",
+                                                        "command_name": "setbadgenumber",
                                                         "badge_number": 5.5
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -680,7 +680,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setBadgeNumber,resetBadgeNumber",
+                                                        "command_name": "setbadgenumber,resetbadgenumber",
                                                         "badge_number": 5
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -698,7 +698,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "enableAutoBadge",
+                                                        "command_name": "enableautobadge",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -715,7 +715,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "disableAutoBadge",
+                                                        "command_name": "disableautobadge",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -732,7 +732,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "enableQuietTime",
+                                                        "command_name": "enablequiettime",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -749,7 +749,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "disableQuietTime",
+                                                        "command_name": "disablequiettime",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -766,7 +766,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setQuietTimeStart",
+                                                        "command_name": "setquiettimestart",
                                                         "quiet_time_start_hour": 1,
                                                         "quiet_time_start_minute": 2,
                                                         "quiet_time_end_hour": 3,
@@ -791,7 +791,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setQuietTimeStart",
+                                                        "command_name": "setquiettimestart",
                                                         "quiet_time_start_hour": 1,
                                                         "quiet_time_start_minute": 2,
                                                         ])?.description {
@@ -812,7 +812,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setChannelTags",
+                                                        "command_name": "setchanneltags",
                                                         "channel_tags": channelTags,
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -831,7 +831,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setChannelTags",
+                                                        "command_name": "setchanneltags",
                                                         "channel_tags": "channelTags",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -851,7 +851,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setNamedUserTags",
+                                                        "command_name": "setnamedusertags",
                                                         "named_user_tags": userTags,
                                                         "tag_group": "group",
                                                         ])?.description {
@@ -873,7 +873,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setNamedUserTags",
+                                                        "command_name": "setnamedusertags",
                                                         "named_user_tags": "userTags",
                                                         "tag_group": "group",
                                                         ])?.description {
@@ -895,7 +895,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "addTag",
+                                                        "command_name": "addtag",
                                                         "channel_tag": "abc",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -914,7 +914,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "addTag",
+                                                        "command_name": "addtag",
                                                         "channel_tag": 1,
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -933,7 +933,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "removeTag",
+                                                        "command_name": "removetag",
                                                         "channel_tag": "abc",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -952,7 +952,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "removeTag",
+                                                        "command_name": "removetag",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -971,7 +971,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "addTagGroup",
+                                                        "command_name": "addtaggroup",
                                                         "tag_group": "def",
                                                         "named_user_tags": userTags,
                                                         "tag_type": "named_user"
@@ -996,7 +996,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "addTagGroup",
+                                                        "command_name": "addtaggroup",
                                                         "tag_group": "def",
                                                         "channel_tags": channelTags,
                                                         "tag_type": "channel"
@@ -1020,7 +1020,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "addTagGroup",
+                                                        "command_name": "addtaggroup",
                                                         "tag_group": "def",
                                                         "channel_tags": "channelTags",
                                                         "tag_type": "channel"
@@ -1045,7 +1045,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "removeTagGroup",
+                                                        "command_name": "removetaggroup",
                                                         "tag_group": "def",
                                                         "named_user_tags": userTags,
                                                         "tag_type": "named_user"
@@ -1070,7 +1070,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "removeTagGroup",
+                                                        "command_name": "removetaggroup",
                                                         "tag_group": "def",
                                                         "channel_tags": channelTags,
                                                         "tag_type": "channel"
@@ -1094,7 +1094,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "removeTagGroup",
+                                                        "command_name": "removetaggroup",
                                                         "tag_group": "def",
                                                         "channel_tags": "channelTags",
                                                         "tag_type": "channel"
@@ -1119,7 +1119,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setAttributes",
+                                                        "command_name": "setattributes",
                                                         "attributes": ["test":"attributes"],
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -1137,7 +1137,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setAttributes",
+                                                        "command_name": "setattributes",
                                                         "attributes": "hello"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -1155,7 +1155,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "displayMessageCenter"
+                                                        "command_name": "displaymessagecenter"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -1172,7 +1172,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setMessageCenterTitle",
+                                                        "command_name": "setmessagecentertitle",
                                                         "message_center_title": "mytitle",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -1190,7 +1190,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setMessageCenterTitle",
+                                                        "command_name": "setmessageCentertitle",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -1207,7 +1207,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setMessageCenterStyle",
+                                                        "command_name": "setmessagecenterstyle",
                                                         "message_center_style": ["my_style": "style"],
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
@@ -1225,7 +1225,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "setMessageCenterStyle",
+                                                        "command_name": "setmessagecenterstyle",
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -1242,7 +1242,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "enableLocation"
+                                                        "command_name": "enablelocation"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -1260,7 +1260,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "enableLocation, disableLocation"
+                                                        "command_name": "enablelocation, disablelocation"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -1277,7 +1277,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "enableBackgroundLocation"
+                                                        "command_name": "enablebackgroundlocation"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
@@ -1294,7 +1294,7 @@ class AirshipCommandRunnerTests: XCTestCase {
         if let response = HttpTestHelpers.httpRequest(commandId: "airship",
                                                       config: ["response_id": "1234"],
                                                        payload: [
-                                                        "command_name": "enableBackgroundLocation, disableBackgroundLocation"
+                                                        "command_name": "enablebackgroundlocation, disablebackgroundlocation"
                                                         ])?.description {
             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
