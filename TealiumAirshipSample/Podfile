@@ -1,0 +1,14 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'AirshipSample' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for AirshipTabbedExample
+  pod "tealium-swift"
+  # pod "TealiumAirshipLocation", :path => '../'
+  pod "TealiumAirship", :path => '../'
+  pod "TealiumAirship/Location", :path => '../'
+  # pod 'Airship/Location', '~> 13.1.1'
+end
