@@ -7,8 +7,6 @@ target 'AirshipSample' do
 
   # Pods for AirshipTabbedExample
   pod "tealium-swift"
-  # pod "TealiumAirshipLocation", :path => '../'
   pod "TealiumAirship", :path => '../'
   pod "TealiumAirship/Location", :path => '../'
-  # pod 'Airship/Location', '~> 13.1.1'
 end
