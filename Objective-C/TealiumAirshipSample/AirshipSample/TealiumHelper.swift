@@ -27,11 +27,11 @@ class TealiumHelper {
     var remoteCommand = AirshipRemoteCommand()
     
     private init() {
+        let airshipCommand = AirshipRemoteCommand()
         config.setRemoteCommandsEnabled(true)
-        config.logLevel = .dev
         tealium = Tealium.newInstance(forKey: "airshipdemo", configuration: config)
         let queue = DispatchQueue(label: "com.tealium.airshipdemo", qos: .utility, attributes: .concurrent, autoreleaseFrequency: .inherit, target: .global(qos: .utility))
-        tealium?.addRemoteCommandID("airship", description: "Airship", targetQueue: queue, responseBlock: remoteCommand.remoteCommand())
+        tealium?.addRemoteCommandID("airship", description: "Airship", targetQueue: queue, responseBlock: airshipCommand.remoteCommand())
     }
 
 

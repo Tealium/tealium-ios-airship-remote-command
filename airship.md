@@ -123,7 +123,7 @@ tealium = Tealium(config: config) { responses in
 }
 ```
 
-4. Add the remote command for Swift or Objective-C:
+4. If you are using TealiumIOS, add the following code:
 
 {{% code-tabs %}}
 {{% code-tab "Swift" %}}
@@ -154,13 +154,12 @@ Initialize the remote command as follows:
 
 ```Objective-C
 // TODO: Update for Airship
-UsabillaTracker *usabillaTracker = [[UsabillaTracker alloc] init];
-UsabillaCommand *usabillaCommand = [[UsabillaCommand alloc] initWithUsabillaTracker:usabillaTracker];
-TEALRemoteCommandResponseBlock usabillaRemoteCommand = [usabillaCommand remoteCommand];
-[[Tealium instanceForKey:@"MY_INSTANCE"] addRemoteCommandID:@"usabilla"
-        description:@"Usabilla Remote Command"
+AirshipRemoteCommand *airshipRemoteCommand = [[AirshipRemoteCommand alloc] init];
+TEALRemoteCommandResponseBlock *airshipCommand = [airshipRemoteCommand remoteCommand];
+[[Tealium instanceForKey:@"MY_INSTANCE"] addRemoteCommandID:@"airship"
+        description:@"Airship Remote Command"
         targetQueue:dispatch_get_main_queue()
-        responseBlock: usabillaRemoteCommand];
+        responseBlock: airshipCommand];
 ```
 {{% /code-tab %}}
 
@@ -238,45 +237,45 @@ Airship methods or properties are triggered using a data mapping in the Airship 
 | Remote Command                        | Airship Method/Property                                            |
 |---------------------------------------|--------------------------------------------------------------------|
 | `initialize`                          | `takeOff()`                                                        |
-| `trackEvent`                          | `UACustomEvent.track()`                                            |
-| `trackScreenView`                     | `trackScreen`                                                      |
-| `enableAnalytics`                     | `analytics()?.isEnabled`                                           |
-| `disableAnalytics`                    | `analytics()?.isEnabled`                                           |
-| `setNamedUser`                        | `UAirship.namedUser()?.identifier`                                 |
-| `setCustomIdentifiers`                | `analytics()?.associateDeviceIdentifiers`                          |
-| `enableAdvertisingIdentifiers`        | `analytics()?.associateDeviceIdentifiers`                          |
-| `enableInAppMessaging`                | `UAInAppMessageManager.shared()?.isEnabled`                        |
-| `disableInAppMessaging`               | `UAInAppMessageManager.shared()?.isEnabled`                        |
-| `pauseInAppMessaging`                 | `UAInAppMessageManager.shared()?.isPaused`                         |
-| `unPauseInAppMessaging`               | `UAInAppMessageManager.shared()?.isPaused`                         |
-| `setInAppMessagingDisplayInterval`    | `UAInAppMessageManager.shared()?.displayInterval`                  |
-| `enableUserPushNotifications`         | `UAirship.push()?.userPushNotificationsEnabled`                    |
-| `disableUserPushNotifications`        | `UAirship.push()?.userPushNotificationsEnabled`                    |
-| `enableBackgroundPushNotifications`   | `UAirship.push()?.backgroundPushNotificationsEnabled`              |
-| `disableBackgroundPushNotifications ` | `UAirship.push()?.backgroundPushNotificationsEnabled`              |
-| `setPushNotificationOptions`          | `UAirship.push()?.notificationOptions`                             |
-| `setForegroundPresentationOptions`    | `UAirship.push()?.defaultPresentationOptions`                      |
-| `setBadgeNumber`                      | `UAirship.push()?.badgeNumber`                                     |
-| `resetBadgeNumber`                    | `UAirship.push()?.resetBadge()`                                    |
-| `enableAutoBadge`                     | `UAirship.push()?.isAutobadgeEnabled`                              |
-| `disableAutoBadge`                    | `UAirship.push()?.isAutobadgeEnabled`                              |
-| `enableQuietTime`                     | `UAirship.push()?.isQuietTimeEnabled`                              |
-| `disableQuietTime`                    | `UAirship.push()?.isQuietTimeEnabled`                              |
-| `setQuietTimeStart`                   | `UAirship.push()?.setQuietTimeStartHour`                           |
-| `setChannelTags`                      | `UAirship.channel()?.tags`                                         |
-| `setNamedUserTags`                    | `UAirship.namedUser()?.setTags()`                                  |
-| `addTag`                              | `UAirship.channel()?.addTag()`                                     |
-| `removeTag`                           | `UAirship.channel()?.removeTag`                                    |
-| `addTagGroup`                         | `UAirship.channel()?.addTags, UAirship.namedUser()?.addTags`       |
-| `removeTagGroup`                      | `UAirship.channel()?.removeTags, UAirship.namedUser()?.removeTags` |
-| `setAttributes`                       | `UAirship.channel()?.apply`                                        |
-| `displayMessageCenter`                | `UAMessageCenter.shared().display()`                               |
-| `setMessageCenterTitle`               | `UAMessageCenter.shared()?.defaultUI.title`                        |
-| `setMessageCenterStyle`               | `UAMessageCenter.shared().defaultUI.style`                         |
-| `enableLocation`                      | `UALocation.shared().isLocationUpdatesEnabled`                     |
-| `disableLocation`                     | `UALocation.shared().isLocationUpdatesEnabled`                     |
-| `enableBackgroundLocation`            | `UALocation.shared().isBackgroundLocationUpdatesAllowed`           |
-| `disableBackgroundLocation`           | `UALocation.shared().isBackgroundLocationUpdatesAllowed`           |
+| `trackevent`                          | `UACustomEvent.track()`                                            |
+| `trackscreenview`                     | `trackScreen`                                                      |
+| `enableanalytics`                     | `analytics()?.isEnabled`                                           |
+| `disableanalytics`                    | `analytics()?.isEnabled`                                           |
+| `setnameduser`                        | `UAirship.namedUser()?.identifier`                                 |
+| `setcustomidentifiers`                | `analytics()?.associateDeviceIdentifiers`                          |
+| `enableadvertisingidentifiers`        | `analytics()?.associateDeviceIdentifiers`                          |
+| `enableinappmessaging`                | `UAInAppMessageManager.shared()?.isEnabled`                        |
+| `disableinappmessaging`               | `UAInAppMessageManager.shared()?.isEnabled`                        |
+| `pauseinappmessaging`                 | `UAInAppMessageManager.shared()?.isPaused`                         |
+| `unpauseinappmessaging`               | `UAInAppMessageManager.shared()?.isPaused`                         |
+| `setinappmessagingdisplayinterval`    | `UAInAppMessageManager.shared()?.displayInterval`                  |
+| `enableuserpushnotifications`         | `UAirship.push()?.userPushNotificationsEnabled`                    |
+| `disableuserpushnotifications`        | `UAirship.push()?.userPushNotificationsEnabled`                    |
+| `enablebackgroundpushnotifications`   | `UAirship.push()?.backgroundPushNotificationsEnabled`              |
+| `disablebackgroundpushnotifications ` | `UAirship.push()?.backgroundPushNotificationsEnabled`              |
+| `setpushnotificationoptions`          | `UAirship.push()?.notificationOptions`                             |
+| `setforegroundpresentationoptions`    | `UAirship.push()?.defaultPresentationOptions`                      |
+| `setbadgenumber`                      | `UAirship.push()?.badgeNumber`                                     |
+| `resetbadgenumber`                    | `UAirship.push()?.resetBadge()`                                    |
+| `enableautobadge`                     | `UAirship.push()?.isAutobadgeEnabled`                              |
+| `disableautobadge`                    | `UAirship.push()?.isAutobadgeEnabled`                              |
+| `enablequiettime`                     | `UAirship.push()?.isQuietTimeEnabled`                              |
+| `disablequiettime`                    | `UAirship.push()?.isQuietTimeEnabled`                              |
+| `setquiettimestart`                   | `UAirship.push()?.setQuietTimeStartHour`                           |
+| `setchanneltags`                      | `UAirship.channel()?.tags`                                         |
+| `setnamedusertags`                    | `UAirship.namedUser()?.setTags()`                                  |
+| `addtag`                              | `UAirship.channel()?.addTag()`                                     |
+| `removetag`                           | `UAirship.channel()?.removeTag`                                    |
+| `addtaggroup`                         | `UAirship.channel()?.addTags, UAirship.namedUser()?.addTags`       |
+| `removetaggroup`                      | `UAirship.channel()?.removeTags, UAirship.namedUser()?.removeTags` |
+| `setattributes`                       | `UAirship.channel()?.apply`                                        |
+| `displaymessagecenter`                | `UAMessageCenter.shared().display()`                               |
+| `setmessagecentertitle`               | `UAMessageCenter.shared()?.defaultUI.title`                        |
+| `setmessagecenterstyle`               | `UAMessageCenter.shared().defaultUI.style`                         |
+| `enablelocation`                      | `UALocation.shared().isLocationUpdatesEnabled`                     |
+| `disablelocation`                     | `UALocation.shared().isLocationUpdatesEnabled`                     |
+| `enablebackgroundlocation`            | `UALocation.shared().isBackgroundLocationUpdatesAllowed`           |
+| `disablebackgroundlocation`           | `UALocation.shared().isBackgroundLocationUpdatesAllowed`           |
 
 
 {{% tip %}}Since the Airship SDK is integrated with the Tealium SDK, you may trigger any native Airship functionality by calling the SDK directly, even if the functionality is not provdied by the Tealium Airship Remote Command tag.{{% /tip %}}
@@ -854,15 +853,7 @@ Sets the message center style. iOS only.
      "titleColor": {"red": Double, "green": Double, "blue": Double, "alpha": Double}
      "tintColor": {"red": Double, "green": Double, "blue": Double, "alpha": Double}
      }
-     
-Example: 
-	
-	{"titleFont": {"size": 17.0, "name":"Roboto-Regular"},
-	  "cellTitleFont": {"size": 14.0, "name":"Roboto-Bold"},
-	  "cellDateFont": {"size": 12.0, "name":"Roboto-Light"},
-	  "navigationBarColor": {"red": 0.988, "green": 0.694, "blue": 0.106, "alpha": 1.0},
-	  "titleColor": {"red": 0.039, "green": 0.341, "blue": 0.490, "alpha": 1.0},
-	  "tintColor": {"red": 0.039, "green": 0.341, "blue": 0.490, "alpha": 1.0}}
+
 
 Airship Developer Guide: 
 
