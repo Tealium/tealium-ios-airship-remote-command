@@ -8,11 +8,11 @@
 
 import Foundation
 
-#if COCOAPODS
+// Comment out if using Carthage
 import Airship
-#else
-import AirshipCore
-#endif
+
+// Uncomment if using Carthage
+//import AirshipCore
 
 enum UAConfigKeys: String {
     

@@ -10,7 +10,7 @@ import UIKit
 import TealiumIOS
 
 fileprivate extension Dictionary where Key: ExpressibleByStringLiteral {
-    subscript(key: AirshipKey) -> Value? {
+    subscript(key: AirshipConstants.Keys) -> Value? {
         get {
             return self[key.rawValue as! Key]
         }

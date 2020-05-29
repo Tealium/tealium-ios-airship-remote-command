@@ -8,11 +8,11 @@
 
 import Foundation
 
-#if COCOAPODS
+// Comment out if using Carthage
 import Airship
-#else
-import AirshipLocation
-#endif
+
+// Uncomment if using Carthage
+//import AirshipLocation
 
 extension AirshipTracker {
     

@@ -9,11 +9,11 @@
 import Foundation
 import AdSupport
 
-#if COCOAPODS
+// Comment out if using Carthage
 import Airship
-#else
-import AirshipCore
-#endif
+
+// Uncomment if using Carthage
+//import AirshipCore
 
 extension AirshipTracker {
        
