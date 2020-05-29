@@ -51,16 +51,7 @@ extension AirshipTracker {
             UAMessageCenter.shared()?.defaultUI.title = title
         }
     }
-/*
-     
-     ["titleFont": ["size": Double, "name":"fontname"],
-     "cellTitleFont": ["size": Double, "name":"fontname"],
-     "cellDateFont": ["size": Double, "name":"fontname"],
-     "navigationBarColor": ["red": Double, "green": Double, "blue": Double, "alpha": Double]
-     "titleColor": ["red": Double, "green": Double, "blue": Double, "alpha": Double]
-     "tintColor": ["red": Double, "green": Double, "blue": Double, "alpha": Double]
-     ]
-     */
+
     public func setMessageCenterStyle(_ style: [String : Any]) {
         let messageCenterStyle = UAMessageCenterStyle()
         

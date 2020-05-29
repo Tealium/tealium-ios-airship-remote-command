@@ -1,23 +1,16 @@
 //
-//  AirshipCommand.swift
-// 
+//  AirshipRemoteCommand.swift
 //
 //  Created by Craig Rouse on 24/03/2020.
 //  Copyright © 2019 Tealium. All rights reserved.
 //
-import Foundation
 
-#if COCOAPODS
-import TealiumSwift
-#else
-import TealiumCore
-import TealiumDelegate
-import TealiumTagManagement
-import TealiumRemoteCommands
-#endif
+import UIKit
+
+import TealiumIOS
 
 fileprivate extension Dictionary where Key: ExpressibleByStringLiteral {
-    subscript(key: AirshipConstants.Keys) -> Value? {
+    subscript(key: AirshipKey) -> Value? {
         get {
             return self[key.rawValue as! Key]
         }
@@ -27,17 +20,19 @@ fileprivate extension Dictionary where Key: ExpressibleByStringLiteral {
     }
 }
 
-public class AirshipRemoteCommand {
+public class AirshipRemoteCommand: NSObject {
     
     var airshipTracker: AirshipTrackable
     
-    public init(airshipTracker: AirshipTrackable = AirshipTracker()) {
-        self.airshipTracker = airshipTracker
+    @objc public override init() {
+        self.airshipTracker = AirshipTracker()
     }
     
-    public func remoteCommand() -> TealiumRemoteCommand {
-        return TealiumRemoteCommand(commandId: AirshipConstants.commandId, description: AirshipConstants.commandDescription) { response in
-            let payload = response.payload()
+    public func remoteCommand() -> TEALRemoteCommandResponseBlock {
+        return { response in
+            guard let payload = response?.requestPayload as? [String: Any] else {
+                return
+            }
             guard let command = payload[AirshipConstants.commandName] as? String else {
                 return
             }
@@ -233,4 +228,5 @@ public class AirshipRemoteCommand {
             }
         }
     }
+    
 }

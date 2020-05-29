@@ -57,8 +57,6 @@ public protocol AirshipTrackable {
         
     func setQuietTimeStartHour(_ hour: Int, minute: Int, endHour: Int, endMinute: Int)
     
-//    func setCustomEventCategory()
-    
     // Analytics
     
     var customIdentifiers: [String: String]? { get set }
