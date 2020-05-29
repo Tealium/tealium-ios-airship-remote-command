@@ -39,7 +39,6 @@ class TealiumHelper {
                             self.tealium?.consentManager()?.setUserConsentStatus(.consented)
                             // MARK: Airship
                             let airshipCommand = AirshipRemoteCommand().remoteCommand()
-//                            let adobeAnalyticsRemoteCommand = AdobeAnalyticsRemoteCommand().remoteCommand()
                             remoteCommands.add(airshipCommand)
                           })
 
