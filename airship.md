@@ -153,13 +153,10 @@ Import the remote command in the `TealiumHelper.m` file as follows:
 Initialize the remote command as follows:
 
 ```Objective-C
-// TODO: Update for Airship
-AirshipRemoteCommand *airshipRemoteCommand = [[AirshipRemoteCommand alloc] init];
-TEALRemoteCommandResponseBlock *airshipCommand = [airshipRemoteCommand remoteCommand];
-[[Tealium instanceForKey:@"MY_INSTANCE"] addRemoteCommandID:@"airship"
-        description:@"Airship Remote Command"
-        targetQueue:dispatch_get_main_queue()
-        responseBlock: airshipCommand];
+	TEALConfiguration *configuration = [TEALConfiguration configurationWithAccount:@"tealiummobile" profile:@"demo" environment:@"dev"];
+    Tealium *tealium = [Tealium newInstanceForKey:@"airshipdemo" configuration:configuration];
+    AirshipRemoteCommand *airshipRemoteCommand = [[AirshipRemoteCommand alloc] init];
+    [tealium addRemoteCommandID:@"airship" description:nil targetQueue:dispatch_get_main_queue() responseBlock: [airshipRemoteCommand remoteCommand]];
 ```
 {{% /code-tab %}}
 
@@ -206,7 +203,7 @@ teal = Tealium(config: config) { responses in
 
 {{% code-tab "Objective-C" %}}
 
-The following example creates a Tealium instance and then registers the Usabilla remote command for Objective-C:  
+The following example creates a Tealium instance and then registers the Airship remote command for Objective-C:  
 
 {{%note%}}The code is written in Swift and requires a Bridging Header in your Xcode project for this to work correctly.{{%/note%}}
 

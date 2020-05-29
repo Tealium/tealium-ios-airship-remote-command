@@ -28,7 +28,7 @@ public class AirshipRemoteCommand: NSObject {
         self.airshipTracker = AirshipTracker()
     }
     
-    public func remoteCommand() -> TEALRemoteCommandResponseBlock {
+    @objc public func remoteCommand() -> TEALRemoteCommandResponseBlock {
         return { response in
             guard let payload = response?.requestPayload as? [String: Any] else {
                 return
