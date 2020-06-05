@@ -9,17 +9,6 @@ import UIKit
 
 import TealiumIOS
 
-fileprivate extension Dictionary where Key: ExpressibleByStringLiteral {
-    subscript(key: AirshipConstants.Keys) -> Value? {
-        get {
-            return self[key.rawValue as! Key]
-        }
-        set {
-            self[key.rawValue as! Key] = newValue
-        }
-    }
-}
-
 public class AirshipRemoteCommand: NSObject {
     
     var airshipTracker: AirshipTrackable
@@ -53,7 +42,9 @@ public class AirshipRemoteCommand: NSObject {
             guard let self = self else {
                 return
             }
-            let finalCommand = AirshipConstants.Commands(rawValue: command)
+            guard let finalCommand = AirshipConstants.Commands(rawValue: command) else {
+                return
+            }
             switch finalCommand {
             case .initialize:
                 guard let config = payload[AirshipConstants.Keys.airshipConfig] as? [String: Any] else {
@@ -223,8 +214,6 @@ public class AirshipRemoteCommand: NSObject {
                 self.airshipTracker.backgroundLocationEnabled = true
             case .disableBackgroundLocation:
                 self.airshipTracker.backgroundLocationEnabled = false
-            default:
-                break
             }
         }
     }

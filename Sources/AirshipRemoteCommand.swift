@@ -16,17 +16,6 @@ import TealiumTagManagement
 import TealiumRemoteCommands
 #endif
 
-fileprivate extension Dictionary where Key: ExpressibleByStringLiteral {
-    subscript(key: AirshipConstants.Keys) -> Value? {
-        get {
-            return self[key.rawValue as! Key]
-        }
-        set {
-            self[key.rawValue as! Key] = newValue
-        }
-    }
-}
-
 public class AirshipRemoteCommand {
     
     var airshipTracker: AirshipTrackable
@@ -58,7 +47,11 @@ public class AirshipRemoteCommand {
             guard let self = self else {
                 return
             }
-            let finalCommand = AirshipConstants.Commands(rawValue: command)
+            
+            guard let finalCommand = AirshipConstants.Commands(rawValue: command) else {
+                return
+            }
+            
             switch finalCommand {
             case .initialize:
                 guard let config = payload[AirshipConstants.Keys.airshipConfig] as? [String: Any] else {
@@ -228,8 +221,6 @@ public class AirshipRemoteCommand {
                 self.airshipTracker.backgroundLocationEnabled = true
             case .disableBackgroundLocation:
                 self.airshipTracker.backgroundLocationEnabled = false
-            default:
-                break
             }
         }
     }
