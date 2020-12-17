@@ -19,7 +19,7 @@ let package = Package(
             name: "TealiumAirship",
             dependencies: ["Airship", "TealiumCore", "TealiumRemoteCommands", "TealiumTagManagement"],
             path: "./Sources", 
-            exclude: ["./Sources/Location"]),
+            exclude: ["AirshipLocation.swift"]),
         .target(
             name: "TealiumAirship_Location",
             dependencies: ["Airship", "AirshipLocation", "TealiumCore", "TealiumRemoteCommands", "TealiumTagManagement"],
