@@ -7,7 +7,11 @@
 //
 
 import Foundation
+#if COCOAPODS
 import Airship
+#else
+import AirshipCore
+#endif
 
 enum UAConfigKeys: String {
     

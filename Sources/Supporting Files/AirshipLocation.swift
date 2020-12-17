@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 #if COCOAPODS
 import Airship
 #else

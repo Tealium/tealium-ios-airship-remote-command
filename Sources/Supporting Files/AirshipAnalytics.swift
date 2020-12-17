@@ -8,7 +8,11 @@
 
 import Foundation
 import AdSupport
+#if COCOAPODS
 import Airship
+#else
+import AirshipCore
+#endif
 
 extension AirshipInstance {
        

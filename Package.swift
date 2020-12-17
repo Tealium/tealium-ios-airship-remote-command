@@ -1,14 +1,13 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.1
 import PackageDescription
 
 let package = Package(
     name: "TealiumAirship",
     platforms: [
-        .iOS(.v9)
+        .iOS(.v11)
     ],
     products: [
         .library(name: "TealiumAirship", targets: ["TealiumAirship"]),
-        .library(name: "TealiumAirship_Location", targets: ["TealiumAirship_Location"])
     ],
     dependencies: [
         .package(url: "https://github.com/tealium/tealium-swift", from: "2.2.0"),
@@ -17,13 +16,17 @@ let package = Package(
     targets: [
         .target(
             name: "TealiumAirship",
-            dependencies: ["Airship", "TealiumCore", "TealiumRemoteCommands", "TealiumTagManagement"],
-            path: "./Sources", 
-            exclude: ["./Sources/Location/AirshipLocation.swift"]),
-        .target(
-            name: "TealiumAirship_Location",
-            dependencies: ["Airship", "AirshipLocation", "TealiumCore", "TealiumRemoteCommands", "TealiumTagManagement"],
-            path: "./Sources"),
+            dependencies: [
+                "AirshipCore",
+                "AirshipAutomation",
+                "AirshipMessageCenter",
+                "AirshipLocation",
+                "TealiumCore",
+                "TealiumRemoteCommands",
+                "TealiumTagManagement"
+            ],
+            path: "./Sources"
+        ), 
         .testTarget(
             name: "TealiumAirshipTests",
             dependencies: ["TealiumAirship"],

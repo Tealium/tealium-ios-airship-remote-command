@@ -1,9 +1,9 @@
 {
   "config": {
-    "developmentAppKey": "P0m0BS3AQyGqQk4ylMo6Rg",
-    "developmentAppSecret": "S8vb86b7Rk6JzgsR8IjIcg",
-    "productionAppKey": "P0m0BS3AQyGqQk4ylMo6Rg",
-    "productionAppSecret": "S8vb86b7Rk6JzgsR8IjIcg",
+    "developmentAppKey": "YOUR_DEV_KEY",
+    "developmentAppSecret": "YOUR_DEV_SECRET",
+    "productionAppKey": "YOUR_PROD_KEY",
+    "productionAppSecret": "YOUR_PROD_SECRET",
     "productionLogLevel": "debug",
     "developmentLogLevel": "debug"
   },

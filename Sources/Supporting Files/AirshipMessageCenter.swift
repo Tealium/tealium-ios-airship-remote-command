@@ -7,7 +7,12 @@
 //
 
 import Foundation
+#if COCOAPODS
 import Airship
+#else
+import AirshipCore
+import AirshipMessageCenter
+#endif
 
 enum MessageCenterStyle: String {
     case titleFont

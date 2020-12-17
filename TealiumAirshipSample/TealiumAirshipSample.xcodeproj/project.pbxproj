@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -74,13 +74,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		67542A657F2B739331040359 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		CF7AD515258AE3E00098A0CA /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +90,6 @@
 			children = (
 				D79A1BEF2449A67B00BBA8B3 /* AirshipSample */,
 				D76857052448B07500626507 /* Products */,
-				67542A657F2B739331040359 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,16 +139,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D79A1C012449A67C00BBA8B3 /* Build configuration list for PBXNativeTarget "AirshipSample" */;
 			buildPhases = (
-				A7A1172BDD68BE302C9D8E99 /* [CP] Check Pods Manifest.lock */,
 				D79A1BEA2449A67B00BBA8B3 /* Sources */,
 				D79A1BEB2449A67B00BBA8B3 /* Frameworks */,
 				D79A1BEC2449A67B00BBA8B3 /* Resources */,
 				D79A1C672449C43900BBA8B3 /* Embed Frameworks */,
-				AD165AFAF8EF99080847C228 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CF7AD54C258C16500098A0CA /* PBXTargetDependency */,
 			);
 			name = AirshipSample;
 			productName = AirshipTabbedExample;
@@ -210,48 +201,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		A7A1172BDD68BE302C9D8E99 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AirshipSample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AD165AFAF8EF99080847C228 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AirshipSample/Pods-AirshipSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AirshipSample/Pods-AirshipSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AirshipSample/Pods-AirshipSample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		D79A1BEA2449A67B00BBA8B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -275,6 +224,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF7AD54C258C16500098A0CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = CF7AD54B258C16500098A0CA;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D79A1BFB2449A67C00BBA8B3 /* LaunchScreen.storyboard */ = {

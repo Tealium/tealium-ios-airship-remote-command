@@ -7,7 +7,12 @@
 //
 
 import Foundation
+#if COCOAPODS
 import Airship
+#else
+import AirshipCore
+import AirshipAutomation
+#endif
 
 extension AirshipInstance {
 
