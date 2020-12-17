@@ -20,9 +20,9 @@ let package = Package(
             dependencies: ["Airship", "TealiumCore", "TealiumRemoteCommands", "TealiumTagManagement"],
             path: "./Sources"),
         .target(
-            name: "TealiumAirship_Locaion",
+            name: "TealiumAirship_Location",
             dependencies: ["Airship", "AirshipLocation", "TealiumCore", "TealiumRemoteCommands", "TealiumTagManagement"],
-            path: "./Sources"),
+            path: "./Sources/**/*"),
         .testTarget(
             name: "TealiumAirshipTests",
             dependencies: ["TealiumAirship"],
