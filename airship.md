@@ -107,9 +107,9 @@ dependencies {
 
 ### Manual (iOS)
 
-The manual installation for Facebook remote commands requires the [Tealium for Swift](https://docs.tealium.com/platforms/ios-swift/) library to be installed.
+The manual installation for Airship remote commands requires the [Tealium for Swift](https://docs.tealium.com/platforms/ios-swift/) library to be installed.
 
-To install the Facebook remote commands for your iOS project:
+To install the Airship remote commands for your iOS project:
 
 1. Install the [Airship SDK](https://github.com/urbanairship/ios-library), if you haven't already done so.
 
