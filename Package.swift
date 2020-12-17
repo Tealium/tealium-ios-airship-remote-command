@@ -18,11 +18,12 @@ let package = Package(
         .target(
             name: "TealiumAirship",
             dependencies: ["Airship", "TealiumCore", "TealiumRemoteCommands", "TealiumTagManagement"],
-            path: "./Sources"),
+            path: "./Sources", 
+            exclude: ["./Sources/Location"]),
         .target(
             name: "TealiumAirship_Location",
             dependencies: ["Airship", "AirshipLocation", "TealiumCore", "TealiumRemoteCommands", "TealiumTagManagement"],
-            path: "./Sources/**/*"),
+            path: "./Sources/Location"),
         .testTarget(
             name: "TealiumAirshipTests",
             dependencies: ["TealiumAirship"],

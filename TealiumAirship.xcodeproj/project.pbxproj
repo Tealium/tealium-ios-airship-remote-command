@@ -224,6 +224,7 @@
 				D75D99B324810A6100160978 /* AirshipConstants.swift */,
 				CF1401C12304C098002AC330 /* AirshipRemoteCommand.swift */,
 				CF1401C22304C098002AC330 /* AirshipInstance.swift */,
+				CF7AD53A258BE32B0098A0CA /* Location */,
 				CF7AD4DA258AB94E0098A0CA /* Supporting Files */,
 				4B28C46922FB2901002AE7FA /* TealiumAirship.h */,
 				4B28C46A22FB2901002AE7FA /* Info.plist */,
@@ -245,7 +246,6 @@
 		CF7AD4DA258AB94E0098A0CA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D709F4F9247FE91300B00D41 /* Location */,
 				CFEABFFA258A9862007D9011 /* AirshipConfig.swift */,
 				D7A12E672429290300C09484 /* AirshipPushMessaging.swift */,
 				D7A12E6B242A2BB100C09484 /* AirshipAnalytics.swift */,
@@ -255,6 +255,14 @@
 				D77DDC7B242E6652005D4596 /* AirshipMessageCenter.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CF7AD53A258BE32B0098A0CA /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				D709F4FA247FE91300B00D41 /* AirshipLocation.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 		CFBA50B02304DC8500EF52BC /* Frameworks */ = {
@@ -292,14 +300,6 @@
 				CFBA50B12304DC8600EF52BC /* TealiumTagManagement.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D709F4F9247FE91300B00D41 /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				D709F4FA247FE91300B00D41 /* AirshipLocation.swift */,
-			);
-			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
