@@ -7,7 +7,7 @@ let package = Package(
         .iOS(.v9)
     ],
     products: [
-        .library(name: "TealiumAirship", targets: ["TealiumAirship"])
+        .library(name: "TealiumAirship", targets: ["TealiumAirship"]),
         .library(name: "TealiumAirshipLocation", targets: ["TealiumAirshipLocation"])
     ],
     dependencies: [

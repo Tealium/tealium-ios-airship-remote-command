@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A98BE357590F2FB7F35F5FBB /* Pods_AirshipSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8663165B83ECCBD26D1E3F9 /* Pods_AirshipSample.framework */; };
 		CF7AD4E4258ACA090098A0CA /* airship.json in Resources */ = {isa = PBXBuildFile; fileRef = CF7AD4E3258ACA090098A0CA /* airship.json */; };
 		CF7AD4EB258ACCC50098A0CA /* MessageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7AD4EA258ACCC50098A0CA /* MessageStyle.swift */; };
 		CF7AD4ED258AD2610098A0CA /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7AD4EC258AD2610098A0CA /* Customer.swift */; };
@@ -42,9 +41,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		19EAB4DD96357470088B8591 /* Pods-AirshipSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirshipSample.release.xcconfig"; path = "Target Support Files/Pods-AirshipSample/Pods-AirshipSample.release.xcconfig"; sourceTree = "<group>"; };
-		C5D0BA4BCD60D1BE69C01D53 /* Pods-AirshipSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirshipSample.debug.xcconfig"; path = "Target Support Files/Pods-AirshipSample/Pods-AirshipSample.debug.xcconfig"; sourceTree = "<group>"; };
-		C8663165B83ECCBD26D1E3F9 /* Pods_AirshipSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AirshipSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7AD4E3258ACA090098A0CA /* airship.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = airship.json; sourceTree = "<group>"; };
 		CF7AD4EA258ACCC50098A0CA /* MessageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStyle.swift; sourceTree = "<group>"; };
 		CF7AD4EC258AD2610098A0CA /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -72,26 +68,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A98BE357590F2FB7F35F5FBB /* Pods_AirshipSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F639C3415213ED8AC8CE291 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C5D0BA4BCD60D1BE69C01D53 /* Pods-AirshipSample.debug.xcconfig */,
-				19EAB4DD96357470088B8591 /* Pods-AirshipSample.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		67542A657F2B739331040359 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C8663165B83ECCBD26D1E3F9 /* Pods_AirshipSample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,7 +97,6 @@
 			children = (
 				D79A1BEF2449A67B00BBA8B3 /* AirshipSample */,
 				D76857052448B07500626507 /* Products */,
-				3F639C3415213ED8AC8CE291 /* Pods */,
 				67542A657F2B739331040359 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -420,7 +404,6 @@
 		};
 		D79A1BFF2449A67C00BBA8B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5D0BA4BCD60D1BE69C01D53 /* Pods-AirshipSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -445,7 +428,6 @@
 		};
 		D79A1C002449A67C00BBA8B3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19EAB4DD96357470088B8591 /* Pods-AirshipSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
