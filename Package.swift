@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.2
 import PackageDescription
 
 let package = Package(
@@ -19,11 +19,11 @@ let package = Package(
             name: "TealiumAirship",
             dependencies: ["Airship", "TealiumCore", "TealiumRemoteCommands", "TealiumTagManagement"],
             path: "./Sources", 
-            exclude: ["AirshipLocation.swift"]),
+            exclude: ["./Sources/Location/AirshipLocation.swift"]),
         .target(
             name: "TealiumAirship_Location",
             dependencies: ["Airship", "AirshipLocation", "TealiumCore", "TealiumRemoteCommands", "TealiumTagManagement"],
-            path: "./Sources/Location"),
+            path: "./Sources"),
         .testTarget(
             name: "TealiumAirshipTests",
             dependencies: ["TealiumAirship"],
