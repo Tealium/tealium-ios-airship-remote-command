@@ -8,7 +8,7 @@ let package = Package(
     ],
     products: [
         .library(name: "TealiumAirship", targets: ["TealiumAirship"]),
-        .library(name: "TealiumAirshipLocation", targets: ["TealiumAirshipLocation"])
+        .library(name: "TealiumAirship+Location", targets: ["TealiumAirship+Location"])
     ],
     dependencies: [
         .package(url: "https://github.com/tealium/tealium-swift", from: "2.2.0"),
@@ -20,7 +20,7 @@ let package = Package(
             dependencies: ["Airship", "TealiumCore", "TealiumRemoteCommands", "TealiumTagManagement"],
             path: "./Sources"),
         .target(
-            name: "TealiumAirshipLocaion",
+            name: "TealiumAirship+Locaion",
             dependencies: ["Airship", "AirshipLocation", "TealiumCore", "TealiumRemoteCommands", "TealiumTagManagement"],
             path: "./Sources"),
         .testTarget(
