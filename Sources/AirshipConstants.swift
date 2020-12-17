@@ -13,7 +13,7 @@ enum AirshipConstants {
     static let commandName = "command_name"
     static let separator: Character = ","
     static let commandId = "airship"
-    static let commandDescription = "Airship Remote Command"
+    static let description = "Airship Remote Command"
     
     enum Commands: String {
         
@@ -60,19 +60,19 @@ enum AirshipConstants {
     }
 
     enum Keys {
-        static let airshipConfig = "airship_config"
         static let eventName = "event_name"
-        static let eventProperties = "event_properties"
+        static let eventProperties = "event"
         static let eventValue = "event_value"
         static let screenName = "screen_name"
         static let namedUserIdentifier = "named_user_identifier"
-        static let customIdentifiers = "custom_identifiers"
+        static let customIdentifiers = "custom"
         static let inAppMessagingDisplayInterval = "in_app_messaging_display_interval"
         static let pushNotificationOptions = "push_notification_options"
-        static let quietTimeStartHour = "quiet_time_start_hour"
-        static let quietTimeStartMinute = "quiet_time_start_minute"
-        static let quietTimeEndHour = "quiet_time_end_hour"
-        static let quietTimeEndMinute = "quiet_time_end_minute"
+        static let quiet = "quiet"
+        static let startHour = "start_hour"
+        static let startMinute = "start_minute"
+        static let endHour = "end_hour"
+        static let endMinute = "end_minute"
         static let badgeNumber = "badge_number"
         static let foregroundPresentationOptions = "foreground_presentation_options"
         static let namedUserTags = "named_user_tags"

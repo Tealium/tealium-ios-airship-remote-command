@@ -9,13 +9,33 @@
 /* Begin PBXBuildFile section */
 		4B28C47722FB2901002AE7FA /* TealiumAirship.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B28C46922FB2901002AE7FA /* TealiumAirship.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF1401C32304C098002AC330 /* AirshipRemoteCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1401C12304C098002AC330 /* AirshipRemoteCommand.swift */; };
-		CF1401C42304C098002AC330 /* AirshipTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1401C22304C098002AC330 /* AirshipTracker.swift */; };
+		CF1401C42304C098002AC330 /* AirshipInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1401C22304C098002AC330 /* AirshipInstance.swift */; };
+		CF7AD50B258AE22D0098A0CA /* AirshipLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7EC004924377662009EED38 /* AirshipLocation.framework */; };
+		CF7AD50C258AE22D0098A0CA /* AirshipLocation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7EC004924377662009EED38 /* AirshipLocation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CFBA50AD2304D4CA00EF52BC /* AirshipRemoteCommand.swift in Headers */ = {isa = PBXBuildFile; fileRef = CF1401C12304C098002AC330 /* AirshipRemoteCommand.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		CFBA50AE2304D4CA00EF52BC /* AirshipTracker.swift in Headers */ = {isa = PBXBuildFile; fileRef = CF1401C22304C098002AC330 /* AirshipTracker.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		CFBA50AE2304D4CA00EF52BC /* AirshipInstance.swift in Headers */ = {isa = PBXBuildFile; fileRef = CF1401C22304C098002AC330 /* AirshipInstance.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		CFEABFDE258A935F007D9011 /* TealiumTagManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B12304DC8600EF52BC /* TealiumTagManagement.framework */; };
+		CFEABFDF258A935F007D9011 /* TealiumTagManagement.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B12304DC8600EF52BC /* TealiumTagManagement.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CFEABFE0258A935F007D9011 /* TealiumRemoteCommands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B52304DC8600EF52BC /* TealiumRemoteCommands.framework */; };
+		CFEABFE1258A935F007D9011 /* TealiumRemoteCommands.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B52304DC8600EF52BC /* TealiumRemoteCommands.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CFEABFE2258A935F007D9011 /* TealiumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B32304DC8600EF52BC /* TealiumCore.framework */; };
+		CFEABFE3258A935F007D9011 /* TealiumCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B32304DC8600EF52BC /* TealiumCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CFEABFE8258A9360007D9011 /* Airship.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEABFE7258A9360007D9011 /* Airship.framework */; };
+		CFEABFE9258A9360007D9011 /* Airship.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFEABFE7258A9360007D9011 /* Airship.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CFEABFEA258A938F007D9011 /* TealiumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B32304DC8600EF52BC /* TealiumCore.framework */; };
+		CFEABFEB258A938F007D9011 /* TealiumCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B32304DC8600EF52BC /* TealiumCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CFEABFEC258A938F007D9011 /* TealiumRemoteCommands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B52304DC8600EF52BC /* TealiumRemoteCommands.framework */; };
+		CFEABFED258A938F007D9011 /* TealiumRemoteCommands.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B52304DC8600EF52BC /* TealiumRemoteCommands.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CFEABFEE258A938F007D9011 /* TealiumTagManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B12304DC8600EF52BC /* TealiumTagManagement.framework */; };
+		CFEABFEF258A938F007D9011 /* TealiumTagManagement.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B12304DC8600EF52BC /* TealiumTagManagement.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CFEABFF0258A938F007D9011 /* Airship.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEABFE7258A9360007D9011 /* Airship.framework */; };
+		CFEABFF1258A938F007D9011 /* Airship.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFEABFE7258A9360007D9011 /* Airship.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CFEABFFB258A9862007D9011 /* AirshipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEABFFA258A9862007D9011 /* AirshipConfig.swift */; };
+		CFEABFFF258A9912007D9011 /* AirshipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEABFFA258A9862007D9011 /* AirshipConfig.swift */; };
 		D709F4F7247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D709F4F6247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift */; };
 		D709F4F8247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D709F4F6247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift */; };
 		D709F4FB247FE91300B00D41 /* AirshipLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D709F4FA247FE91300B00D41 /* AirshipLocation.swift */; };
-		D709F503247FFC4100B00D41 /* MockAirshipTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7996F5C243221FA00E548BC /* MockAirshipTracker.swift */; };
+		D709F503247FFC4100B00D41 /* MockAirshipInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7996F5C243221FA00E548BC /* MockAirshipInstance.swift */; };
 		D709F504247FFC4100B00D41 /* HttpTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBA50BE2304DD6F00EF52BC /* HttpTestHelpers.swift */; };
 		D709F505247FFC4100B00D41 /* AirshipTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7996F5A243221BC00E548BC /* AirshipTrackerTests.swift */; };
 		D709F508247FFC4100B00D41 /* TealiumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B32304DC8600EF52BC /* TealiumCore.framework */; };
@@ -23,26 +43,17 @@
 		D75D99B424810A6100160978 /* AirshipConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D99B324810A6100160978 /* AirshipConstants.swift */; };
 		D75D99B524810A6100160978 /* AirshipConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D99B324810A6100160978 /* AirshipConstants.swift */; };
 		D7A12E682429290300C09484 /* AirshipPushMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A12E672429290300C09484 /* AirshipPushMessaging.swift */; };
-		D7A12E6A242A22C500C09484 /* AirshipTrackableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A12E69242A22C500C09484 /* AirshipTrackableProtocol.swift */; };
 		D7A12E6C242A2BB100C09484 /* AirshipAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A12E6B242A2BB100C09484 /* AirshipAnalytics.swift */; };
 		D7B3AC06247E97390040A0DE /* TealiumAirship.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B28C46922FB2901002AE7FA /* TealiumAirship.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7B3AC07247E97390040A0DE /* AirshipRemoteCommand.swift in Headers */ = {isa = PBXBuildFile; fileRef = CF1401C12304C098002AC330 /* AirshipRemoteCommand.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		D7B3AC08247E97390040A0DE /* AirshipTracker.swift in Headers */ = {isa = PBXBuildFile; fileRef = CF1401C22304C098002AC330 /* AirshipTracker.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		D7B3AC08247E97390040A0DE /* AirshipInstance.swift in Headers */ = {isa = PBXBuildFile; fileRef = CF1401C22304C098002AC330 /* AirshipInstance.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7B3AC0B247E97390040A0DE /* AirshipAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A12E6B242A2BB100C09484 /* AirshipAnalytics.swift */; };
-		D7B3AC0C247E97390040A0DE /* AirshipTrackableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A12E69242A22C500C09484 /* AirshipTrackableProtocol.swift */; };
 		D7B3AC0E247E97390040A0DE /* AirshipMessageCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77DDC7B242E6652005D4596 /* AirshipMessageCenter.swift */; };
 		D7B3AC0F247E97390040A0DE /* AirshipInAppMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A12E6F242A45C700C09484 /* AirshipInAppMessaging.swift */; };
 		D7B3AC10247E97390040A0DE /* AirshipSegmentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A12E6D242A43C800C09484 /* AirshipSegmentation.swift */; };
-		D7B3AC11247E97390040A0DE /* AirshipTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1401C22304C098002AC330 /* AirshipTracker.swift */; };
+		D7B3AC11247E97390040A0DE /* AirshipInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1401C22304C098002AC330 /* AirshipInstance.swift */; };
 		D7B3AC12247E97390040A0DE /* AirshipPushMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A12E672429290300C09484 /* AirshipPushMessaging.swift */; };
 		D7B3AC13247E97390040A0DE /* AirshipRemoteCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1401C12304C098002AC330 /* AirshipRemoteCommand.swift */; };
-		D7B3AC1A247E97390040A0DE /* TealiumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B32304DC8600EF52BC /* TealiumCore.framework */; };
-		D7B3AC1D247E97390040A0DE /* TealiumDelegate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B42304DC8600EF52BC /* TealiumDelegate.framework */; };
-		D7B3AC1E247E97390040A0DE /* TealiumRemoteCommands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B52304DC8600EF52BC /* TealiumRemoteCommands.framework */; };
-		D7B3AC36247EBDCC0040A0DE /* AirshipCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B3AC32247EAEF70040A0DE /* AirshipCore.framework */; };
-		D7B7637B243B5A8400CD6001 /* TealiumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B32304DC8600EF52BC /* TealiumCore.framework */; };
-		D7B7637C243B5A8E00CD6001 /* TealiumDelegate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B42304DC8600EF52BC /* TealiumDelegate.framework */; };
-		D7B7637D243B5A9300CD6001 /* TealiumRemoteCommands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBA50B52304DC8600EF52BC /* TealiumRemoteCommands.framework */; };
 		D7B7638F243B74A000CD6001 /* AirshipSegmentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A12E6D242A43C800C09484 /* AirshipSegmentation.swift */; };
 		D7B76391243B74C500CD6001 /* AirshipMessageCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77DDC7B242E6652005D4596 /* AirshipMessageCenter.swift */; };
 		D7B76392243B74D600CD6001 /* AirshipInAppMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A12E6F242A45C700C09484 /* AirshipInAppMessaging.swift */; };
@@ -59,34 +70,57 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CFEABFE6258A935F007D9011 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CFEABFE9258A9360007D9011 /* Airship.framework in Embed Frameworks */,
+				CFEABFE3258A935F007D9011 /* TealiumCore.framework in Embed Frameworks */,
+				CF7AD50C258AE22D0098A0CA /* AirshipLocation.framework in Embed Frameworks */,
+				CFEABFE1258A935F007D9011 /* TealiumRemoteCommands.framework in Embed Frameworks */,
+				CFEABFDF258A935F007D9011 /* TealiumTagManagement.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFEABFF4258A938F007D9011 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CFEABFEF258A938F007D9011 /* TealiumTagManagement.framework in Embed Frameworks */,
+				CFEABFF1258A938F007D9011 /* Airship.framework in Embed Frameworks */,
+				CFEABFED258A938F007D9011 /* TealiumRemoteCommands.framework in Embed Frameworks */,
+				CFEABFEB258A938F007D9011 /* TealiumCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4B28C46622FB2901002AE7FA /* TealiumAirship_Location.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TealiumAirship_Location.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B28C46922FB2901002AE7FA /* TealiumAirship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TealiumAirship.h; sourceTree = "<group>"; };
 		4B28C46A22FB2901002AE7FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B28C47622FB2901002AE7FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF1401C12304C098002AC330 /* AirshipRemoteCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipRemoteCommand.swift; sourceTree = "<group>"; };
-		CF1401C22304C098002AC330 /* AirshipTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipTracker.swift; sourceTree = "<group>"; };
+		CF1401C22304C098002AC330 /* AirshipInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipInstance.swift; sourceTree = "<group>"; };
 		CFBA50B12304DC8600EF52BC /* TealiumTagManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TealiumTagManagement.framework; path = Carthage/Build/iOS/TealiumTagManagement.framework; sourceTree = "<group>"; };
 		CFBA50B32304DC8600EF52BC /* TealiumCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TealiumCore.framework; path = Carthage/Build/iOS/TealiumCore.framework; sourceTree = "<group>"; };
 		CFBA50B42304DC8600EF52BC /* TealiumDelegate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TealiumDelegate.framework; path = Carthage/Build/iOS/TealiumDelegate.framework; sourceTree = "<group>"; };
 		CFBA50B52304DC8600EF52BC /* TealiumRemoteCommands.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TealiumRemoteCommands.framework; path = Carthage/Build/iOS/TealiumRemoteCommands.framework; sourceTree = "<group>"; };
 		CFBA50BE2304DD6F00EF52BC /* HttpTestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpTestHelpers.swift; sourceTree = "<group>"; };
+		CFEABFE7258A9360007D9011 /* Airship.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Airship.framework; path = Carthage/Build/iOS/Airship.framework; sourceTree = "<group>"; };
+		CFEABFFA258A9862007D9011 /* AirshipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipConfig.swift; sourceTree = "<group>"; };
 		D709F4F6247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipLocationDefaultConformance.swift; sourceTree = "<group>"; };
 		D709F4FA247FE91300B00D41 /* AirshipLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipLocation.swift; sourceTree = "<group>"; };
 		D709F50F247FFC4100B00D41 /* TealiumAirshipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TealiumAirshipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D709F510247FFC4100B00D41 /* TealiumAirshipTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TealiumAirshipTests-Info.plist"; path = "/Users/craigrouse/mobiledev/remotecommands/tealium-ios-airship-remote-command/TealiumAirshipTests-Info.plist"; sourceTree = "<absolute>"; };
 		D75D99B324810A6100160978 /* AirshipConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipConstants.swift; sourceTree = "<group>"; };
-		D75D99C624814B8000160978 /* AirshipTrackableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipTrackableProtocol.swift; sourceTree = "<group>"; };
-		D75D99C724814B8000160978 /* AirshipInAppMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipInAppMessaging.swift; sourceTree = "<group>"; };
-		D75D99C824814B8000160978 /* AirshipTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipTracker.swift; sourceTree = "<group>"; };
-		D75D99C924814B8000160978 /* AirshipRemoteCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipRemoteCommand.swift; sourceTree = "<group>"; };
-		D75D99CA24814B8000160978 /* AirshipLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipLocation.swift; sourceTree = "<group>"; };
-		D75D99CB24814B8000160978 /* AirshipLocationDefaultConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipLocationDefaultConformance.swift; sourceTree = "<group>"; };
-		D75D99CC24814B8000160978 /* AirshipAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipAnalytics.swift; sourceTree = "<group>"; };
-		D75D99CD24814B8000160978 /* AirshipConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipConstants.swift; sourceTree = "<group>"; };
-		D75D99CE24814B8000160978 /* AirshipSegmentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipSegmentation.swift; sourceTree = "<group>"; };
-		D75D99CF24814B8000160978 /* AirshipPushMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipPushMessaging.swift; sourceTree = "<group>"; };
-		D75D99D024814B8000160978 /* AirshipMessageCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipMessageCenter.swift; sourceTree = "<group>"; };
 		D761A2DB243F6F9700D95453 /* TealiumIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TealiumIOS.framework; path = Carthage/Build/iOS/TealiumIOS.framework; sourceTree = "<group>"; };
 		D77DDC4B242CB10A005D4596 /* TealiumDeviceData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TealiumDeviceData.framework; path = Carthage/Build/iOS/TealiumDeviceData.framework; sourceTree = "<group>"; };
 		D77DDC4C242CB10A005D4596 /* TealiumAutotracking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TealiumAutotracking.framework; path = Carthage/Build/iOS/TealiumAutotracking.framework; sourceTree = "<group>"; };
@@ -106,14 +140,13 @@
 		D77DDC5A242CB10B005D4596 /* TealiumConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TealiumConnectivity.framework; path = Carthage/Build/iOS/TealiumConnectivity.framework; sourceTree = "<group>"; };
 		D77DDC7B242E6652005D4596 /* AirshipMessageCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipMessageCenter.swift; sourceTree = "<group>"; };
 		D7996F5A243221BC00E548BC /* AirshipTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipTrackerTests.swift; sourceTree = "<group>"; };
-		D7996F5C243221FA00E548BC /* MockAirshipTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAirshipTracker.swift; sourceTree = "<group>"; };
+		D7996F5C243221FA00E548BC /* MockAirshipInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAirshipInstance.swift; sourceTree = "<group>"; };
 		D7A12E5224238FA500C09484 /* AirshipExtendedActions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AirshipExtendedActions.framework; path = Carthage/Build/iOS/AirshipExtendedActions.framework; sourceTree = "<group>"; };
 		D7A12E5424238FA500C09484 /* AirshipNotificationServiceExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AirshipNotificationServiceExtension.framework; path = Carthage/Build/iOS/AirshipNotificationServiceExtension.framework; sourceTree = "<group>"; };
 		D7A12E5524238FA500C09484 /* AirshipMessageCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AirshipMessageCenter.framework; path = Carthage/Build/iOS/AirshipMessageCenter.framework; sourceTree = "<group>"; };
 		D7A12E5724238FA500C09484 /* AirshipAutomation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AirshipAutomation.framework; path = Carthage/Build/iOS/AirshipAutomation.framework; sourceTree = "<group>"; };
 		D7A12E5824238FA500C09484 /* AirshipNotificationContentExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AirshipNotificationContentExtension.framework; path = Carthage/Build/iOS/AirshipNotificationContentExtension.framework; sourceTree = "<group>"; };
 		D7A12E672429290300C09484 /* AirshipPushMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipPushMessaging.swift; sourceTree = "<group>"; };
-		D7A12E69242A22C500C09484 /* AirshipTrackableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipTrackableProtocol.swift; sourceTree = "<group>"; };
 		D7A12E6B242A2BB100C09484 /* AirshipAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipAnalytics.swift; sourceTree = "<group>"; };
 		D7A12E6D242A43C800C09484 /* AirshipSegmentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipSegmentation.swift; sourceTree = "<group>"; };
 		D7A12E6F242A45C700C09484 /* AirshipInAppMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipInAppMessaging.swift; sourceTree = "<group>"; };
@@ -130,10 +163,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7B7637B243B5A8400CD6001 /* TealiumCore.framework in Frameworks */,
-				D7B7637C243B5A8E00CD6001 /* TealiumDelegate.framework in Frameworks */,
-				D7B3AC36247EBDCC0040A0DE /* AirshipCore.framework in Frameworks */,
-				D7B7637D243B5A9300CD6001 /* TealiumRemoteCommands.framework in Frameworks */,
+				CFEABFE8258A9360007D9011 /* Airship.framework in Frameworks */,
+				CFEABFE2258A935F007D9011 /* TealiumCore.framework in Frameworks */,
+				CF7AD50B258AE22D0098A0CA /* AirshipLocation.framework in Frameworks */,
+				CFEABFE0258A935F007D9011 /* TealiumRemoteCommands.framework in Frameworks */,
+				CFEABFDE258A935F007D9011 /* TealiumTagManagement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,9 +185,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7B3AC1A247E97390040A0DE /* TealiumCore.framework in Frameworks */,
-				D7B3AC1D247E97390040A0DE /* TealiumDelegate.framework in Frameworks */,
-				D7B3AC1E247E97390040A0DE /* TealiumRemoteCommands.framework in Frameworks */,
+				CFEABFEE258A938F007D9011 /* TealiumTagManagement.framework in Frameworks */,
+				CFEABFF0258A938F007D9011 /* Airship.framework in Frameworks */,
+				CFEABFEC258A938F007D9011 /* TealiumRemoteCommands.framework in Frameworks */,
+				CFEABFEA258A938F007D9011 /* TealiumCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +198,6 @@
 		4B28C45C22FB2901002AE7FA = {
 			isa = PBXGroup;
 			children = (
-				D75D99C524814B8000160978 /* Objective-C */,
 				4B28C46822FB2901002AE7FA /* Sources */,
 				4B28C47322FB2901002AE7FA /* Tests */,
 				4B28C46722FB2901002AE7FA /* Products */,
@@ -187,19 +221,12 @@
 		4B28C46822FB2901002AE7FA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D75D99B324810A6100160978 /* AirshipConstants.swift */,
 				CF1401C12304C098002AC330 /* AirshipRemoteCommand.swift */,
-				D7A12E69242A22C500C09484 /* AirshipTrackableProtocol.swift */,
+				CF1401C22304C098002AC330 /* AirshipInstance.swift */,
+				CF7AD4DA258AB94E0098A0CA /* Supporting Files */,
 				4B28C46922FB2901002AE7FA /* TealiumAirship.h */,
 				4B28C46A22FB2901002AE7FA /* Info.plist */,
-				CF1401C22304C098002AC330 /* AirshipTracker.swift */,
-				D7A12E672429290300C09484 /* AirshipPushMessaging.swift */,
-				D75D99B324810A6100160978 /* AirshipConstants.swift */,
-				D7A12E6B242A2BB100C09484 /* AirshipAnalytics.swift */,
-				D709F4F6247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift */,
-				D7A12E6D242A43C800C09484 /* AirshipSegmentation.swift */,
-				D7A12E6F242A45C700C09484 /* AirshipInAppMessaging.swift */,
-				D77DDC7B242E6652005D4596 /* AirshipMessageCenter.swift */,
-				D709F4F9247FE91300B00D41 /* Location */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -210,14 +237,30 @@
 				CFBA50BE2304DD6F00EF52BC /* HttpTestHelpers.swift */,
 				4B28C47622FB2901002AE7FA /* Info.plist */,
 				D7996F5A243221BC00E548BC /* AirshipTrackerTests.swift */,
-				D7996F5C243221FA00E548BC /* MockAirshipTracker.swift */,
+				D7996F5C243221FA00E548BC /* MockAirshipInstance.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		CF7AD4DA258AB94E0098A0CA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D709F4F9247FE91300B00D41 /* Location */,
+				CFEABFFA258A9862007D9011 /* AirshipConfig.swift */,
+				D7A12E672429290300C09484 /* AirshipPushMessaging.swift */,
+				D7A12E6B242A2BB100C09484 /* AirshipAnalytics.swift */,
+				D709F4F6247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift */,
+				D7A12E6D242A43C800C09484 /* AirshipSegmentation.swift */,
+				D7A12E6F242A45C700C09484 /* AirshipInAppMessaging.swift */,
+				D77DDC7B242E6652005D4596 /* AirshipMessageCenter.swift */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		CFBA50B02304DC8500EF52BC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CFEABFE7258A9360007D9011 /* Airship.framework */,
 				D7B3AC32247EAEF70040A0DE /* AirshipCore.framework */,
 				D761A2DB243F6F9700D95453 /* TealiumIOS.framework */,
 				D7EC004824377662009EED38 /* AirshipAccengage.framework */,
@@ -259,24 +302,6 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
-		D75D99C524814B8000160978 /* Objective-C */ = {
-			isa = PBXGroup;
-			children = (
-				D75D99C624814B8000160978 /* AirshipTrackableProtocol.swift */,
-				D75D99C724814B8000160978 /* AirshipInAppMessaging.swift */,
-				D75D99C824814B8000160978 /* AirshipTracker.swift */,
-				D75D99C924814B8000160978 /* AirshipRemoteCommand.swift */,
-				D75D99CA24814B8000160978 /* AirshipLocation.swift */,
-				D75D99CB24814B8000160978 /* AirshipLocationDefaultConformance.swift */,
-				D75D99CC24814B8000160978 /* AirshipAnalytics.swift */,
-				D75D99CD24814B8000160978 /* AirshipConstants.swift */,
-				D75D99CE24814B8000160978 /* AirshipSegmentation.swift */,
-				D75D99CF24814B8000160978 /* AirshipPushMessaging.swift */,
-				D75D99D024814B8000160978 /* AirshipMessageCenter.swift */,
-			);
-			path = "Objective-C";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -286,7 +311,7 @@
 			files = (
 				4B28C47722FB2901002AE7FA /* TealiumAirship.h in Headers */,
 				CFBA50AD2304D4CA00EF52BC /* AirshipRemoteCommand.swift in Headers */,
-				CFBA50AE2304D4CA00EF52BC /* AirshipTracker.swift in Headers */,
+				CFBA50AE2304D4CA00EF52BC /* AirshipInstance.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +321,7 @@
 			files = (
 				D7B3AC06247E97390040A0DE /* TealiumAirship.h in Headers */,
 				D7B3AC07247E97390040A0DE /* AirshipRemoteCommand.swift in Headers */,
-				D7B3AC08247E97390040A0DE /* AirshipTracker.swift in Headers */,
+				D7B3AC08247E97390040A0DE /* AirshipInstance.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +336,7 @@
 				4B28C46222FB2901002AE7FA /* Sources */,
 				4B28C46322FB2901002AE7FA /* Frameworks */,
 				4B28C46422FB2901002AE7FA /* Resources */,
-				CFBA50AF2304D4D100EF52BC /* Carthage */,
+				CFEABFE6258A935F007D9011 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -351,6 +376,7 @@
 				D7B3AC09247E97390040A0DE /* Sources */,
 				D7B3AC14247E97390040A0DE /* Frameworks */,
 				D7B3AC1F247E97390040A0DE /* Resources */,
+				CFEABFF4258A938F007D9011 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -424,29 +450,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		CFBA50AF2304D4D100EF52BC /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/TealiumCore.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/TealiumDelegate.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/TealiumTagManagement.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/TealiumRemoteCommands.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/AirshipCore.framework",
-			);
-			name = Carthage;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		D709F50B247FFC4100B00D41 /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -478,13 +481,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFEABFFB258A9862007D9011 /* AirshipConfig.swift in Sources */,
 				D7A12E6C242A2BB100C09484 /* AirshipAnalytics.swift in Sources */,
-				D7A12E6A242A22C500C09484 /* AirshipTrackableProtocol.swift in Sources */,
 				D709F4FB247FE91300B00D41 /* AirshipLocation.swift in Sources */,
 				D7B76391243B74C500CD6001 /* AirshipMessageCenter.swift in Sources */,
 				D7B76392243B74D600CD6001 /* AirshipInAppMessaging.swift in Sources */,
 				D7B7638F243B74A000CD6001 /* AirshipSegmentation.swift in Sources */,
-				CF1401C42304C098002AC330 /* AirshipTracker.swift in Sources */,
+				CF1401C42304C098002AC330 /* AirshipInstance.swift in Sources */,
 				D75D99B424810A6100160978 /* AirshipConstants.swift in Sources */,
 				D709F4F7247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift in Sources */,
 				D7A12E682429290300C09484 /* AirshipPushMessaging.swift in Sources */,
@@ -496,7 +499,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D709F503247FFC4100B00D41 /* MockAirshipTracker.swift in Sources */,
+				D709F503247FFC4100B00D41 /* MockAirshipInstance.swift in Sources */,
 				D709F504247FFC4100B00D41 /* HttpTestHelpers.swift in Sources */,
 				D709F505247FFC4100B00D41 /* AirshipTrackerTests.swift in Sources */,
 			);
@@ -509,12 +512,12 @@
 				D75D99B524810A6100160978 /* AirshipConstants.swift in Sources */,
 				D709F4F8247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift in Sources */,
 				D7B3AC0B247E97390040A0DE /* AirshipAnalytics.swift in Sources */,
-				D7B3AC0C247E97390040A0DE /* AirshipTrackableProtocol.swift in Sources */,
 				D7B3AC0E247E97390040A0DE /* AirshipMessageCenter.swift in Sources */,
 				D7B3AC0F247E97390040A0DE /* AirshipInAppMessaging.swift in Sources */,
 				D7B3AC10247E97390040A0DE /* AirshipSegmentation.swift in Sources */,
-				D7B3AC11247E97390040A0DE /* AirshipTracker.swift in Sources */,
+				D7B3AC11247E97390040A0DE /* AirshipInstance.swift in Sources */,
 				D7B3AC12247E97390040A0DE /* AirshipPushMessaging.swift in Sources */,
+				CFEABFFF258A9912007D9011 /* AirshipConfig.swift in Sources */,
 				D7B3AC13247E97390040A0DE /* AirshipRemoteCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -685,7 +688,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -719,7 +721,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;
 		};
@@ -801,7 +802,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -836,7 +836,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;
 		};

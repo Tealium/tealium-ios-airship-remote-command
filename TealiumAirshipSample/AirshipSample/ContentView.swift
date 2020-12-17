@@ -33,7 +33,7 @@ struct ContentView: View {
                     Image(systemName: "power")
                     Text("Feature Toggles")
                 }.tag(3)
-        }
+        }.accentColor(.purple)
     }
 }
 

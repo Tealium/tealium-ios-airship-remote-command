@@ -14,10 +14,11 @@ struct CoreFunctionsView: View {
             TitleView().padding(.bottom, 15)
             VStack(spacing: 15) {
                 ButtonView(event: "initialize", ["log_level": "debug"])
-                ButtonView(event: "trackEvent")
-                ButtonView(event: "trackScreenView")
-                ButtonView(event: "setCustomIdentifiers")
-                ButtonView(event: "setNamedUser")
+                ButtonView(event: "trackEvent", ["event_name": "button_click", "event_value": 12, "event_description": "reserve_seats"])
+                ButtonView(event: "purchase", Purchase.default.dictionary)
+                ButtonView(event: "trackScreenView", ["screen_name": "CoreFunctionsView"])
+                ButtonView(event: "setCustomIdentifiers", ["customer_id": "ABC123"])
+                ButtonView(event: "setNamedUser", ["username": "bob.dylan"])
             }
             Spacer()
         }

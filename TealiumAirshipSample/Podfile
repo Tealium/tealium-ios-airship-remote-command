@@ -6,7 +6,7 @@ target 'AirshipSample' do
   use_frameworks!
 
   # Pods for AirshipTabbedExample
-  pod "tealium-swift"
   pod "TealiumAirship", :path => '../'
   pod "TealiumAirship/Location", :path => '../'
+  pod "tealium-swift/Lifecycle"
 end

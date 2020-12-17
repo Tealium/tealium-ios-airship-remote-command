@@ -34,10 +34,9 @@ Pod::Spec.new do |s|
         core.ios.exclude_files     = "Sources/Location/*"
         # ――― Dependencies ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
         core.ios.dependency 'tealium-swift/Core'
-        core.ios.dependency 'tealium-swift/TealiumRemoteCommands'
-        core.ios.dependency 'tealium-swift/TealiumDelegate'
-        core.ios.dependency 'tealium-swift/TealiumTagManagement'
-        core.ios.dependency 'Airship', '~> 13.3.2'
+        core.ios.dependency 'tealium-swift/RemoteCommands'
+        core.ios.dependency 'tealium-swift/TagManagement'
+        core.ios.dependency 'Airship', '~> 14.1'
     end
 
     s.subspec "Location" do |location|
@@ -45,7 +44,7 @@ Pod::Spec.new do |s|
         location.ios.source_files      = "Sources/Location/*.{swift}"
         # ――― Dependencies ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
         location.ios.dependency 'TealiumAirship/Core'
-        location.ios.dependency 'Airship/Location', '~> 13.3.2'
+        location.ios.dependency 'Airship/Location', '~> 14.1'
     end
 
 end
