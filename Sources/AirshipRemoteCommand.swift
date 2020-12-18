@@ -7,6 +7,7 @@
 //
 import Foundation
 
+import os
 #if COCOAPODS
 import TealiumSwift
 #else
@@ -18,6 +19,7 @@ import TealiumRemoteCommands
 public class AirshipRemoteCommand: RemoteCommand {
     
     var airshipInstance: AirshipCommand?
+    var loggerLevel: TealiumLogLevel = .error
     
     public init(airshipInstance: AirshipCommand = AirshipInstance(),
                 type: RemoteCommandType = .webview) {
@@ -44,17 +46,17 @@ public class AirshipRemoteCommand: RemoteCommand {
         let airshipCommands = commands.map { command in
             return command.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
-
+        loggerLevel = logLevel(from: payload)
+        log("Initialized")
         airshipCommands.forEach {
             let command = AirshipConstants.Commands(rawValue: $0.lowercased())
-            print("🚢 AIRSHIP COMMAND: \(command)")
             switch command {
             case .initialize:
-                print("🚢 AIRSHIP init config: \(payload)")
                 airshipInstance.initialize(payload)
                 // MARK: START ANALYTICS
             case .trackEvent:
                 guard let eventName = payload[AirshipConstants.Keys.eventName] as? String else {
+                    log("\(AirshipConstants.Keys.eventName) required for `trackEvent`")
                     return
                 }
                 let eventProperties = payload[AirshipConstants.Keys.eventProperties] as? [String: Any]
@@ -66,13 +68,12 @@ public class AirshipRemoteCommand: RemoteCommand {
                 } else if let eventValue = payload[AirshipConstants.Keys.eventValue] as? String {
                     valueFloat = Float64(eventValue)
                 }
-                print("🚢 AIRSHIP eventName: \(eventName), value: \(valueFloat), properties: \(eventProperties)")
                 airshipInstance.trackEvent(eventName, value: valueFloat, eventProperties: eventProperties)
             case .trackScreenView:
                 guard let screenName = payload[AirshipConstants.Keys.screenName] as? String else {
+                    log("\(AirshipConstants.Keys.screenName) required for `trackScreenView`")
                     return
                 }
-                print("🚢 AIRSHIP screenName: \(screenName)")
                 airshipInstance.trackScreenView(screenName)
             case .enableAnalytics:
                 airshipInstance.analyticsEnabled = true
@@ -80,15 +81,15 @@ public class AirshipRemoteCommand: RemoteCommand {
                 airshipInstance.analyticsEnabled = false
             case .setNamedUser:
                 guard let userId = payload[AirshipConstants.Keys.namedUserIdentifier] as? String else {
+                    log("\(AirshipConstants.Keys.namedUserIdentifier) required for `setNamedUser`")
                     return
                 }
-                print("🚢 AIRSHIP userId: \(userId)")
                 airshipInstance.identifyUser(id: userId)
             case .setCustomIdentifiers:
                 guard let customIdentifiers = payload[AirshipConstants.Keys.customIdentifiers] as? [String: String] else {
+                    log("\(AirshipConstants.Keys.customIdentifiers) required for `setCustomIdentifiers`")
                     return
                 }
-                print("🚢 AIRSHIP customIdentifiers: \(customIdentifiers)")
                 airshipInstance.customIdentifiers = customIdentifiers
             case .enableAdvertisingIdentifiers:
                 airshipInstance.enableAdvertisingIDs()
@@ -103,14 +104,13 @@ public class AirshipRemoteCommand: RemoteCommand {
                 airshipInstance.inAppMessagingPaused = false
             case .setInAppMessagingDisplayInterval:
                 guard let interval = payload[AirshipConstants.Keys.inAppMessagingDisplayInterval] as? String else {
+                    log("\(AirshipConstants.Keys.inAppMessagingDisplayInterval) required for `setInAppMessagingDisplayInterval`")
                     return
                 }
-                print("🚢 AIRSHIP interval: \(interval)")
                 airshipInstance.inAppMessagingDisplayInterval = interval
             // MARK: START Push Messaging
             case .enableUserPushNotifications:
                 if let notificationOptions = payload[AirshipConstants.Keys.pushNotificationOptions] as? [String] {
-                    print("🚢 AIRSHIP notificationOptions: \(notificationOptions)")
                     airshipInstance.enablePushNotificationsWithOptions(notificationOptions)
                 } else {
                     airshipInstance.userPushNotificationsEnabled = true
@@ -123,21 +123,21 @@ public class AirshipRemoteCommand: RemoteCommand {
                 airshipInstance.backgroundPushNotificationsEnabled = false
             case .setPushNotificationOptions:
                 guard let notificationOptions = payload[AirshipConstants.Keys.pushNotificationOptions] as? [String] else {
+                    log("\(AirshipConstants.Keys.pushNotificationOptions) required for `setPushNotificationOptions`")
                     return
                 }
-                print("🚢 AIRSHIP notificationOptions: \(notificationOptions)")
                 airshipInstance.pushNotificationOptions = notificationOptions
             case .setForegroundPresentationOptions:
                 guard let presentationOptions = payload[AirshipConstants.Keys.foregroundPresentationOptions] as? [String] else {
+                    log("\(AirshipConstants.Keys.foregroundPresentationOptions) required for `setForegroundPresentationOptions`")
                     return
                 }
-                print("🚢 AIRSHIP presentationOptions: \(presentationOptions)")
                 airshipInstance.foregroundPresentationOptions = presentationOptions
             case .setBadgeNumber:
                 guard let badgeNumber = payload[AirshipConstants.Keys.badgeNumber] as? Int else {
+                    log("\(AirshipConstants.Keys.badgeNumber) required for `setBadgeNumber`")
                     return
                 }
-                print("🚢 AIRSHIP badgeNumber: \(badgeNumber)")
                 airshipInstance.badgeNumber = badgeNumber
             case .resetBadgeNumber:
                 airshipInstance.resetBadgeNumber()
@@ -155,59 +155,58 @@ public class AirshipRemoteCommand: RemoteCommand {
                       let startMinute = quiet[AirshipConstants.Keys.startMinute] as? Int,
                       let endHour = quiet[AirshipConstants.Keys.endHour] as? Int,
                       let endMinute = quiet[AirshipConstants.Keys.endMinute] as? Int else {
+                        log("\(AirshipConstants.Keys.quiet) object required for `setQuietTimeStart`")
                         return
                 }
-                print("🚢 AIRSHIP startHour: \(startHour), startMinute: \(startMinute), endHour: \(endHour), endMinute: \(endMinute)")
                 airshipInstance.setQuietTimeStartHour(startHour, minute: startMinute, endHour: endHour, endMinute: endMinute)
             // MARK: START Segmentation
             case .setChannelTags:
                 guard let tags = payload[AirshipConstants.Keys.channelTags] as? [String] else {
+                    log("\(AirshipConstants.Keys.channelTags) required for `setChannelTags`")
                     return
                 }
-                print("🚢 AIRSHIP channelTags: \(tags)")
                 airshipInstance.channelTags = tags
             case .setNamedUserTags:
                 guard let tags = payload[AirshipConstants.Keys.namedUserTags] as? [String],
                     let group = payload[AirshipConstants.Keys.tagGroup] as? String else {
+                    log("\(AirshipConstants.Keys.namedUserTags) and \(AirshipConstants.Keys.tagGroup) required for `setNamedUserTags`")
                     return
                 }
-                print("🚢 AIRSHIP group: \(group) tags: \(tags)")
                 airshipInstance.setNamedUserTags(group, tags: tags)
             case .addTag:
                 guard let tag = payload[AirshipConstants.Keys.channelTag] as? String else {
+                    log("\(AirshipConstants.Keys.channelTag) required for `addTag`")
                     return
                 }
-                print("🚢 AIRSHIP tag: \(tag)")
                 airshipInstance.addTag(tag)
             case .removeTag:
                 guard let tag = payload[AirshipConstants.Keys.channelTag] as? String else {
+                    log("\(AirshipConstants.Keys.channelTag) required for `removeTag`")
                     return
                 }
-                print("🚢 AIRSHIP tag: \(tag)")
                 airshipInstance.removeTag(tag)
             case .addTagGroup:
                 guard let tags = (payload[AirshipConstants.Keys.namedUserTags] ?? payload[AirshipConstants.Keys.channelTags]) as? [String],
                     let group = payload[AirshipConstants.Keys.tagGroup] as? String,
                     let tagType = payload[AirshipConstants.Keys.tagType] as? String,
                     let uaTagType = UATagType(rawValue: tagType) else {
+                    log("\(AirshipConstants.Keys.tagGroup) and \(AirshipConstants.Keys.tagType) required for `addTagGroup`")
                         return
                 }
-                print("🚢 AIRSHIP group: \(group) tags: \(tags), tagType: \(uaTagType)")
                 airshipInstance.addTagGroup(group, tags: tags, for: uaTagType)
             case .removeTagGroup:
                 guard let tags = (payload[AirshipConstants.Keys.namedUserTags] ?? payload[AirshipConstants.Keys.channelTags]) as? [String],
                     let group = payload[AirshipConstants.Keys.tagGroup] as? String,
                     let tagType = payload[AirshipConstants.Keys.tagType] as? String,
                     let uaTagType = UATagType(rawValue: tagType) else {
+                    log("\(AirshipConstants.Keys.tagGroup) and \(AirshipConstants.Keys.tagType) required for `removeTagGroup`")
                     return
                 }
-                print("🚢 AIRSHIP group: \(group) tags: \(tags), tagType: \(uaTagType)")
                 airshipInstance.removeTagGroup(group, tags: tags, for: uaTagType)
             case .setAttributes:
                 guard let attributes = payload[AirshipConstants.Keys.attributes] as? [String: Any] else {
                     return
                 }
-                print("🚢 AIRSHIP attributes: \(attributes)")
                 airshipInstance.setAttributes(attributes)
             // MARK: START MessageCenter
             case .displayMessageCenter:
@@ -216,13 +215,13 @@ public class AirshipRemoteCommand: RemoteCommand {
                 guard let title = payload[AirshipConstants.Keys.messageCenterTitle] as? String else {
                     return
                 }
-                print("🚢 AIRSHIP messageCenterTitle: \(title)")
+                log("\(AirshipConstants.Keys.messageCenterTitle) required for `setMessageCenterTitle`")
                 airshipInstance.messageCenterTitle = title
             case .setMessageCenterStyle:
                 guard let style = payload[AirshipConstants.Keys.messageCenterStyle] as? [String: Any] else {
                     return
                 }
-                print("🚢 AIRSHIP setMessageCenterStyle: \(style)")
+                log("\(AirshipConstants.Keys.messageCenterStyle) object required for `setMessageCenterStyle`")
                 airshipInstance.setMessageCenterStyle(style)
             // MARK: START Location
             case .enableLocation:
@@ -238,4 +237,29 @@ public class AirshipRemoteCommand: RemoteCommand {
             }
         }
     }
+    
+    private var environment: String {
+        guard TealiumInstanceManager.shared.tealiumInstances.count == 1 else {
+            return "productionLogLevel"
+        }
+        guard let tealium = TealiumInstanceManager.shared.tealiumInstances.first?.value,
+              let environment = tealium.dataLayer.all[TealiumKey.environment] as? String else {
+            return "productionLogLevel"
+        }
+       return environment == "prod" ? "productionLogLevel" : "developmentLogLevel"
+    }
+    
+    private func logLevel(from payload: [String: Any]) -> TealiumLogLevel {
+        guard let logLevel = payload[environment] as? String else {
+            return .error
+        }
+        return TealiumLogLevel(from: logLevel)
+    }
+    
+    private func log(_ message: String) {
+        os_log("%{public}@",
+               type: OSLogType(UInt8(loggerLevel.rawValue)),
+               "\(AirshipConstants.description): \(message)")
+    }
+    
 }

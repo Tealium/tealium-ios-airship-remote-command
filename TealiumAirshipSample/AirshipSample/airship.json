@@ -42,8 +42,8 @@
     "username": "named_user_identifier"
   },
   "commands": {
-    "launch": "initialize,enableanalytics",
-    "initialize": "initialize,enableanalytics",
+    "launch": "initialize",
+    "initialize": "initialize",
     "setnameduser": "setnameduser",
     "setcustomidentifiers": "setCustomidentifiers",
     "setinappmessagingdisplayinterval": "setinappmessagingdisplayinterval",
