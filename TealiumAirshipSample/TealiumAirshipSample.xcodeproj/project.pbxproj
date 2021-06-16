@@ -454,7 +454,7 @@
 			repositoryURL = "https://github.com/tealium/tealium-swift";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.0;
+				minimumVersion = 2.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
