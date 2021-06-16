@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,8 +12,6 @@
 		CF7AD4ED258AD2610098A0CA /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7AD4EC258AD2610098A0CA /* Customer.swift */; };
 		CF7AD517258AE3F10098A0CA /* Purchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7AD516258AE3F10098A0CA /* Purchase.swift */; };
 		CF7AD536258BC1210098A0CA /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7AD535258BC1210098A0CA /* Tags.swift */; };
-		CF7AD57C258C21620098A0CA /* TealiumAirship in Frameworks */ = {isa = PBXBuildFile; productRef = CF7AD57B258C21620098A0CA /* TealiumAirship */; };
-		CF7AD57F258C21940098A0CA /* TealiumLifecycle in Frameworks */ = {isa = PBXBuildFile; productRef = CF7AD57E258C21940098A0CA /* TealiumLifecycle */; };
 		D79A1BF12449A67B00BBA8B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A1BF02449A67B00BBA8B3 /* AppDelegate.swift */; };
 		D79A1BF32449A67B00BBA8B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A1BF22449A67B00BBA8B3 /* SceneDelegate.swift */; };
 		D79A1BF52449A67B00BBA8B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A1BF42449A67B00BBA8B3 /* ContentView.swift */; };
@@ -70,8 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF7AD57C258C21620098A0CA /* TealiumAirship in Frameworks */,
-				CF7AD57F258C21940098A0CA /* TealiumLifecycle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,8 +151,6 @@
 			);
 			name = AirshipSample;
 			packageProductDependencies = (
-				CF7AD57B258C21620098A0CA /* TealiumAirship */,
-				CF7AD57E258C21940098A0CA /* TealiumLifecycle */,
 			);
 			productName = AirshipTabbedExample;
 			productReference = D79A1BEE2449A67B00BBA8B3 /* AirshipSample.app */;
@@ -187,8 +181,6 @@
 			);
 			mainGroup = D76856FB2448B07500626507;
 			packageReferences = (
-				CF7AD57A258C21620098A0CA /* XCRemoteSwiftPackageReference "tealium-ios-airship-remote-command" */,
-				CF7AD57D258C21940098A0CA /* XCRemoteSwiftPackageReference "tealium-swift" */,
 			);
 			productRefGroup = D76857052448B07500626507 /* Products */;
 			projectDirPath = "";
@@ -439,38 +431,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		CF7AD57A258C21620098A0CA /* XCRemoteSwiftPackageReference "tealium-ios-airship-remote-command" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:Tealium/tealium-ios-airship-remote-command.git";
-			requirement = {
-				branch = "1.0.0-update";
-				kind = branch;
-			};
-		};
-		CF7AD57D258C21940098A0CA /* XCRemoteSwiftPackageReference "tealium-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tealium/tealium-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.3.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		CF7AD57B258C21620098A0CA /* TealiumAirship */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF7AD57A258C21620098A0CA /* XCRemoteSwiftPackageReference "tealium-ios-airship-remote-command" */;
-			productName = TealiumAirship;
-		};
-		CF7AD57E258C21940098A0CA /* TealiumLifecycle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF7AD57D258C21940098A0CA /* XCRemoteSwiftPackageReference "tealium-swift" */;
-			productName = TealiumLifecycle;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D76856FC2448B07500626507 /* Project object */;
 }
