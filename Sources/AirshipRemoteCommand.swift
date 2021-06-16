@@ -7,60 +7,56 @@
 //
 import Foundation
 
+import os
 #if COCOAPODS
 import TealiumSwift
 #else
 import TealiumCore
-import TealiumDelegate
 import TealiumTagManagement
 import TealiumRemoteCommands
 #endif
 
-public class AirshipRemoteCommand {
+public class AirshipRemoteCommand: RemoteCommand {
     
-    var airshipTracker: AirshipTrackable
+    var airshipInstance: AirshipCommand?
+    var loggerLevel: TealiumLogLevel = .error
     
-    public init(airshipTracker: AirshipTrackable = AirshipTracker()) {
-        self.airshipTracker = airshipTracker
-    }
-    
-    public func remoteCommand() -> TealiumRemoteCommand {
-        return TealiumRemoteCommand(commandId: AirshipConstants.commandId, description: AirshipConstants.commandDescription) { response in
-            let payload = response.payload()
-            guard let command = payload[AirshipConstants.commandName] as? String else {
-                return
-            }
-            
-            let commands = command.split(separator: AirshipConstants.separator)
-            let airshipCommands = commands.map { command in
-                return command.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            }
-            
-            self.parseCommands(airshipCommands, payload: payload)
-            
-        }
-    }
-    
-    public func parseCommands(_ commands: [String],
-                              payload: [String: Any]) {
-        commands.forEach { [weak self] command in
-            guard let self = self else {
-                return
-            }
-            
-            guard let finalCommand = AirshipConstants.Commands(rawValue: command) else {
-                return
-            }
-            
-            switch finalCommand {
-            case .initialize:
-                guard let config = payload[AirshipConstants.Keys.airshipConfig] as? [String: Any] else {
+    public init(airshipInstance: AirshipCommand = AirshipInstance(),
+                type: RemoteCommandType = .webview) {
+        self.airshipInstance = airshipInstance
+        weak var weakSelf: AirshipRemoteCommand?
+        super.init(commandId: AirshipConstants.commandId,
+                   description: AirshipConstants.description,
+            type: type,
+            completion: { response in
+                guard let payload = response.payload else {
                     return
                 }
-                self.airshipTracker.initialize(config)
+                weakSelf?.processRemoteCommand(with: payload)
+            })
+        weakSelf = self
+    }
+
+    func processRemoteCommand(with payload: [String: Any]) {
+        guard var airshipInstance = airshipInstance,
+            let command = payload[AirshipConstants.commandName] as? String else {
+                return
+        }
+        let commands = command.split(separator: AirshipConstants.separator)
+        let airshipCommands = commands.map { command in
+            return command.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+        loggerLevel = logLevel(from: payload)
+        log("Initialized")
+        airshipCommands.forEach {
+            let command = AirshipConstants.Commands(rawValue: $0.lowercased())
+            switch command {
+            case .initialize:
+                airshipInstance.initialize(payload)
                 // MARK: START ANALYTICS
             case .trackEvent:
                 guard let eventName = payload[AirshipConstants.Keys.eventName] as? String else {
+                    log("\(AirshipConstants.Keys.eventName) required for `trackEvent`")
                     return
                 }
                 let eventProperties = payload[AirshipConstants.Keys.eventProperties] as? [String: Any]
@@ -72,156 +68,198 @@ public class AirshipRemoteCommand {
                 } else if let eventValue = payload[AirshipConstants.Keys.eventValue] as? String {
                     valueFloat = Float64(eventValue)
                 }
-                self.airshipTracker.trackEvent(eventName, value: valueFloat, eventProperties: eventProperties)
+                airshipInstance.trackEvent(eventName, value: valueFloat, eventProperties: eventProperties)
             case .trackScreenView:
                 guard let screenName = payload[AirshipConstants.Keys.screenName] as? String else {
+                    log("\(AirshipConstants.Keys.screenName) required for `trackScreenView`")
                     return
                 }
-                self.airshipTracker.trackScreenView(screenName)
+                airshipInstance.trackScreenView(screenName)
             case .enableAnalytics:
-                self.airshipTracker.analyticsEnabled = true
+                airshipInstance.analyticsEnabled = true
             case .disableAnalytics:
-                self.airshipTracker.analyticsEnabled = false
+                airshipInstance.analyticsEnabled = false
             case .setNamedUser:
                 guard let userId = payload[AirshipConstants.Keys.namedUserIdentifier] as? String else {
+                    log("\(AirshipConstants.Keys.namedUserIdentifier) required for `setNamedUser`")
                     return
                 }
-                self.airshipTracker.identifyUser(id: userId)
+                airshipInstance.identifyUser(id: userId)
             case .setCustomIdentifiers:
                 guard let customIdentifiers = payload[AirshipConstants.Keys.customIdentifiers] as? [String: String] else {
+                    log("\(AirshipConstants.Keys.customIdentifiers) required for `setCustomIdentifiers`")
                     return
                 }
-                self.airshipTracker.customIdentifiers = customIdentifiers
+                airshipInstance.customIdentifiers = customIdentifiers
             case .enableAdvertisingIdentifiers:
-                self.airshipTracker.enableAdvertisingIDs()
+                airshipInstance.enableAdvertisingIDs()
             // MARK: START In-App Messaging
             case .enableInAppMessaging:
-                self.airshipTracker.inAppMessagingEnabled = true
+                airshipInstance.inAppMessagingEnabled = true
             case .disableInAppMessaging:
-                self.airshipTracker.inAppMessagingEnabled = false
+                airshipInstance.inAppMessagingEnabled = false
             case .pauseInAppMessaging:
-                self.airshipTracker.inAppMessagingPaused = true
+                airshipInstance.inAppMessagingPaused = true
             case .unpauseInAppMessaging:
-                self.airshipTracker.inAppMessagingPaused = false
+                airshipInstance.inAppMessagingPaused = false
             case .setInAppMessagingDisplayInterval:
                 guard let interval = payload[AirshipConstants.Keys.inAppMessagingDisplayInterval] as? String else {
+                    log("\(AirshipConstants.Keys.inAppMessagingDisplayInterval) required for `setInAppMessagingDisplayInterval`")
                     return
                 }
-                self.airshipTracker.inAppMessagingDisplayInterval = interval
+                airshipInstance.inAppMessagingDisplayInterval = interval
             // MARK: START Push Messaging
             case .enableUserPushNotifications:
                 if let notificationOptions = payload[AirshipConstants.Keys.pushNotificationOptions] as? [String] {
-                    self.airshipTracker.enablePushNotificationsWithOptions(notificationOptions)
+                    airshipInstance.enablePushNotificationsWithOptions(notificationOptions)
                 } else {
-                    self.airshipTracker.userPushNotificationsEnabled = true
+                    airshipInstance.userPushNotificationsEnabled = true
                 }
             case .disableUserPushNotifications:
-                self.airshipTracker.userPushNotificationsEnabled = false
+                airshipInstance.userPushNotificationsEnabled = false
             case .enableBackgroundPushNotifications:
-                self.airshipTracker.backgroundPushNotificationsEnabled = true
+                airshipInstance.backgroundPushNotificationsEnabled = true
             case .disableBackgroundPushNotifications:
-                self.airshipTracker.backgroundPushNotificationsEnabled = false
+                airshipInstance.backgroundPushNotificationsEnabled = false
             case .setPushNotificationOptions:
                 guard let notificationOptions = payload[AirshipConstants.Keys.pushNotificationOptions] as? [String] else {
+                    log("\(AirshipConstants.Keys.pushNotificationOptions) required for `setPushNotificationOptions`")
                     return
                 }
-                self.airshipTracker.pushNotificationOptions = notificationOptions
+                airshipInstance.pushNotificationOptions = notificationOptions
             case .setForegroundPresentationOptions:
                 guard let presentationOptions = payload[AirshipConstants.Keys.foregroundPresentationOptions] as? [String] else {
+                    log("\(AirshipConstants.Keys.foregroundPresentationOptions) required for `setForegroundPresentationOptions`")
                     return
                 }
-                self.airshipTracker.foregroundPresentationOptions = presentationOptions
+                airshipInstance.foregroundPresentationOptions = presentationOptions
             case .setBadgeNumber:
                 guard let badgeNumber = payload[AirshipConstants.Keys.badgeNumber] as? Int else {
+                    log("\(AirshipConstants.Keys.badgeNumber) required for `setBadgeNumber`")
                     return
                 }
-                self.airshipTracker.badgeNumber = badgeNumber
+                airshipInstance.badgeNumber = badgeNumber
             case .resetBadgeNumber:
-                self.airshipTracker.resetBadgeNumber()
+                airshipInstance.resetBadgeNumber()
             case .enableAutoBadge:
-                self.airshipTracker.autoBadgeEnabled = true
+                airshipInstance.autoBadgeEnabled = true
             case .disableAutoBadge:
-                self.airshipTracker.autoBadgeEnabled = false
+                airshipInstance.autoBadgeEnabled = false
             case .enableQuietTime:
-                self.airshipTracker.quietTimeEnabled = true
+                airshipInstance.quietTimeEnabled = true
             case .disableQuietTime:
-                self.airshipTracker.quietTimeEnabled = false
+                airshipInstance.quietTimeEnabled = false
             case .setQuietTimeStart:
-                guard let startHour = payload[AirshipConstants.Keys.quietTimeStartHour] as? Int,
-                    let startMinute = payload[AirshipConstants.Keys.quietTimeStartMinute] as? Int,
-                    let endHour = payload[AirshipConstants.Keys.quietTimeEndHour] as? Int,
-                    let endMinute = payload[AirshipConstants.Keys.quietTimeEndMinute] as? Int else {
+                guard let quiet = payload[AirshipConstants.Keys.quiet] as? [String: Any],
+                      let startHour = quiet[AirshipConstants.Keys.startHour] as? Int,
+                      let startMinute = quiet[AirshipConstants.Keys.startMinute] as? Int,
+                      let endHour = quiet[AirshipConstants.Keys.endHour] as? Int,
+                      let endMinute = quiet[AirshipConstants.Keys.endMinute] as? Int else {
+                        log("\(AirshipConstants.Keys.quiet) object required for `setQuietTimeStart`")
                         return
                 }
-                
-                self.airshipTracker.setQuietTimeStartHour(startHour, minute: startMinute, endHour: endHour, endMinute: endMinute)
+                airshipInstance.setQuietTimeStartHour(startHour, minute: startMinute, endHour: endHour, endMinute: endMinute)
             // MARK: START Segmentation
             case .setChannelTags:
                 guard let tags = payload[AirshipConstants.Keys.channelTags] as? [String] else {
+                    log("\(AirshipConstants.Keys.channelTags) required for `setChannelTags`")
                     return
                 }
-                self.airshipTracker.channelTags = tags
+                airshipInstance.channelTags = tags
             case .setNamedUserTags:
                 guard let tags = payload[AirshipConstants.Keys.namedUserTags] as? [String],
                     let group = payload[AirshipConstants.Keys.tagGroup] as? String else {
+                    log("\(AirshipConstants.Keys.namedUserTags) and \(AirshipConstants.Keys.tagGroup) required for `setNamedUserTags`")
                     return
                 }
-                self.airshipTracker.setNamedUserTags(group, tags: tags)
+                airshipInstance.setNamedUserTags(group, tags: tags)
             case .addTag:
                 guard let tag = payload[AirshipConstants.Keys.channelTag] as? String else {
+                    log("\(AirshipConstants.Keys.channelTag) required for `addTag`")
                     return
                 }
-                self.airshipTracker.addTag(tag)
+                airshipInstance.addTag(tag)
             case .removeTag:
                 guard let tag = payload[AirshipConstants.Keys.channelTag] as? String else {
+                    log("\(AirshipConstants.Keys.channelTag) required for `removeTag`")
                     return
                 }
-                self.airshipTracker.removeTag(tag)
+                airshipInstance.removeTag(tag)
             case .addTagGroup:
                 guard let tags = (payload[AirshipConstants.Keys.namedUserTags] ?? payload[AirshipConstants.Keys.channelTags]) as? [String],
                     let group = payload[AirshipConstants.Keys.tagGroup] as? String,
                     let tagType = payload[AirshipConstants.Keys.tagType] as? String,
                     let uaTagType = UATagType(rawValue: tagType) else {
+                    log("\(AirshipConstants.Keys.tagGroup) and \(AirshipConstants.Keys.tagType) required for `addTagGroup`")
                         return
                 }
-                self.airshipTracker.addTagGroup(group, tags: tags, for: uaTagType)
+                airshipInstance.addTagGroup(group, tags: tags, for: uaTagType)
             case .removeTagGroup:
                 guard let tags = (payload[AirshipConstants.Keys.namedUserTags] ?? payload[AirshipConstants.Keys.channelTags]) as? [String],
                     let group = payload[AirshipConstants.Keys.tagGroup] as? String,
                     let tagType = payload[AirshipConstants.Keys.tagType] as? String,
                     let uaTagType = UATagType(rawValue: tagType) else {
+                    log("\(AirshipConstants.Keys.tagGroup) and \(AirshipConstants.Keys.tagType) required for `removeTagGroup`")
                     return
                 }
-                
-                self.airshipTracker.removeTagGroup(group, tags: tags, for: uaTagType)
+                airshipInstance.removeTagGroup(group, tags: tags, for: uaTagType)
             case .setAttributes:
                 guard let attributes = payload[AirshipConstants.Keys.attributes] as? [String: Any] else {
                     return
                 }
-                self.airshipTracker.setAttributes(attributes)
+                airshipInstance.setAttributes(attributes)
             // MARK: START MessageCenter
             case .displayMessageCenter:
-                self.airshipTracker.displayMessageCenter()
+                airshipInstance.displayMessageCenter()
             case .setMessageCenterTitle:
                 guard let title = payload[AirshipConstants.Keys.messageCenterTitle] as? String else {
                     return
                 }
-                self.airshipTracker.messageCenterTitle = title
+                log("\(AirshipConstants.Keys.messageCenterTitle) required for `setMessageCenterTitle`")
+                airshipInstance.messageCenterTitle = title
             case .setMessageCenterStyle:
                 guard let style = payload[AirshipConstants.Keys.messageCenterStyle] as? [String: Any] else {
                     return
                 }
-                self.airshipTracker.setMessageCenterStyle(style)
+                log("\(AirshipConstants.Keys.messageCenterStyle) object required for `setMessageCenterStyle`")
+                airshipInstance.setMessageCenterStyle(style)
             // MARK: START Location
             case .enableLocation:
-                self.airshipTracker.locationEnabled = true
+                airshipInstance.locationEnabled = true
             case .disableLocation:
-                self.airshipTracker.locationEnabled = false
+                airshipInstance.locationEnabled = false
             case .enableBackgroundLocation:
-                self.airshipTracker.backgroundLocationEnabled = true
+                airshipInstance.backgroundLocationEnabled = true
             case .disableBackgroundLocation:
-                self.airshipTracker.backgroundLocationEnabled = false
+                airshipInstance.backgroundLocationEnabled = false
+            default:
+                break
             }
         }
     }
+    
+    private var environment: String {
+        guard TealiumInstanceManager.shared.tealiumInstances.count == 1 else {
+            return "productionLogLevel"
+        }
+        guard let tealium = TealiumInstanceManager.shared.tealiumInstances.first?.value,
+              let environment = tealium.dataLayer.all[TealiumKey.environment] as? String else {
+            return "productionLogLevel"
+        }
+       return environment == "prod" ? "productionLogLevel" : "developmentLogLevel"
+    }
+    
+    private func logLevel(from payload: [String: Any]) -> TealiumLogLevel {
+        guard let logLevel = payload[environment] as? String else {
+            return .error
+        }
+        return TealiumLogLevel(from: logLevel)
+    }
+    
+    private func log(_ message: String) {
+        os_log("%{public}@",
+               type: OSLogType(UInt8(loggerLevel.rawValue)),
+               "\(AirshipConstants.description): \(message)")
+    }
+    
 }

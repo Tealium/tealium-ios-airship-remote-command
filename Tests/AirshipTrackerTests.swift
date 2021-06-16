@@ -12,34 +12,15 @@ import TealiumRemoteCommands
 
 class AirshipCommandRunnerTests: XCTestCase {
 
-    let airshipTracker = MockAirshipTracker()
-    var airshipRemoteCommand: AirshipRemoteCommand!
-    var remoteCommand: TealiumRemoteCommand!
+    let airshipInstance = MockAirshipInstance()
+    var airshipRemoteCommand: RemoteCommand!
     
     override func setUp() {
-        airshipRemoteCommand = AirshipRemoteCommand(airshipTracker: airshipTracker)
-        remoteCommand = airshipRemoteCommand.remoteCommand()
+        airshipRemoteCommand = AirshipRemoteCommand(airshipInstance: airshipInstance)
     }
 
     override func tearDown() {
 
-    }
-
-    func testInitializeNotCalledWithoutConfig() {
-        let expect = expectation(description: "test initialize")
-        if let response = HttpTestHelpers.httpRequest(commandId: "airship",
-                                                       payload: [
-                                                        "command_name": "initialize",
-                                                        ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
-            if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                
-                XCTAssertEqual(0, airshipTracker.initializeCallCount)
-            }
-            expect.fulfill()
-        }
-        wait(for: [expect], timeout: 2.0)
     }
 
     func testInitializeNotCalledWithConfig() {
@@ -51,11 +32,11 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "airship_config": ["developmentAppKey": "abc123",
                                                                           "developmentAppSecret": "abc123"]
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
+                airshipRemoteCommand.completion(response)
                 
-                XCTAssertEqual(1, airshipTracker.initializeCallCount)
+                XCTAssertEqual(1, airshipInstance.initializeCallCount)
             }
             expect.fulfill()
         }
@@ -71,11 +52,11 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "airship_config": ["developmentAppKey": "abc123",
                                                                           "developmentAppSecret": "abc123"]
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
+                airshipRemoteCommand.completion(response)
                 
-                XCTAssertEqual(0, airshipTracker.initializeCallCount)
+                XCTAssertEqual(0, airshipInstance.initializeCallCount)
             }
             expect.fulfill()
         }
@@ -90,11 +71,11 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "trackevent",
                                                         "event_name": "Test Event"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
+                airshipRemoteCommand.completion(response)
                 
-                XCTAssertEqual(1, airshipTracker.sendEventCallCount)
+                XCTAssertEqual(1, airshipInstance.sendEventCallCount)
             }
             expect.fulfill()
         }
@@ -109,11 +90,11 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "trackevent"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
+                airshipRemoteCommand.completion(response)
                 
-                XCTAssertEqual(0, airshipTracker.sendEventCallCount)
+                XCTAssertEqual(0, airshipInstance.sendEventCallCount)
             }
             expect.fulfill()
         }
@@ -129,14 +110,14 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "trackevent",
                                                         "event_name": "Test Event",
                                                         "event_value": "4.5",
-                                                        "event_properties": testDictionary
+                                                        "event": testDictionary
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(4.5, airshipTracker.eventValue)
-                XCTAssertEqual(testDictionary, airshipTracker.eventProperties! as! [String : Float64])
-                XCTAssertEqual(1, airshipTracker.sendEventCallCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(4.5, airshipInstance.eventValue)
+                XCTAssertEqual(testDictionary, airshipInstance.eventProperties! as! [String : Float64])
+                XCTAssertEqual(1, airshipInstance.sendEventCallCount)
             }
             expect.fulfill()
         }
@@ -152,14 +133,14 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                          "command_name": "trackevent",
                                                          "event_name": "Test Event",
                                                          "event_value": 4,
-                                                         "event_properties": testDictionary
+                                                         "event": testDictionary
                                                          ])?.description {
-             let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+             let remoteCommandResponse = RemoteCommandResponse(urlString: response)
              if let response = remoteCommandResponse {
-                 remoteCommand.remoteCommandCompletion(response)
-                 XCTAssertEqual(4.0, airshipTracker.eventValue)
-                 XCTAssertEqual(testDictionary, airshipTracker.eventProperties! as! [String : Float64])
-                 XCTAssertEqual(1, airshipTracker.sendEventCallCount)
+                 airshipRemoteCommand.completion(response)
+                 XCTAssertEqual(4.0, airshipInstance.eventValue)
+                 XCTAssertEqual(testDictionary, airshipInstance.eventProperties! as! [String : Float64])
+                 XCTAssertEqual(1, airshipInstance.sendEventCallCount)
              }
              expect.fulfill()
          }
@@ -175,14 +156,14 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "trackevent",
                                                         "event_name": "Test Event",
                                                         "event_value": 4.5,
-                                                        "event_properties": testDictionary
+                                                        "event": testDictionary
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(4.5, airshipTracker.eventValue)
-                XCTAssertEqual(testDictionary, airshipTracker.eventProperties! as! [String : Float64])
-                XCTAssertEqual(1, airshipTracker.sendEventCallCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(4.5, airshipInstance.eventValue)
+                XCTAssertEqual(testDictionary, airshipInstance.eventProperties! as! [String : Float64])
+                XCTAssertEqual(1, airshipInstance.sendEventCallCount)
             }
             expect.fulfill()
         }
@@ -197,14 +178,14 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "trackevent",
                                                         "event_value": "4.5",
-                                                        "event_properties": testDictionary
+                                                        "event": testDictionary
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertNil(airshipTracker.eventValue)
-                XCTAssertNil(airshipTracker.eventProperties)
-                XCTAssertEqual(0, airshipTracker.sendEventCallCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertNil(airshipInstance.eventValue)
+                XCTAssertNil(airshipInstance.eventProperties)
+                XCTAssertEqual(0, airshipInstance.sendEventCallCount)
             }
             expect.fulfill()
         }
@@ -219,11 +200,11 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "trackscreenview",
                                                         "screen_name": "Test Screen"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual("Test Screen", airshipTracker.screenName)
-                XCTAssertEqual(1, airshipTracker.screenViewCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual("Test Screen", airshipInstance.screenName)
+                XCTAssertEqual(1, airshipInstance.screenViewCount)
             }
             expect.fulfill()
         }
@@ -237,11 +218,11 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "trackscreenview"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertNil(airshipTracker.screenName)
-                XCTAssertEqual(0, airshipTracker.screenViewCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertNil(airshipInstance.screenName)
+                XCTAssertEqual(0, airshipInstance.screenViewCount)
             }
             expect.fulfill()
         }
@@ -255,10 +236,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "enableanalytics"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertTrue(airshipTracker.analyticsEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertTrue(airshipInstance.analyticsEnabled!)
             }
             expect.fulfill()
         }
@@ -272,10 +253,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "disableanalytics"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertFalse(airshipTracker.analyticsEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertFalse(airshipInstance.analyticsEnabled!)
             }
             expect.fulfill()
         }
@@ -291,10 +272,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setnameduser",
                                                         "named_user_identifier": "tealium1234"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(airshipTracker.namedUserId!, "tealium1234")
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(airshipInstance.namedUserId!, "tealium1234")
             }
             expect.fulfill()
         }
@@ -308,10 +289,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "setnameduser"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertNil(airshipTracker.namedUserId)
+                airshipRemoteCommand.completion(response)
+                XCTAssertNil(airshipInstance.namedUserId)
             }
             expect.fulfill()
         }
@@ -326,12 +307,12 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                       config: ["response_id": "1234"],
                                                        payload: [
                                                         "command_name": "setcustomidentifiers",
-                                                        "custom_identifiers": customIdentifiers
+                                                        "custom": customIdentifiers
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(airshipTracker.customIdentifiers!, customIdentifiers)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(airshipInstance.customIdentifiers!, customIdentifiers)
             }
             expect.fulfill()
         }
@@ -348,12 +329,12 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                       config: ["response_id": "1234"],
                                                        payload: [
                                                         "command_name": "setcustomidentifiers",
-                                                        "custom_identifiers": customIdentifiers
+                                                        "custom": customIdentifiers
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertNil(airshipTracker.customIdentifiers)
+                airshipRemoteCommand.completion(response)
+                XCTAssertNil(airshipInstance.customIdentifiers)
             }
             expect.fulfill()
         }
@@ -367,10 +348,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "enableadvertisingidentifiers",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertTrue(airshipTracker.advertisingIdsEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertTrue(airshipInstance.advertisingIdsEnabled!)
             }
             expect.fulfill()
         }
@@ -384,10 +365,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "enableinappmessaging",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertTrue(airshipTracker.inAppMessagingEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertTrue(airshipInstance.inAppMessagingEnabled!)
             }
             expect.fulfill()
         }
@@ -401,10 +382,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "disableinappmessaging",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertFalse(airshipTracker.inAppMessagingEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertFalse(airshipInstance.inAppMessagingEnabled!)
             }
             expect.fulfill()
         }
@@ -418,10 +399,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "pauseinappmessaging",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertTrue(airshipTracker.inAppMessagingPaused!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertTrue(airshipInstance.inAppMessagingPaused!)
             }
             expect.fulfill()
         }
@@ -435,10 +416,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "unpauseinappmessaging",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertFalse(airshipTracker.inAppMessagingPaused!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertFalse(airshipInstance.inAppMessagingPaused!)
             }
             expect.fulfill()
         }
@@ -452,10 +433,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "setinappmessagingdisplayinterval",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertNil(airshipTracker.inAppMessagingDisplayInterval)
+                airshipRemoteCommand.completion(response)
+                XCTAssertNil(airshipInstance.inAppMessagingDisplayInterval)
             }
             expect.fulfill()
         }
@@ -470,10 +451,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setinappmessagingdisplayinterval",
                                                         "in_app_messaging_display_interval": "10"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(airshipTracker.inAppMessagingDisplayInterval, "10")
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(airshipInstance.inAppMessagingDisplayInterval, "10")
             }
             expect.fulfill()
         }
@@ -487,10 +468,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "enableuserpushnotifications",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertTrue(airshipTracker.userPushNotificationsEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertTrue(airshipInstance.userPushNotificationsEnabled!)
             }
             expect.fulfill()
         }
@@ -505,11 +486,11 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "enableuserpushnotifications",
                                                         "push_notification_options": ["alert", "badge"],
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(airshipTracker.pushNotificationOptions, ["alert", "badge"])
-                XCTAssertTrue(airshipTracker.userPushNotificationsEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(airshipInstance.pushNotificationOptions, ["alert", "badge"])
+                XCTAssertTrue(airshipInstance.userPushNotificationsEnabled!)
             }
             expect.fulfill()
         }
@@ -523,10 +504,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "disableuserpushnotifications",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertFalse(airshipTracker.userPushNotificationsEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertFalse(airshipInstance.userPushNotificationsEnabled!)
             }
             expect.fulfill()
         }
@@ -540,10 +521,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "enablebackgroundpushnotifications",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertTrue(airshipTracker.backgroundPushNotificationsEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertTrue(airshipInstance.backgroundPushNotificationsEnabled!)
             }
             expect.fulfill()
         }
@@ -557,10 +538,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "disablebackgroundpushnotifications",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertFalse(airshipTracker.backgroundPushNotificationsEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertFalse(airshipInstance.backgroundPushNotificationsEnabled!)
             }
             expect.fulfill()
         }
@@ -575,10 +556,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setpushnotificationoptions",
                                                         "push_notification_options": ["alert", "badge"],
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(airshipTracker.pushNotificationOptions, ["alert", "badge"])
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(airshipInstance.pushNotificationOptions, ["alert", "badge"])
             }
             expect.fulfill()
         }
@@ -593,10 +574,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setpushnotificationoptions",
                                                         "push_notification_options": "",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertNil(airshipTracker.pushNotificationOptions)
+                airshipRemoteCommand.completion(response)
+                XCTAssertNil(airshipInstance.pushNotificationOptions)
             }
             expect.fulfill()
         }
@@ -611,10 +592,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setforegroundpresentationoptions",
                                                         "foreground_presentation_options": ["alert", "badge"],
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(airshipTracker.foregroundPresentationOptions, ["alert", "badge"])
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(airshipInstance.foregroundPresentationOptions, ["alert", "badge"])
             }
             expect.fulfill()
         }
@@ -629,10 +610,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setforegroundpresentationoptions",
                                                         "foreground_presentation_options": ""
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertNil(airshipTracker.foregroundPresentationOptions)
+                airshipRemoteCommand.completion(response)
+                XCTAssertNil(airshipInstance.foregroundPresentationOptions)
             }
             expect.fulfill()
         }
@@ -647,10 +628,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setbadgenumber",
                                                         "badge_number": 5
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(airshipTracker.badgeNumber, 5)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(airshipInstance.badgeNumber, 5)
             }
             expect.fulfill()
         }
@@ -665,10 +646,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setbadgenumber",
                                                         "badge_number": 5.5
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertNil(airshipTracker.badgeNumber)
+                airshipRemoteCommand.completion(response)
+                XCTAssertNil(airshipInstance.badgeNumber)
             }
             expect.fulfill()
         }
@@ -683,10 +664,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setbadgenumber,resetbadgenumber",
                                                         "badge_number": 5
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(airshipTracker.badgeNumber, 0)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(airshipInstance.badgeNumber, 0)
             }
             expect.fulfill()
         }
@@ -700,10 +681,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "enableautobadge",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertTrue(airshipTracker.autoBadgeEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertTrue(airshipInstance.autoBadgeEnabled!)
             }
             expect.fulfill()
         }
@@ -717,10 +698,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "disableautobadge",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertFalse(airshipTracker.autoBadgeEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertFalse(airshipInstance.autoBadgeEnabled!)
             }
             expect.fulfill()
         }
@@ -734,10 +715,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "enablequiettime",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertTrue(airshipTracker.quietTimeEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertTrue(airshipInstance.quietTimeEnabled!)
             }
             expect.fulfill()
         }
@@ -751,10 +732,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "disablequiettime",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertFalse(airshipTracker.quietTimeEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertFalse(airshipInstance.quietTimeEnabled!)
             }
             expect.fulfill()
         }
@@ -767,18 +748,18 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                       config: ["response_id": "1234"],
                                                        payload: [
                                                         "command_name": "setquiettimestart",
-                                                        "quiet_time_start_hour": 1,
-                                                        "quiet_time_start_minute": 2,
-                                                        "quiet_time_end_hour": 3,
-                                                        "quiet_time_end_minute": 4,
+                                                        "quiet": ["start_hour": 1,
+                                                        "start_minute": 2,
+                                                        "end_hour": 3,
+                                                        "end_minute": 4],
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(airshipTracker.quietTime!["hour"], 1)
-                XCTAssertEqual(airshipTracker.quietTime!["minute"], 2)
-                XCTAssertEqual(airshipTracker.quietTime!["endhour"], 3)
-                XCTAssertEqual(airshipTracker.quietTime!["endminute"], 4)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(airshipInstance.quietTime!["hour"], 1)
+                XCTAssertEqual(airshipInstance.quietTime!["minute"], 2)
+                XCTAssertEqual(airshipInstance.quietTime!["endhour"], 3)
+                XCTAssertEqual(airshipInstance.quietTime!["endminute"], 4)
             }
             
             expect.fulfill()
@@ -792,13 +773,13 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                       config: ["response_id": "1234"],
                                                        payload: [
                                                         "command_name": "setquiettimestart",
-                                                        "quiet_time_start_hour": 1,
-                                                        "quiet_time_start_minute": 2,
+                                                        "quiet": ["start_hour": 1,
+                                                        "start_minute": 2],
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertNil(airshipTracker.quietTime)
+                airshipRemoteCommand.completion(response)
+                XCTAssertNil(airshipInstance.quietTime)
             }
             
             expect.fulfill()
@@ -815,10 +796,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setchanneltags",
                                                         "channel_tags": channelTags,
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(channelTags, airshipTracker.channelTags)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(channelTags, airshipInstance.channelTags)
             }
             
             expect.fulfill()
@@ -834,10 +815,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setchanneltags",
                                                         "channel_tags": "channelTags",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertNil(airshipTracker.channelTags)
+                airshipRemoteCommand.completion(response)
+                XCTAssertNil(airshipInstance.channelTags)
             }
             
             expect.fulfill()
@@ -855,11 +836,11 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "named_user_tags": userTags,
                                                         "tag_group": "group",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(userTags, airshipTracker.userTags)
-                XCTAssertEqual(airshipTracker.namedUserTagGroup, "group")
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(userTags, airshipInstance.userTags)
+                XCTAssertEqual(airshipInstance.namedUserTagGroup, "group")
                 
             }
             
@@ -877,11 +858,11 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "named_user_tags": "userTags",
                                                         "tag_group": "group",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertNil(airshipTracker.userTags)
-                XCTAssertNil(airshipTracker.namedUserTagGroup)
+                airshipRemoteCommand.completion(response)
+                XCTAssertNil(airshipInstance.userTags)
+                XCTAssertNil(airshipInstance.namedUserTagGroup)
                 
             }
             
@@ -898,10 +879,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "addtag",
                                                         "channel_tag": "abc",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(1, airshipTracker.addTagCallCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(1, airshipInstance.addTagCallCount)
             }
             
             expect.fulfill()
@@ -917,10 +898,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "addtag",
                                                         "channel_tag": 1,
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(0, airshipTracker.addTagCallCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(0, airshipInstance.addTagCallCount)
             }
             
             expect.fulfill()
@@ -936,10 +917,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "removetag",
                                                         "channel_tag": "abc",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(1, airshipTracker.removeTagCallCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(1, airshipInstance.removeTagCallCount)
             }
             
             expect.fulfill()
@@ -954,10 +935,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "removetag",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(0, airshipTracker.removeTagCallCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(0, airshipInstance.removeTagCallCount)
             }
             
             expect.fulfill()
@@ -976,13 +957,13 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "named_user_tags": userTags,
                                                         "tag_type": "named_user"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(1, airshipTracker.addTagGroupCallCount)
-                XCTAssertEqual(userTags, airshipTracker.namedUserTags)
-                XCTAssertEqual("def", airshipTracker.tagGroup)
-                XCTAssertEqual(.namedUser, airshipTracker.tagType)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(1, airshipInstance.addTagGroupCallCount)
+                XCTAssertEqual(userTags, airshipInstance.namedUserTags)
+                XCTAssertEqual("def", airshipInstance.tagGroup)
+                XCTAssertEqual(.namedUser, airshipInstance.tagType)
             }
             
             expect.fulfill()
@@ -1001,13 +982,13 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "channel_tags": channelTags,
                                                         "tag_type": "channel"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(1, airshipTracker.addTagGroupCallCount)
-                XCTAssertEqual("def", airshipTracker.tagGroup)
-                XCTAssertEqual(channelTags, airshipTracker.channelTags)
-                XCTAssertEqual(.channel, airshipTracker.tagType)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(1, airshipInstance.addTagGroupCallCount)
+                XCTAssertEqual("def", airshipInstance.tagGroup)
+                XCTAssertEqual(channelTags, airshipInstance.channelTags)
+                XCTAssertEqual(.channel, airshipInstance.tagType)
             }
             
             expect.fulfill()
@@ -1025,13 +1006,13 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "channel_tags": "channelTags",
                                                         "tag_type": "channel"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(0, airshipTracker.addTagGroupCallCount)
-                XCTAssertNil(airshipTracker.tagGroup)
-                XCTAssertNil(airshipTracker.channelTags)
-                XCTAssertNil(airshipTracker.tagType)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(0, airshipInstance.addTagGroupCallCount)
+                XCTAssertNil(airshipInstance.tagGroup)
+                XCTAssertNil(airshipInstance.channelTags)
+                XCTAssertNil(airshipInstance.tagType)
             }
             
             expect.fulfill()
@@ -1050,13 +1031,13 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "named_user_tags": userTags,
                                                         "tag_type": "named_user"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(1, airshipTracker.removeTagGroupCallCount)
-                XCTAssertEqual(userTags, airshipTracker.namedUserTags)
-                XCTAssertEqual("def", airshipTracker.tagGroup)
-                XCTAssertEqual(.namedUser, airshipTracker.tagType)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(1, airshipInstance.removeTagGroupCallCount)
+                XCTAssertEqual(userTags, airshipInstance.namedUserTags)
+                XCTAssertEqual("def", airshipInstance.tagGroup)
+                XCTAssertEqual(.namedUser, airshipInstance.tagType)
             }
             
             expect.fulfill()
@@ -1075,13 +1056,13 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "channel_tags": channelTags,
                                                         "tag_type": "channel"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(1, airshipTracker.removeTagGroupCallCount)
-                XCTAssertEqual("def", airshipTracker.tagGroup)
-                XCTAssertEqual(channelTags, airshipTracker.channelTags)
-                XCTAssertEqual(.channel, airshipTracker.tagType)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(1, airshipInstance.removeTagGroupCallCount)
+                XCTAssertEqual("def", airshipInstance.tagGroup)
+                XCTAssertEqual(channelTags, airshipInstance.channelTags)
+                XCTAssertEqual(.channel, airshipInstance.tagType)
             }
             
             expect.fulfill()
@@ -1099,13 +1080,13 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "channel_tags": "channelTags",
                                                         "tag_type": "channel"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(0, airshipTracker.removeTagGroupCallCount)
-                XCTAssertNil(airshipTracker.tagGroup)
-                XCTAssertNil(airshipTracker.channelTags)
-                XCTAssertNil(airshipTracker.tagType)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(0, airshipInstance.removeTagGroupCallCount)
+                XCTAssertNil(airshipInstance.tagGroup)
+                XCTAssertNil(airshipInstance.channelTags)
+                XCTAssertNil(airshipInstance.tagType)
             }
             
             expect.fulfill()
@@ -1122,10 +1103,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setattributes",
                                                         "attributes": ["test":"attributes"],
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(1, airshipTracker.setAttributesCallCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(1, airshipInstance.setAttributesCallCount)
             }
             expect.fulfill()
         }
@@ -1140,10 +1121,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setattributes",
                                                         "attributes": "hello"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(0, airshipTracker.setAttributesCallCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(0, airshipInstance.setAttributesCallCount)
             }
             expect.fulfill()
         }
@@ -1157,10 +1138,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "displaymessagecenter"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(1, airshipTracker.displayMessageCenterCallCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(1, airshipInstance.displayMessageCenterCallCount)
             }
             expect.fulfill()
         }
@@ -1175,10 +1156,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setmessagecentertitle",
                                                         "message_center_title": "mytitle",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual("mytitle", airshipTracker.messageCenterTitle)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual("mytitle", airshipInstance.messageCenterTitle)
             }
             expect.fulfill()
         }
@@ -1192,10 +1173,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "setmessageCentertitle",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertNil(airshipTracker.messageCenterTitle)
+                airshipRemoteCommand.completion(response)
+                XCTAssertNil(airshipInstance.messageCenterTitle)
             }
             expect.fulfill()
         }
@@ -1210,10 +1191,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "command_name": "setmessagecenterstyle",
                                                         "message_center_style": ["my_style": "style"],
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(1, airshipTracker.setMessageCenterStyleCallCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(1, airshipInstance.setMessageCenterStyleCallCount)
             }
             expect.fulfill()
         }
@@ -1227,10 +1208,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "setmessagecenterstyle",
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(0, airshipTracker.setMessageCenterStyleCallCount)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(0, airshipInstance.setMessageCenterStyleCallCount)
             }
             expect.fulfill()
         }
@@ -1244,10 +1225,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "enablelocation"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertTrue(airshipTracker.locationEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertTrue(airshipInstance.locationEnabled!)
             }
             expect.fulfill()
         }
@@ -1262,10 +1243,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "enablelocation, disablelocation"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertFalse(airshipTracker.locationEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertFalse(airshipInstance.locationEnabled!)
             }
             expect.fulfill()
         }
@@ -1279,10 +1260,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "enablebackgroundlocation"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertTrue(airshipTracker.backgroundLocationEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertTrue(airshipInstance.backgroundLocationEnabled!)
             }
             expect.fulfill()
         }
@@ -1296,10 +1277,10 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                        payload: [
                                                         "command_name": "enablebackgroundlocation, disablebackgroundlocation"
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertFalse(airshipTracker.backgroundLocationEnabled!)
+                airshipRemoteCommand.completion(response)
+                XCTAssertFalse(airshipInstance.backgroundLocationEnabled!)
             }
             expect.fulfill()
         }
@@ -1314,41 +1295,41 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                         "my_command": "hello",
                                                         "message_center_style": ["my_style": "style"],
                                                         ])?.description {
-            let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+            let remoteCommandResponse = RemoteCommandResponse(urlString: response)
             if let response = remoteCommandResponse {
-                remoteCommand.remoteCommandCompletion(response)
-                XCTAssertEqual(0, airshipTracker.initializeCallCount)
-                XCTAssertEqual(0, airshipTracker.sendEventCallCount)
-                XCTAssertEqual(0, airshipTracker.screenViewCount)
-                XCTAssertEqual(0, airshipTracker.resetCampaignDataCallCount)
-                XCTAssertEqual(0, airshipTracker.loadFeedbackFormCallCount)
-                XCTAssertEqual(0, airshipTracker.preloadFeedbackFormCallCount)
-                XCTAssertEqual(0, airshipTracker.removeCachedFormsCallCount)
-                XCTAssertEqual(0, airshipTracker.dismissAutomaticallyCallCount)
-                XCTAssertEqual(0, airshipTracker.setCustomVariablesCallCount)
-                XCTAssertEqual(0, airshipTracker.resetCallCount)
-                XCTAssertEqual(0, airshipTracker.debugEnabledCallCount)
-                XCTAssertEqual(0, airshipTracker.displayCampaignsCallCount)
-                XCTAssertNil(airshipTracker.eventValue)
-                XCTAssertNil(airshipTracker.eventProperties)
-                XCTAssertNil(airshipTracker.screenName)
-                XCTAssertNil(airshipTracker.namedUserId)
-                XCTAssertNil(airshipTracker.advertisingIdsEnabled)
-                XCTAssertNil(airshipTracker.quietTime)
-                XCTAssertNil(airshipTracker.userTags)
-                XCTAssertNil(airshipTracker.namedUserTagGroup)
+                airshipRemoteCommand.completion(response)
+                XCTAssertEqual(0, airshipInstance.initializeCallCount)
+                XCTAssertEqual(0, airshipInstance.sendEventCallCount)
+                XCTAssertEqual(0, airshipInstance.screenViewCount)
+                XCTAssertEqual(0, airshipInstance.resetCampaignDataCallCount)
+                XCTAssertEqual(0, airshipInstance.loadFeedbackFormCallCount)
+                XCTAssertEqual(0, airshipInstance.preloadFeedbackFormCallCount)
+                XCTAssertEqual(0, airshipInstance.removeCachedFormsCallCount)
+                XCTAssertEqual(0, airshipInstance.dismissAutomaticallyCallCount)
+                XCTAssertEqual(0, airshipInstance.setCustomVariablesCallCount)
+                XCTAssertEqual(0, airshipInstance.resetCallCount)
+                XCTAssertEqual(0, airshipInstance.debugEnabledCallCount)
+                XCTAssertEqual(0, airshipInstance.displayCampaignsCallCount)
+                XCTAssertNil(airshipInstance.eventValue)
+                XCTAssertNil(airshipInstance.eventProperties)
+                XCTAssertNil(airshipInstance.screenName)
+                XCTAssertNil(airshipInstance.namedUserId)
+                XCTAssertNil(airshipInstance.advertisingIdsEnabled)
+                XCTAssertNil(airshipInstance.quietTime)
+                XCTAssertNil(airshipInstance.userTags)
+                XCTAssertNil(airshipInstance.namedUserTagGroup)
                 
-                XCTAssertNil(airshipTracker.namedUserTags)
-                XCTAssertNil(airshipTracker.tagGroup)
-                XCTAssertNil(airshipTracker.tagType)
+                XCTAssertNil(airshipInstance.namedUserTags)
+                XCTAssertNil(airshipInstance.tagGroup)
+                XCTAssertNil(airshipInstance.tagType)
                 
-                XCTAssertEqual(0, airshipTracker.addTagCallCount)
-                XCTAssertEqual(0, airshipTracker.addTagGroupCallCount)
-                XCTAssertEqual(0, airshipTracker.removeTagGroupCallCount)
-                XCTAssertEqual(0, airshipTracker.removeTagCallCount)
-                XCTAssertEqual(0, airshipTracker.setAttributesCallCount)
-                XCTAssertEqual(0, airshipTracker.setMessageCenterStyleCallCount)
-                XCTAssertEqual(0, airshipTracker.displayMessageCenterCallCount)
+                XCTAssertEqual(0, airshipInstance.addTagCallCount)
+                XCTAssertEqual(0, airshipInstance.addTagGroupCallCount)
+                XCTAssertEqual(0, airshipInstance.removeTagGroupCallCount)
+                XCTAssertEqual(0, airshipInstance.removeTagCallCount)
+                XCTAssertEqual(0, airshipInstance.setAttributesCallCount)
+                XCTAssertEqual(0, airshipInstance.setMessageCenterStyleCallCount)
+                XCTAssertEqual(0, airshipInstance.displayMessageCenterCallCount)
             }
             expect.fulfill()
         }
@@ -1363,39 +1344,39 @@ class AirshipCommandRunnerTests: XCTestCase {
                                                           "command_name": "hello",
                                                           "message_center_style": ["my_style": "style"],
                                                           ])?.description {
-              let remoteCommandResponse = TealiumRemoteCommandResponse(urlString: response)
+              let remoteCommandResponse = RemoteCommandResponse(urlString: response)
               if let response = remoteCommandResponse {
-                  remoteCommand.remoteCommandCompletion(response)
-                  XCTAssertEqual(0, airshipTracker.initializeCallCount)
-                  XCTAssertEqual(0, airshipTracker.sendEventCallCount)
-                  XCTAssertEqual(0, airshipTracker.screenViewCount)
-                  XCTAssertEqual(0, airshipTracker.resetCampaignDataCallCount)
-                  XCTAssertEqual(0, airshipTracker.loadFeedbackFormCallCount)
-                  XCTAssertEqual(0, airshipTracker.preloadFeedbackFormCallCount)
-                  XCTAssertEqual(0, airshipTracker.removeCachedFormsCallCount)
-                  XCTAssertEqual(0, airshipTracker.dismissAutomaticallyCallCount)
-                  XCTAssertEqual(0, airshipTracker.setCustomVariablesCallCount)
-                  XCTAssertEqual(0, airshipTracker.resetCallCount)
-                  XCTAssertEqual(0, airshipTracker.debugEnabledCallCount)
-                  XCTAssertEqual(0, airshipTracker.displayCampaignsCallCount)
-                  XCTAssertNil(airshipTracker.eventValue)
-                  XCTAssertNil(airshipTracker.eventProperties)
-                  XCTAssertNil(airshipTracker.screenName)
-                  XCTAssertNil(airshipTracker.namedUserId)
-                  XCTAssertNil(airshipTracker.advertisingIdsEnabled)
-                  XCTAssertNil(airshipTracker.quietTime)
-                  XCTAssertNil(airshipTracker.userTags)
-                  XCTAssertNil(airshipTracker.namedUserTagGroup)
-                  XCTAssertNil(airshipTracker.namedUserTags)
-                  XCTAssertNil(airshipTracker.tagGroup)
-                  XCTAssertNil(airshipTracker.tagType)
-                  XCTAssertEqual(0, airshipTracker.addTagCallCount)
-                  XCTAssertEqual(0, airshipTracker.addTagGroupCallCount)
-                  XCTAssertEqual(0, airshipTracker.removeTagGroupCallCount)
-                  XCTAssertEqual(0, airshipTracker.removeTagCallCount)
-                  XCTAssertEqual(0, airshipTracker.setAttributesCallCount)
-                  XCTAssertEqual(0, airshipTracker.setMessageCenterStyleCallCount)
-                  XCTAssertEqual(0, airshipTracker.displayMessageCenterCallCount)
+                  airshipRemoteCommand.completion(response)
+                  XCTAssertEqual(0, airshipInstance.initializeCallCount)
+                  XCTAssertEqual(0, airshipInstance.sendEventCallCount)
+                  XCTAssertEqual(0, airshipInstance.screenViewCount)
+                  XCTAssertEqual(0, airshipInstance.resetCampaignDataCallCount)
+                  XCTAssertEqual(0, airshipInstance.loadFeedbackFormCallCount)
+                  XCTAssertEqual(0, airshipInstance.preloadFeedbackFormCallCount)
+                  XCTAssertEqual(0, airshipInstance.removeCachedFormsCallCount)
+                  XCTAssertEqual(0, airshipInstance.dismissAutomaticallyCallCount)
+                  XCTAssertEqual(0, airshipInstance.setCustomVariablesCallCount)
+                  XCTAssertEqual(0, airshipInstance.resetCallCount)
+                  XCTAssertEqual(0, airshipInstance.debugEnabledCallCount)
+                  XCTAssertEqual(0, airshipInstance.displayCampaignsCallCount)
+                  XCTAssertNil(airshipInstance.eventValue)
+                  XCTAssertNil(airshipInstance.eventProperties)
+                  XCTAssertNil(airshipInstance.screenName)
+                  XCTAssertNil(airshipInstance.namedUserId)
+                  XCTAssertNil(airshipInstance.advertisingIdsEnabled)
+                  XCTAssertNil(airshipInstance.quietTime)
+                  XCTAssertNil(airshipInstance.userTags)
+                  XCTAssertNil(airshipInstance.namedUserTagGroup)
+                  XCTAssertNil(airshipInstance.namedUserTags)
+                  XCTAssertNil(airshipInstance.tagGroup)
+                  XCTAssertNil(airshipInstance.tagType)
+                  XCTAssertEqual(0, airshipInstance.addTagCallCount)
+                  XCTAssertEqual(0, airshipInstance.addTagGroupCallCount)
+                  XCTAssertEqual(0, airshipInstance.removeTagGroupCallCount)
+                  XCTAssertEqual(0, airshipInstance.removeTagCallCount)
+                  XCTAssertEqual(0, airshipInstance.setAttributesCallCount)
+                  XCTAssertEqual(0, airshipInstance.setMessageCenterStyleCallCount)
+                  XCTAssertEqual(0, airshipInstance.displayMessageCenterCallCount)
               }
               expect.fulfill()
           }

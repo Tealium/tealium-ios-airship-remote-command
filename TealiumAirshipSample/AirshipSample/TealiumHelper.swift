@@ -6,14 +6,16 @@
 //
 
 import Foundation
-import TealiumSwift
+import TealiumCore
+import TealiumTagManagement
+import TealiumRemoteCommands
+import TealiumLifecycle
 import TealiumAirship
-
 
 enum TealiumConfiguration {
     static let account = "tealiummobile"
     static let profile = "airship-demo"
-    static let environment = "prod"
+    static let environment = "dev"
 }
 
 class TealiumHelper {
@@ -25,36 +27,37 @@ class TealiumHelper {
                                environment: TealiumConfiguration.environment)
 
     var tealium: Tealium?
-
+    
+    // JSON Remote Command
+    let airshipRemoteCommand = AirshipRemoteCommand(type: .remote(url: "https://tags.tiqcdn.com/dle/tealiummobile/demo/airship.json"))
+    
     private init() {
-        config.logLevel = .verbose
         config.shouldUseRemotePublishSettings = false
+        config.batchingEnabled = false
         config.remoteAPIEnabled = true
-        tealium = Tealium(config: config,
-                          enableCompletion: { [weak self] _ in
-                              guard let self = self else { return }
-                              guard let remoteCommands = self.tealium?.remoteCommands() else {
-                                  return
-                              }
-                            self.tealium?.consentManager()?.setUserConsentStatus(.consented)
-                            // MARK: Airship
-                            let airshipCommand = AirshipRemoteCommand().remoteCommand()
-                            remoteCommands.add(airshipCommand)
-                          })
+        config.logLevel = .info
+        config.collectors = [Collectors.Lifecycle]
+        config.dispatchers = [Dispatchers.TagManagement, Dispatchers.RemoteCommands]
+        
+        config.addRemoteCommand(airshipRemoteCommand)
+        
+        tealium = Tealium(config: config)
 
     }
 
 
-    public func start() {
+    class func start() {
         _ = TealiumHelper.shared
     }
 
     class func trackView(title: String, data: [String: Any]?) {
-        TealiumHelper.shared.tealium?.track(title: title, data: data, completion: nil)
+        let tealiumView = TealiumView(title, dataLayer: data)
+        TealiumHelper.shared.tealium?.track(tealiumView)
     }
-
+    
     class func trackEvent(title: String, data: [String: Any]?) {
-        TealiumHelper.shared.tealium?.track(title: title, data: data, completion: nil)
+        let tealiumEvent = TealiumEvent(title, dataLayer: data)
+        TealiumHelper.shared.tealium?.track(tealiumEvent)
     }
 
 }

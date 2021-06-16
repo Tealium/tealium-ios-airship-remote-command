@@ -9,7 +9,7 @@
 import Foundation
 @testable import TealiumAirship
 
-class MockAirshipInstance: AirshipCommad {
+class MockAirshipInstance: AirshipCommand {
     
     var initializeCallCount = 0
     var sendEventCallCount = 0

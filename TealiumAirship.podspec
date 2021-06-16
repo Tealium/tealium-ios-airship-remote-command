@@ -20,32 +20,20 @@ Pod::Spec.new do |s|
 
     # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
     s.swift_version = "5.0"
-    s.platform     = :ios, "10.0"
-    s.ios.deployment_target = "10.0"    
+    s.platform     = :ios, "11.0"
+    s.ios.deployment_target = "11.0"    
 
     # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
     s.source       = { :git => "https://github.com/Tealium/tealium-ios-airship-remote-command.git", :tag => "#{s.version}" }
 
-    s.default_subspec = "Core"
-
-    s.subspec "Core" do |core|
-        # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-        core.ios.source_files      = "Sources/**/*.{swift}"
-        core.ios.exclude_files     = "Sources/Location/*"
-        # ――― Dependencies ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-        core.ios.dependency 'tealium-swift/Core'
-        core.ios.dependency 'tealium-swift/TealiumRemoteCommands'
-        core.ios.dependency 'tealium-swift/TealiumDelegate'
-        core.ios.dependency 'tealium-swift/TealiumTagManagement'
-        core.ios.dependency 'Airship', '~> 13.3.2'
-    end
-
-    s.subspec "Location" do |location|
-       # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-        location.ios.source_files      = "Sources/Location/*.{swift}"
-        # ――― Dependencies ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-        location.ios.dependency 'TealiumAirship/Core'
-        location.ios.dependency 'Airship/Location', '~> 13.3.2'
-    end
+    # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+    s.ios.source_files      = "Sources/**/*.{swift}"
+    s.ios.exclude_files     = "Sources/Location/*"
+    # ――― Dependencies ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+    s.ios.dependency 'tealium-swift/Core', '~> 2.2'
+    s.ios.dependency 'tealium-swift/RemoteCommands', '~> 2.2'
+    s.ios.dependency 'tealium-swift/TagManagement', '~> 2.2'
+    s.ios.dependency 'Airship', '~> 14.1'
+    s.ios.dependency 'Airship/Location', '~> 14.1'
 
 end

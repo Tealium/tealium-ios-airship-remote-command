@@ -29,9 +29,19 @@ Adding the Airship remote command module to your app build automatically install
 
 We recommend using one of the following dependency managers for installation:
 
-{{% note %}}If you are using the Tealium iOS (Objective-C) library, use the manual installation method. The CocoaPods and Carthage options are only available if you are using the Tealium iOS (Swift) library.{{% /note %}}
-
 {{% code-tabs %}}
+
+{{% code-tab "Swift Package Manager (Recommended)" %}}
+
+Swift Package Manager is the recommended and simplest way to install the TealiumFirebase package:
+
+1. In your Xcode project, select File > Swift Packages > Add Package Dependency
+2. Enter the repository URL: `https://github.com/tealium/tealium-ios-airship-remote-command`
+3. Configure the version rules. Typically, "Up to next major" is recommended. If the current `TealiumAirship ` version does not appears in the list, then reset your Swift package cache.
+4. Select `TealiumAirship` and add to each of your app targets in your Xcode project, under Frameworks > Libraries & Embedded Content
+5. Refer to the [Tealium Swift install guide](https://docs.tealium.com/platforms/ios-swift/install/#swift-package-manager-recommended) for instructions on how to install additional modules from the Tealium Swift library, such as `Lifecycle` or `VisitorService`
+
+{{% /code-tab %}}
 
 {{% code-tab "CocoaPods" %}}
 
@@ -46,16 +56,14 @@ pod "TealiumAirship"
 The `TealiumAirship ` pod includes the following `TealiumSwift` dependencies:  
 ```bash
 'tealium-swift/Core'
-'tealium-swift/TealiumDelegate'
-'tealium-swift/TealiumRemoteCommands'
-'tealium-swift/TealiumTagManagement'
+'tealium-swift/RemoteCommands'
+'tealium-swift/TagManagement'
 ```
 
 3. Add any other required modules manually to your Podfile, such as the following:   
 ```bash
-'tealium-swift/TealiumLogger'
-'tealium-swift/TealiumLifecycle'
-'tealium-swift/TealiumAppData'
+'tealium-swift/Lifecycle'
+'tealium-swift/VisitorService'
 ```  
 Learn more about the [recommended modules for iOS](https://docs.tealium.com/platforms/ios-swift/modules/).
 
@@ -79,8 +87,6 @@ github "urbanairship/ios-library""
 github "tealium/tealium-ios-airship-remote-command"
 ```
 
-{{% note %}}Tealium for Swift SDK (version 1.6.5+) requires the `TealiumDelegate` module to be included with your installation.{{% /note %}}
-
 {{% /code-tab %}}
 
 {{% code-tab "Maven" %}}
@@ -101,10 +107,7 @@ dependencies {
 
 ### Manual (iOS)
 
-The manual installation for Airship remote commands requires one of the following iOS libraries to be installed:
-
-- [Tealium for Swift](https://docs.tealium.com/platforms/ios-swift/)
-- [Tealium for Objective-C](https://docs.tealium.com/platforms/ios-objective-c/)
+The manual installation for Airship remote commands requires the [Tealium for Swift](https://docs.tealium.com/platforms/ios-swift/) library to be installed.
 
 To install the Airship remote commands for your iOS project:
 
@@ -112,52 +115,45 @@ To install the Airship remote commands for your iOS project:
 
 2. Clone the [Tealium iOS Airship remote command](https://github.com/tealium/tealium-ios-airship-remote-command) repo and drag the files within the `Sources` folder into your project.
 
-3. When initializing the Tealium SDK, update the completion handler as follows:  
+3. Add `Dispatchers.RemoteCommands` as a dispatcher
+
+4. Set the [`remoteAPIEnabled`](/platforms/ios-swift/api/tealium-config/#remoteapienabled) configuration flag to `true`
+
+5. When initializing the Tealium SDK, update the completion handler as follows:
+
+{{% code-tabs %}}
+
+{{% code-tab "TiQ Remote Command" %}}
 ```swift
-tealium = Tealium(config: config) { responses in
-      guard let remoteCommands = self.tealium?.remoteCommands() else {
-          return
-      }
-      let airshipRemoteCommand = AirshipRemoteCommand().remoteCommand()
-      remoteCommands.add(airshipRemoteCommand)
+let config = TealiumConfig(account: "ACCOUNT", profile: "PROFILE", environment: "ENVIRONMENT")
+config.dispatchers = [Dispatchers.TagManagement, Dispatchers.RemoteCommands]
+config.remoteAPIEnabled = true // Required to use Remote Commands
+
+tealium = Tealium(config: config) { _ in
+    guard let remoteCommands = self.tealium?.remoteCommands else {
+        return
+    }
+  	let airship = AirshipRemoteCommand()
+	remoteCommands.add(airship)
+}
+```
+{{% /code-tab %}}
+{{% code-tab "JSON Remote Command" %}}
+
+```swift
+let config = TealiumConfig(account: "ACCOUNT", profile: "PROFILE", environment: "ENVIRONMENT")
+config.dispatchers = [Dispatchers.TagManagement, Dispatchers.RemoteCommands]
+config.remoteAPIEnabled = true // Required to use Remote Commands
+
+tealium = Tealium(config: config) { _ in
+    guard let remoteCommands = self.tealium?.remoteCommands else {
+        return
+    }
+  	let airship = AirshipRemoteCommand(type: .remote(url: "https://tags.tiqcdn.com/dle/tealiummobile/demo/airship.json"))
+	remoteCommands.add(airship)
 }
 ```
 
-4. If you are using TealiumIOS, add the following code:
-
-{{% code-tabs %}}
-{{% code-tab "Swift" %}}
-
-Add the remote command in the `TealiumHelper.swift` file as follows:
-
-```swift
-      let airshipRemoteCommand = AirshipRemoteCommand().remoteCommand()
-tealium.addRemoteCommandID(
-         "airship",
-         description: nil,
-         targetQueue: DispatchQueue.main,
-         responseBlock: airshipRemoteCommand)
-```
-
-{{% /code-tab %}}
-
-{{% code-tab "Objective-C" %}}
-
-Import the remote command in the `TealiumHelper.m` file as follows:  
-```swift
-#import "TealiumRemoteCommandObjcApp-Swift.h"
-```
-
-{{% note %}}The Swift bridging header for your target is named ending with `-Swift.h`. Find this by filtering for "Module Name" in your target's build settings.{{% /note %}}
-
-Initialize the remote command as follows:
-
-```Objective-C
-	TEALConfiguration *configuration = [TEALConfiguration configurationWithAccount:@"tealiummobile" profile:@"demo" environment:@"dev"];
-    Tealium *tealium = [Tealium newInstanceForKey:@"airshipdemo" configuration:configuration];
-    AirshipRemoteCommand *airshipRemoteCommand = [[AirshipRemoteCommand alloc] init];
-    [tealium addRemoteCommandID:@"airship" description:nil targetQueue:dispatch_get_main_queue() responseBlock: [airshipRemoteCommand remoteCommand]];
-```
 {{% /code-tab %}}
 
 {{% /code-tabs %}}
@@ -179,49 +175,48 @@ teal.addRemoteCommand(airship);
 ```
 
 {{% /code-tab %}}
-{{% code-tab "Swift" %}}
+{{% code-tab "Swift - TiQ Remote Command" %}}
 
-The following example creates a Tealium instance and then registers the Airship remote command for Swift:  
+The following code is designed for use with Tealium's Swift library for iOS:  
 ```swift
-var teal : Tealium?
-let config = TealiumConfig(
-       account: "ACCOUNT",
-       profile: "PROFILE",
-       environment: "ENVIRONMENT",
-       datasource: "DATASOURCE",
-       optionalData: nil)
+var tealium : Tealium?
+let config = TealiumConfig(account: "ACCOUNT",
+                           profile: "PROFILE",
+                           environment: "ENVIRONMENT",˜˜
+                           dataSource: "DATASOURCE",
+                           optionalData: nil)
+config.dispatchers = [Dispatchers.TagManagement, Dispatchers.RemoteCommands]
+config.remoteAPIEnabled = true // Required to use Remote Commands
 
-teal = Tealium(config: config) { responses in
-  guard let remoteCommands = self.tealium?.remoteCommands() else {
+tealium = Tealium(config: config) { _ in
+    guard let remoteCommands = self.tealium?.remoteCommands else {
         return
-  }
-  let airshipRemoteCommand = AirshipRemoteCommand().remoteCommand()
-  remoteCommands.add(airshipRemoteCommand)
+    }
+  	let airship = AirshipRemoteCommand()
+	remoteCommands.add(airship)
 }
 ```
 {{% /code-tab %}}
+{{% code-tab "Swift - JSON Remote Command" %}}
+The following code is designed for use with the JSON Remote Commands feature, utilizing the local file option.
 
-{{% code-tab "Objective-C" %}}
+```swift
+var tealium : Tealium?
+let config = TealiumConfig(account: "ACCOUNT",
+                           profile: "PROFILE",
+                           environment: "ENVIRONMENT",
+                           dataSource: "DATASOURCE",
+                           optionalData: nil)
+config.dispatchers = [Dispatchers.TagManagement, Dispatchers.RemoteCommands]
+config.remoteAPIEnabled = true // Required to use Remote Commands
 
-The following example creates a Tealium instance and then registers the Airship remote command for Objective-C:  
-
-{{%note%}}The code is written in Swift and requires a Bridging Header in your Xcode project for this to work correctly.{{%/note%}}
-
-```objc
-// TODO: Update for Airship
-let config = TEALConfiguration(
-       account: "ACCOUNT",
-       profile: "PROFILE",
-       environment: "ENVIRONMENT",
-       datasource: "DATASOURCE")
-let teal = Tealium.newInstance(forKey: "teal", configuration: config)
-
-      let airshipRemoteCommand = AirshipRemoteCommand().remoteCommand()
-tealium.addRemoteCommandID(
-         "airship",
-         description: nil,
-         targetQueue: DispatchQueue.main,
-         responseBlock: airshipRemoteCommand)
+tealium = Tealium(config: config) { _ in
+    guard let remoteCommands = self.tealium?.remoteCommands else {
+        return
+    }
+  	let airship = AirshipRemoteCommand(type: .local(file: "airship"))
+	remoteCommands.add(airship)
+}
 ```
 {{% /code-tab %}}
 
@@ -318,7 +313,7 @@ Sends a custom event to Airship.
 |  Parameter | Type | Example |
 |----|---|---|
 | `event_name` (required) | String | `Purchase` |
-| `event_properties` (optional) | JSON object | `{"my_numeric_property": 1}` |
+| `event` (optional) | JSON object | `{"my_numeric_property": 1}` |
 | `event_value` (optional) | Number | `1.5` |
 
 Airship Developer Guide: Event Tracking
@@ -396,7 +391,7 @@ Sets any additional custom identifiers that you deem significant for the user.
 
 |  Parameter | Type | Example |
 |----|---|---|
-| `custom_identifiers` (required) | JSON Object (Strings Only) | `{"my_custom_identifier":"user@email.com"}` |
+| `custom` (required) | JSON Object (Strings Only) | `{"my_custom_identifier":"user@email.com"}` |
 
 Airship Developer Guide: 
 
@@ -671,10 +666,16 @@ Sets the time constraints for the Quiet Time feature. iOS only.
 
 |  Parameter | Type | Example |
 |----|---|---|
-| `quiet_time_start_hour` (required) | Number | `3` |
-| `quiet_time_start_minute` (required) | Number | `30` |
-| `quiet_time_end_hour` (required) | Number | `4` |
-| `quiet_time_end_hour` (required) | Number | `30` |
+| `quiet` (required) | JSON Object | `{'start\_hour': 3, 'start\_minute': 30, 'end\_hour': 4, 'end\_minute': 30 |
+
+Required within the `quiet` object:
+
+|  Parameter | Type | Example |
+|----|---|---|
+| `start_hour` (required) | Number | `3` |
+| `start_minute` (required) | Number | `30` |
+| `end_hour` (required) | Number | `4` |
+| `end_minute` (required) | Number | `30` |
 
 Airship Developer Guide: 
 

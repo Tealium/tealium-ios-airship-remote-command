@@ -3,11 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A98BE357590F2FB7F35F5FBB /* Pods_AirshipSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8663165B83ECCBD26D1E3F9 /* Pods_AirshipSample.framework */; };
+		CF7AD4E4258ACA090098A0CA /* airship.json in Resources */ = {isa = PBXBuildFile; fileRef = CF7AD4E3258ACA090098A0CA /* airship.json */; };
+		CF7AD4EB258ACCC50098A0CA /* MessageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7AD4EA258ACCC50098A0CA /* MessageStyle.swift */; };
+		CF7AD4ED258AD2610098A0CA /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7AD4EC258AD2610098A0CA /* Customer.swift */; };
+		CF7AD517258AE3F10098A0CA /* Purchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7AD516258AE3F10098A0CA /* Purchase.swift */; };
+		CF7AD536258BC1210098A0CA /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7AD535258BC1210098A0CA /* Tags.swift */; };
+		CF7AD57C258C21620098A0CA /* TealiumAirship in Frameworks */ = {isa = PBXBuildFile; productRef = CF7AD57B258C21620098A0CA /* TealiumAirship */; };
+		CF7AD57F258C21940098A0CA /* TealiumLifecycle in Frameworks */ = {isa = PBXBuildFile; productRef = CF7AD57E258C21940098A0CA /* TealiumLifecycle */; };
 		D79A1BF12449A67B00BBA8B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A1BF02449A67B00BBA8B3 /* AppDelegate.swift */; };
 		D79A1BF32449A67B00BBA8B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A1BF22449A67B00BBA8B3 /* SceneDelegate.swift */; };
 		D79A1BF52449A67B00BBA8B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A1BF42449A67B00BBA8B3 /* ContentView.swift */; };
@@ -37,9 +43,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		19EAB4DD96357470088B8591 /* Pods-AirshipSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirshipSample.release.xcconfig"; path = "Target Support Files/Pods-AirshipSample/Pods-AirshipSample.release.xcconfig"; sourceTree = "<group>"; };
-		C5D0BA4BCD60D1BE69C01D53 /* Pods-AirshipSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirshipSample.debug.xcconfig"; path = "Target Support Files/Pods-AirshipSample/Pods-AirshipSample.debug.xcconfig"; sourceTree = "<group>"; };
-		C8663165B83ECCBD26D1E3F9 /* Pods_AirshipSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AirshipSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF7AD4E3258ACA090098A0CA /* airship.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = airship.json; sourceTree = "<group>"; };
+		CF7AD4EA258ACCC50098A0CA /* MessageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStyle.swift; sourceTree = "<group>"; };
+		CF7AD4EC258AD2610098A0CA /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		CF7AD516258AE3F10098A0CA /* Purchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchase.swift; sourceTree = "<group>"; };
+		CF7AD535258BC1210098A0CA /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
 		D79A1BEE2449A67B00BBA8B3 /* AirshipSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirshipSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D79A1BF02449A67B00BBA8B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D79A1BF22449A67B00BBA8B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,28 +70,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A98BE357590F2FB7F35F5FBB /* Pods_AirshipSample.framework in Frameworks */,
+				CF7AD57C258C21620098A0CA /* TealiumAirship in Frameworks */,
+				CF7AD57F258C21940098A0CA /* TealiumLifecycle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F639C3415213ED8AC8CE291 /* Pods */ = {
+		CF7AD515258AE3E00098A0CA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C5D0BA4BCD60D1BE69C01D53 /* Pods-AirshipSample.debug.xcconfig */,
-				19EAB4DD96357470088B8591 /* Pods-AirshipSample.release.xcconfig */,
+				CF7AD4EA258ACCC50098A0CA /* MessageStyle.swift */,
+				CF7AD4EC258AD2610098A0CA /* Customer.swift */,
+				CF7AD516258AE3F10098A0CA /* Purchase.swift */,
+				CF7AD535258BC1210098A0CA /* Tags.swift */,
 			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		67542A657F2B739331040359 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C8663165B83ECCBD26D1E3F9 /* Pods_AirshipSample.framework */,
-			);
-			name = Frameworks;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D76856FB2448B07500626507 = {
@@ -91,8 +94,6 @@
 			children = (
 				D79A1BEF2449A67B00BBA8B3 /* AirshipSample */,
 				D76857052448B07500626507 /* Products */,
-				3F639C3415213ED8AC8CE291 /* Pods */,
-				67542A657F2B739331040359 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,10 +111,6 @@
 				D79A1BF02449A67B00BBA8B3 /* AppDelegate.swift */,
 				D79A1BF22449A67B00BBA8B3 /* SceneDelegate.swift */,
 				D79A1BF42449A67B00BBA8B3 /* ContentView.swift */,
-				D79A1BF62449A67C00BBA8B3 /* Assets.xcassets */,
-				D79A1BFB2449A67C00BBA8B3 /* LaunchScreen.storyboard */,
-				D79A1BFE2449A67C00BBA8B3 /* Info.plist */,
-				D79A1BF82449A67C00BBA8B3 /* Preview Content */,
 				D79A1C022449B1CB00BBA8B3 /* TitleView.swift */,
 				D79A1C042449B20400BBA8B3 /* ButtonView.swift */,
 				D79A1C062449B27F00BBA8B3 /* TealiumHelper.swift */,
@@ -121,6 +118,12 @@
 				D79A1C762449DA3C00BBA8B3 /* Toggles.swift */,
 				D79A1C7A2449E96C00BBA8B3 /* SegmentationView.swift */,
 				D79A1C7C2449E97600BBA8B3 /* MessagingView.swift */,
+				CF7AD515258AE3E00098A0CA /* Models */,
+				CF7AD4E3258ACA090098A0CA /* airship.json */,
+				D79A1BF62449A67C00BBA8B3 /* Assets.xcassets */,
+				D79A1BFE2449A67C00BBA8B3 /* Info.plist */,
+				D79A1BFB2449A67C00BBA8B3 /* LaunchScreen.storyboard */,
+				D79A1BF82449A67C00BBA8B3 /* Preview Content */,
 			);
 			path = AirshipSample;
 			sourceTree = "<group>";
@@ -140,18 +143,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D79A1C012449A67C00BBA8B3 /* Build configuration list for PBXNativeTarget "AirshipSample" */;
 			buildPhases = (
-				A7A1172BDD68BE302C9D8E99 /* [CP] Check Pods Manifest.lock */,
 				D79A1BEA2449A67B00BBA8B3 /* Sources */,
 				D79A1BEB2449A67B00BBA8B3 /* Frameworks */,
 				D79A1BEC2449A67B00BBA8B3 /* Resources */,
 				D79A1C672449C43900BBA8B3 /* Embed Frameworks */,
-				AD165AFAF8EF99080847C228 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CF7AD54C258C16500098A0CA /* PBXTargetDependency */,
 			);
 			name = AirshipSample;
+			packageProductDependencies = (
+				CF7AD57B258C21620098A0CA /* TealiumAirship */,
+				CF7AD57E258C21940098A0CA /* TealiumLifecycle */,
+			);
 			productName = AirshipTabbedExample;
 			productReference = D79A1BEE2449A67B00BBA8B3 /* AirshipSample.app */;
 			productType = "com.apple.product-type.application";
@@ -180,6 +186,10 @@
 				Base,
 			);
 			mainGroup = D76856FB2448B07500626507;
+			packageReferences = (
+				CF7AD57A258C21620098A0CA /* XCRemoteSwiftPackageReference "tealium-ios-airship-remote-command" */,
+				CF7AD57D258C21940098A0CA /* XCRemoteSwiftPackageReference "tealium-swift" */,
+			);
 			productRefGroup = D76857052448B07500626507 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -194,6 +204,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF7AD4E4258ACA090098A0CA /* airship.json in Resources */,
 				D79A1BFD2449A67C00BBA8B3 /* LaunchScreen.storyboard in Resources */,
 				D79A1BFA2449A67C00BBA8B3 /* Preview Assets.xcassets in Resources */,
 				D79A1BF72449A67C00BBA8B3 /* Assets.xcassets in Resources */,
@@ -202,55 +213,16 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		A7A1172BDD68BE302C9D8E99 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AirshipSample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AD165AFAF8EF99080847C228 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AirshipSample/Pods-AirshipSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AirshipSample/Pods-AirshipSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AirshipSample/Pods-AirshipSample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		D79A1BEA2449A67B00BBA8B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF7AD4EB258ACCC50098A0CA /* MessageStyle.swift in Sources */,
 				D79A1BF12449A67B00BBA8B3 /* AppDelegate.swift in Sources */,
+				CF7AD536258BC1210098A0CA /* Tags.swift in Sources */,
 				D79A1C072449B27F00BBA8B3 /* TealiumHelper.swift in Sources */,
+				CF7AD4ED258AD2610098A0CA /* Customer.swift in Sources */,
 				D79A1BF32449A67B00BBA8B3 /* SceneDelegate.swift in Sources */,
 				D79A1C7B2449E96C00BBA8B3 /* SegmentationView.swift in Sources */,
 				D79A1C052449B20400BBA8B3 /* ButtonView.swift in Sources */,
@@ -258,11 +230,18 @@
 				D79A1C772449DA3C00BBA8B3 /* Toggles.swift in Sources */,
 				D79A1C7D2449E97600BBA8B3 /* MessagingView.swift in Sources */,
 				D79A1C092449B3F800BBA8B3 /* CoreFunctionsView.swift in Sources */,
+				CF7AD517258AE3F10098A0CA /* Purchase.swift in Sources */,
 				D79A1C032449B1CB00BBA8B3 /* TitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF7AD54C258C16500098A0CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D79A1BFB2449A67C00BBA8B3 /* LaunchScreen.storyboard */ = {
@@ -392,7 +371,6 @@
 		};
 		D79A1BFF2449A67C00BBA8B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5D0BA4BCD60D1BE69C01D53 /* Pods-AirshipSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -417,7 +395,6 @@
 		};
 		D79A1C002449A67C00BBA8B3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19EAB4DD96357470088B8591 /* Pods-AirshipSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -462,6 +439,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CF7AD57A258C21620098A0CA /* XCRemoteSwiftPackageReference "tealium-ios-airship-remote-command" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:Tealium/tealium-ios-airship-remote-command.git";
+			requirement = {
+				branch = "1.0.0-update";
+				kind = branch;
+			};
+		};
+		CF7AD57D258C21940098A0CA /* XCRemoteSwiftPackageReference "tealium-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tealium/tealium-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CF7AD57B258C21620098A0CA /* TealiumAirship */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF7AD57A258C21620098A0CA /* XCRemoteSwiftPackageReference "tealium-ios-airship-remote-command" */;
+			productName = TealiumAirship;
+		};
+		CF7AD57E258C21940098A0CA /* TealiumLifecycle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF7AD57D258C21940098A0CA /* XCRemoteSwiftPackageReference "tealium-swift" */;
+			productName = TealiumLifecycle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D76856FC2448B07500626507 /* Project object */;
 }

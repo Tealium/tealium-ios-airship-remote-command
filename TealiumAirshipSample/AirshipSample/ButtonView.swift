@@ -21,7 +21,7 @@ struct ButtonView: View {
     
     var body: some View {
         Button(action: {
-            let eventName = self.title.replacingOccurrences(of: " ", with: "")
+            let eventName = self.title.replacingOccurrences(of: " ", with: "").lowercased()
             TealiumHelper.trackEvent(title: eventName,
                                      data: self.data)
         }) {

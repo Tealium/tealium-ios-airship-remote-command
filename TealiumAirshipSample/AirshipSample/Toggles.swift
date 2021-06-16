@@ -21,7 +21,7 @@ struct Toggles: View {
                                 ButtonView(event: "disableInAppMessaging")
                                 ButtonView(event: "pauseInAppMessaging")
                                 ButtonView(event: "unpauseInAppMessaging")
-                                ButtonView(event: "enableUserPushNotifications")
+                    ButtonView(event: "enableUserPushNotifications", ["options": ["sound", "alert", "badge"]])
                                 ButtonView(event: "disableUserPushNotifications")
                                 ButtonView(event: "enableBackgroundPushNotifications")
                             }

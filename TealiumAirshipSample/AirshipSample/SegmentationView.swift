@@ -12,17 +12,15 @@ struct SegmentationView: View {
     var body: some View {
         VStack {
             TitleView().padding(.bottom, 15)
-//            ScrollView {
             VStack(spacing: 15) {
-                ButtonView(event: "setChannelTags")
-                ButtonView(event: "setNamedUserTags")
-                ButtonView(event: "addTag")
-                ButtonView(event: "removeTag")
-                ButtonView(event: "addTagGroup")
-                ButtonView(event: "removeTagGroup")
-                ButtonView(event: "setAttributes")
+                ButtonView(event: "setChannelTags", Tags.channel.dictionary)
+                ButtonView(event: "setNamedUserTags", Tags.namedUser.dictionary)
+                ButtonView(event: "addTag", ["channel_tag": "abc567"])
+                ButtonView(event: "removeTag", ["channel_tag": "abc567"])
+                ButtonView(event: "addTagGroup", Tags.namedUser.dictionary)
+                ButtonView(event: "removeTagGroup", Tags.namedUser.dictionary)
+                ButtonView(event: "setAttributes", Customer.default.dictionary)
             }
-//        }
             Spacer()
         }
     }
