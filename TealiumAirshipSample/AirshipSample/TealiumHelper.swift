@@ -6,10 +6,7 @@
 //
 
 import Foundation
-import TealiumCore
-import TealiumTagManagement
-import TealiumRemoteCommands
-import TealiumLifecycle
+import TealiumSwift
 import TealiumAirship
 
 enum TealiumConfiguration {

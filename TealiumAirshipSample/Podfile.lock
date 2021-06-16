@@ -1,0 +1,50 @@
+PODS:
+  - Airship (14.5.1):
+    - Airship/Automation (= 14.5.1)
+    - Airship/Core (= 14.5.1)
+    - Airship/ExtendedActions (= 14.5.1)
+    - Airship/MessageCenter (= 14.5.1)
+  - Airship/Automation (14.5.1):
+    - Airship/Core
+  - Airship/Core (14.5.1)
+  - Airship/ExtendedActions (14.5.1):
+    - Airship/Core
+  - Airship/Location (14.5.1):
+    - Airship/Core
+  - Airship/MessageCenter (14.5.1):
+    - Airship/Core
+  - tealium-swift/Core (2.3.1)
+  - tealium-swift/Lifecycle (2.3.1):
+    - tealium-swift/Core
+  - tealium-swift/RemoteCommands (2.3.1):
+    - tealium-swift/Core
+  - tealium-swift/TagManagement (2.3.1):
+    - tealium-swift/Core
+  - TealiumAirship (1.0.0):
+    - Airship (~> 14.5)
+    - Airship/Location (~> 14.5)
+    - tealium-swift/Core (~> 2.3)
+    - tealium-swift/RemoteCommands (~> 2.3)
+    - tealium-swift/TagManagement (~> 2.3)
+
+DEPENDENCIES:
+  - tealium-swift/Lifecycle (~> 2.3)
+  - TealiumAirship (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Airship
+    - tealium-swift
+
+EXTERNAL SOURCES:
+  TealiumAirship:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Airship: 8aafab3ca796aca500ec3199e7afb0d721da5231
+  tealium-swift: 755e1ab63dc619709ec550c868ee5c293b05c10c
+  TealiumAirship: 07fb3910cdde628cdf85b34dd64326090c71c3d8
+
+PODFILE CHECKSUM: 85e3052557e56b86d70ac813b19f5fd05f4605c1
+
+COCOAPODS: 1.10.1
