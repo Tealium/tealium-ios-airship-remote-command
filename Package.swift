@@ -11,7 +11,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/tealium/tealium-swift", from: "2.2.0"),
-        .package(url: "https://github.com/urbanairship/ios-library", from: "14.1.0")
+        .package(url: "https://github.com/urbanairship/ios-library", from: "16.0.1")
     ],
     targets: [
         .target(

@@ -148,8 +148,6 @@ class MockAirshipInstance: AirshipCommand {
     
     var backgroundLocationEnabled: Bool?
     
-    var dataCollectionEnabled: Bool?
-    
     var inAppMessagingEnabled: Bool?
     
     var inAppMessagingPaused: Bool?

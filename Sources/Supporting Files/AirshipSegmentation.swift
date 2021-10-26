@@ -8,7 +8,7 @@
 
 import Foundation
 #if COCOAPODS
-import Airship
+import AirshipKit
 #else
 import AirshipCore
 #endif
@@ -23,33 +23,37 @@ extension AirshipInstance {
     
     public var channelTags: [String]? {
         get {
-            UAirship.channel()?.tags
+            Airship.channel.tags
         }
         
         set {
             guard let tags = newValue else {
                 return
             }
-            UAirship.channel()?.tags = tags
-            UAirship.channel()?.updateRegistration()
+            Airship.channel.tags = tags
+            Airship.channel.updateRegistration()
         }
     }
     
     public func addTag(_ tagName: String) {
-        UAirship.channel()?.addTag(tagName)
-        UAirship.channel()?.updateRegistration()
+        Airship.channel.editTags({ editor in
+            editor.add(tagName)
+        })
+        Airship.channel.updateRegistration()
     }
     
     public func removeTag(_ tagName: String) {
-        UAirship.channel()?.removeTag(tagName)
-        UAirship.channel()?.updateRegistration()
+        Airship.channel.editTags({ editor in
+            editor.remove(tagName)
+        })
+        Airship.channel.updateRegistration()
     }
     
     public func setNamedUserTags(_ group: String,
                             tags: [String]) {
-        
-        UAirship.namedUser()?.setTags(tags, group: group)
-        UAirship.namedUser()?.updateTags()
+        Airship.contact.editTagGroups({ editor in
+            editor.add(tags, group: group)
+        })
     }
     
     public func addTagGroup(_ group: String,
@@ -58,11 +62,14 @@ extension AirshipInstance {
         
         switch tagType {
         case .channel:
-            UAirship.channel()?.addTags(tags, group: group)
-            UAirship.channel()?.updateRegistration()
+            Airship.channel.editTagGroups({ editor in
+                editor.add(tags, group: group)
+            })
+            Airship.channel.updateRegistration()
         case .namedUser:
-            UAirship.namedUser()?.addTags(tags, group: group)
-            UAirship.namedUser()?.updateTags()
+            Airship.contact.editTagGroups({ editor in
+                editor.add(tags, group: group)
+            })
         }
     }
     
@@ -72,27 +79,31 @@ extension AirshipInstance {
         
         switch tagType {
         case .channel:
-            UAirship.channel()?.removeTags(tags, group: group)
-            UAirship.channel()?.updateRegistration()
+            Airship.channel.editTagGroups({ editor in
+                editor.remove(tags, group: group)
+            })
+            Airship.channel.updateRegistration()
         case .namedUser:
-            UAirship.namedUser()?.removeTags(tags, group: group)
-            UAirship.namedUser()?.updateTags()
+            Airship.contact.editTagGroups({ editor in
+                editor.remove(tags, group: group)
+            })
         }
     }
     
     public func setAttributes(_ attributes: [String: Any]) {
-        let mutations = UAAttributeMutations()
-        attributes.forEach {
-            switch $0.value {
-            case let value as String:
-                mutations.setString(value, forAttribute: $0.key)
-            case let value as NSNumber:
-                mutations.setNumber(value, forAttribute: $0.key)
-            default:
-                return
+        Airship.channel.editAttributes({ editor in
+            attributes.forEach {
+                switch $0.value {
+                case let value as String:
+                    editor.set(string: value, attribute: $0.key)
+                case let value as NSNumber:
+                    editor.set(number: value, attribute: $0.key)
+                default:
+                    return
+                }
             }
-        }
-        UAirship.channel()?.apply(mutations)
+            editor.apply()
+        })
     }
 
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 #if COCOAPODS
-import Airship
+import AirshipKit
 #else
 import AirshipCore
 #endif
@@ -19,7 +19,6 @@ extension UANotificationOptions: CustomStringConvertible {
         "\(self.contains(.sound) ? "sound, ": "")" +
         "\(self.contains(.alert) ? "alert, ": "")"  +
         "\(self.contains(.carPlay) ? "carPlay, ": "")" +
-        "\(self.contains(.announcement) ? "announcement, ": "")"  +
         "\(self.contains(.criticalAlert) ? "criticalAlert, ": "")"  +
         "\(self.contains(.providesAppNotificationSettings) ? "providesAppNotificationSettings ,": "")" +
         "\(self.contains(.provisional) ? "provisional,": "")").trimmingCharacters(in: .whitespaces).trimmingCharacters(in: .punctuationCharacters)
@@ -37,8 +36,6 @@ extension UANotificationOptions: CustomStringConvertible {
                 self.insert(.alert)
             case "carplay":
                 self.insert(.carPlay)
-            case "announcement":
-                self.insert(.announcement)
             case "critical":
                 self.insert(.criticalAlert)
             case "app_notification_settings":
@@ -75,34 +72,34 @@ extension AirshipInstance {
     
     public var userPushNotificationsEnabled: Bool? {
         get {
-            UAirship.push()?.userPushNotificationsEnabled
+            Airship.push.userPushNotificationsEnabled
         }
         
         set {
             guard let userPushEnabled = newValue else {
                 return
             }
-            UAirship.push()?.userPushNotificationsEnabled = userPushEnabled
-            UAirship.push()?.updateRegistration()
+            Airship.push.userPushNotificationsEnabled = userPushEnabled
+            Airship.push.updateRegistration()
         }
     }
     
     public var backgroundPushNotificationsEnabled: Bool? {
         get {
-            UAirship.push()?.backgroundPushNotificationsEnabled
+            Airship.push.backgroundPushNotificationsEnabled
         }
         
         set {
             guard let backgroundPushNotificationsEnabled = newValue else {
                 return
             }
-            UAirship.push()?.backgroundPushNotificationsEnabled = backgroundPushNotificationsEnabled
-            UAirship.push()?.updateRegistration()
+            Airship.push.backgroundPushNotificationsEnabled = backgroundPushNotificationsEnabled
+            Airship.push.updateRegistration()
         }
     }
     
     public func enablePushNotificationsWithOptions(_ options: [String]) {
-        UAirship.push()?.notificationOptions = UANotificationOptions(options: options)
+        Airship.push.notificationOptions = UANotificationOptions(options: options)
         userPushNotificationsEnabled = true
     }
     
@@ -116,8 +113,8 @@ extension AirshipInstance {
                 return
             }
             currentNotificationOptions = options
-            UAirship.push()?.notificationOptions = UANotificationOptions(options: options)
-            UAirship.push()?.updateRegistration()
+            Airship.push.notificationOptions = UANotificationOptions(options: options)
+            Airship.push.updateRegistration()
         }
     }
 
@@ -131,14 +128,14 @@ extension AirshipInstance {
                 return
             }
             currentForegroundPresentationOptions = options
-            UAirship.push()?.defaultPresentationOptions = UNNotificationPresentationOptions(options: options)
-            UAirship.push()?.updateRegistration()
+            Airship.push.defaultPresentationOptions = UNNotificationPresentationOptions(options: options)
+            Airship.push.updateRegistration()
         }
     }
     
     public var badgeNumber: Int? {
         get {
-            UAirship.push()?.badgeNumber
+            Airship.push.badgeNumber
         }
         
         set {
@@ -146,7 +143,7 @@ extension AirshipInstance {
                 return
             }
             DispatchQueue.main.async {
-                UAirship.push()?.badgeNumber = badgeNumber
+                Airship.push.badgeNumber = badgeNumber
             }
         }
         
@@ -154,40 +151,39 @@ extension AirshipInstance {
     
     public func resetBadgeNumber() {
         DispatchQueue.main.async {
-            UAirship.push()?.resetBadge()
+            Airship.push.resetBadge()
         }
     }
     
     public var autoBadgeEnabled: Bool? {
         get {
-            UAirship.push()?.isAutobadgeEnabled
+            Airship.push.autobadgeEnabled
         }
         
         set {
             guard let isAutobadgeEnabled = newValue else {
                 return
             }
-            UAirship.push()?.isAutobadgeEnabled = isAutobadgeEnabled
+            Airship.push.autobadgeEnabled = isAutobadgeEnabled
         }
     }
     
     public var quietTimeEnabled: Bool? {
         get {
-            UAirship.push()?.isQuietTimeEnabled
+            Airship.push.quietTimeEnabled
         }
         
         set {
             guard let isQuietTimeEnabled = newValue else {
                 return
             }
-            UAirship.push()?.isQuietTimeEnabled = isQuietTimeEnabled
-            UAirship.push()?.updateRegistration()
+            Airship.push.quietTimeEnabled = isQuietTimeEnabled
+            Airship.push.updateRegistration()
         }
     }
     
     public func setQuietTimeStartHour(_ hour: Int, minute: Int, endHour: Int, endMinute: Int) {
-        let hour = UInt(hour), minute = UInt(minute), endHour = UInt(endHour), endMinute = UInt(endMinute)
-        UAirship.push()?.setQuietTimeStartHour(hour, startMinute: minute, endHour: endHour, endMinute: endMinute)
-        UAirship.push()?.updateRegistration()
+        Airship.push.setQuietTimeStartHour(hour, startMinute: minute, endHour: endHour, endMinute: endMinute)
+        Airship.push.updateRegistration()
     }
 }

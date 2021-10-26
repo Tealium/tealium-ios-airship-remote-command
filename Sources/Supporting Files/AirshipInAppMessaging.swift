@@ -8,7 +8,7 @@
 
 import Foundation
 #if COCOAPODS
-import Airship
+import AirshipKit
 #else
 import AirshipCore
 import AirshipAutomation
@@ -18,20 +18,20 @@ extension AirshipInstance {
 
     public var inAppMessagingEnabled: Bool? {
         get {
-            UAInAppAutomation.shared()?.isEnabled
+            InAppAutomation.shared.isComponentEnabled
         }
 
         set {
             guard let enabled = newValue else {
                 return
             }
-            UAInAppAutomation.shared()?.isEnabled = enabled
+            InAppAutomation.shared.isComponentEnabled = enabled
         }
     }
 
     public var inAppMessagingPaused: Bool? {
         get {
-            UAInAppAutomation.shared()?.isPaused
+            InAppAutomation.shared.isPaused
         }
 
         set {
@@ -40,13 +40,13 @@ extension AirshipInstance {
             else {
                 return
             }
-            UAInAppAutomation.shared()?.isPaused = paused
+            InAppAutomation.shared.isPaused = paused
         }
     }
 
     public var inAppMessagingDisplayInterval: String? {
         get {
-            UAInAppAutomation.shared()?.inAppMessageManager.displayInterval.description
+            InAppAutomation.shared.inAppMessageManager.displayInterval.description
         }
 
         set {
@@ -54,7 +54,7 @@ extension AirshipInstance {
                 let interval = TimeInterval(intervalString) else {
                 return
             }
-            UAInAppAutomation.shared()?.inAppMessageManager.displayInterval = interval
+            InAppAutomation.shared.inAppMessageManager.displayInterval = interval
         }
     }
 

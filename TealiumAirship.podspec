@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
     s.ios.dependency 'tealium-swift/Core', '~> 2.3'
     s.ios.dependency 'tealium-swift/RemoteCommands', '~> 2.3'
     s.ios.dependency 'tealium-swift/TagManagement', '~> 2.3'
-    s.ios.dependency 'Airship', '~> 14.5'
-    s.ios.dependency 'Airship/Location', '~> 14.5'
+    s.ios.dependency 'Airship', '~> 16.0.1'
+    s.ios.dependency 'Airship/Location', '~> 16.0.1'
 
 end
