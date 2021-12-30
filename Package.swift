@@ -10,7 +10,7 @@ let package = Package(
         .library(name: "TealiumAirship", targets: ["TealiumAirship"]),
     ],
     dependencies: [
-        .package(name: "TealiumSwift", url: "https://github.com/tealium/tealium-swift", from: "2.5.0"),
+        .package(name: "TealiumSwift", url: "https://github.com/tealium/tealium-swift", from: "2.6.0"),
         .package(name: "Airship", url: "https://github.com/urbanairship/ios-library", from: "16.0.1")
     ],
     targets: [
