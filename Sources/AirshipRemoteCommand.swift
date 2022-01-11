@@ -19,6 +19,9 @@ public class AirshipRemoteCommand: RemoteCommand {
     
     var airshipInstance: AirshipCommand?
     var loggerLevel: TealiumLogLevel = .error
+    override public var version: String? {
+        return AirshipConstants.version
+    }
     
     public init(airshipInstance: AirshipCommand = AirshipInstance(),
                 type: RemoteCommandType = .webview) {
