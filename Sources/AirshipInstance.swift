@@ -8,7 +8,7 @@
 
 import Foundation
 #if COCOAPODS
-import Airship
+import AirshipKit
 #else
 import AirshipCore
 #endif
@@ -53,8 +53,6 @@ public protocol AirshipCommand {
     // Location
     var locationEnabled: Bool? { get set }
     var backgroundLocationEnabled: Bool? { get set }
-    // Data Collection
-    var dataCollectionEnabled: Bool? { get set }
     // Automation
     var inAppMessagingEnabled: Bool? { get set }
     var inAppMessagingPaused: Bool? { get set }
@@ -73,31 +71,9 @@ public class AirshipInstance: AirshipCommand {
     
     public init() { }
     
-    // must be called before takeoff if disabling
-    public var dataCollectionEnabled: Bool? {
-        get {
-            UAirship.shared()?.isDataCollectionEnabled
-        }
-        
-        set {
-            guard let collectionEnabled = newValue else {
-                return
-            }
-            UAirship.shared()?.isDataCollectionEnabled = collectionEnabled
-        }
-    }
-    
     public func initialize(_ config: [String: Any]) {
-        var config = config
-        if let isDataCollectionEnabled = config[UAConfigKeys.isDataCollectionEnabled.rawValue] as? Bool {
-            dataCollectionEnabled = isDataCollectionEnabled
-            config[UAConfigKeys.isDataCollectionEnabled.rawValue] = nil
-        }
-        
-        let uaConfig = UAConfig.initWithDictionary(config)
-        
         DispatchQueue.main.async {
-            UAirship.takeOff(uaConfig)
+            Airship.takeOff(launchOptions: [:])
         }
     }
 

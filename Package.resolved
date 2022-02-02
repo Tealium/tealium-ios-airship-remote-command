@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Airship",
+        "repositoryURL": "https://github.com/urbanairship/ios-library",
+        "state": {
+          "branch": null,
+          "revision": "cac4b2bffe766cd5e7ab32e7a6a1e5869f5dd896",
+          "version": "16.1.2"
+        }
+      },
+      {
+        "package": "TealiumSwift",
+        "repositoryURL": "https://github.com/tealium/tealium-swift",
+        "state": {
+          "branch": null,
+          "revision": "9bd74f09c780862de61101bd147b1c6b232f98ce",
+          "version": "2.5.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -26,7 +26,7 @@ class TealiumHelper {
     var tealium: Tealium?
     
     // JSON Remote Command
-    let airshipRemoteCommand = AirshipRemoteCommand(type: .remote(url: "https://tags.tiqcdn.com/dle/tealiummobile/demo/airship.json"))
+    let airshipRemoteCommand = AirshipRemoteCommand(type: .local(file: "airship", bundle: Bundle.main))
     
     private init() {
         config.shouldUseRemotePublishSettings = false

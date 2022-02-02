@@ -12,7 +12,6 @@ import os
 import TealiumSwift
 #else
 import TealiumCore
-import TealiumTagManagement
 import TealiumRemoteCommands
 #endif
 
@@ -20,6 +19,9 @@ public class AirshipRemoteCommand: RemoteCommand {
     
     var airshipInstance: AirshipCommand?
     var loggerLevel: TealiumLogLevel = .error
+    override public var version: String? {
+        return AirshipConstants.version
+    }
     
     public init(airshipInstance: AirshipCommand = AirshipInstance(),
                 type: RemoteCommandType = .webview) {
@@ -243,7 +245,7 @@ public class AirshipRemoteCommand: RemoteCommand {
             return "productionLogLevel"
         }
         guard let tealium = TealiumInstanceManager.shared.tealiumInstances.first?.value,
-              let environment = tealium.dataLayer.all[TealiumKey.environment] as? String else {
+              let environment = tealium.dataLayer.all[TealiumDataKey.environment] as? String else {
             return "productionLogLevel"
         }
        return environment == "prod" ? "productionLogLevel" : "developmentLogLevel"

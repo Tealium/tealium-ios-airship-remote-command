@@ -8,7 +8,7 @@
 
 import Foundation
 #if COCOAPODS
-import Airship
+import AirshipKit
 #else
 import AirshipCore
 #endif
@@ -21,7 +21,6 @@ enum UAConfigKeys: String {
     case developmentAppSecret
     case site
     case isDataCollectionOptInEnabled
-    case isDataCollectionEnabled
     case isInProduction
     case developmentLogLevel
     case productionLogLevel
@@ -45,13 +44,13 @@ enum UAConfigKeys: String {
     case requestAuthorizationToUseNotifications
 }
 
-extension UACloudSite {
+extension CloudSite {
     init(_ site: String) {
-        self = (site.lowercased() == "eu") ? .EU : .US
+        self = (site.lowercased() == "eu") ? .eu : .us
     }
 }
 
-extension UALogLevel {
+extension LogLevel {
     init(_ logLevel: String) {
         switch logLevel {
         case "debug":
@@ -74,10 +73,10 @@ extension UALogLevel {
     }
 }
 
-extension UAConfig {
+extension Config {
     
-    static func initWithDictionary(_ config: [String: Any]) -> UAConfig {
-        let newConfig = UAConfig()
+    static func initWithDictionary(_ config: [String: Any]) -> Config {
+        let newConfig = Config()
         config.forEach { item in
             if let configKey = UAConfigKeys(rawValue: item.key) {
                 switch configKey {
@@ -99,23 +98,19 @@ extension UAConfig {
                     }
                 case .site:
                     if let value = item.value as? String {
-                        newConfig.site = UACloudSite(value)
-                    }
-                case .isDataCollectionOptInEnabled:
-                    if let value = item.value as? Bool {
-                        newConfig.isDataCollectionOptInEnabled = value
+                        newConfig.site = CloudSite(value)
                     }
                 case .isInProduction:
                     if let value = item.value as? Bool {
-                        newConfig.isInProduction = value
+                        newConfig.inProduction = value
                     }
                 case .developmentLogLevel:
                     if let value = item.value as? String {
-                        newConfig.developmentLogLevel = UALogLevel(value)
+                        newConfig.developmentLogLevel = LogLevel(value)
                     }
                 case .productionLogLevel:
                     if let value = item.value as? String {
-                        newConfig.productionLogLevel = UALogLevel(value)
+                        newConfig.productionLogLevel = LogLevel(value)
                     }
                 case .isAnalyticsEnabled:
                     if let value = item.value as? Bool {

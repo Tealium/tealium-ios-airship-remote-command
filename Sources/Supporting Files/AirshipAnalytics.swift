@@ -9,7 +9,7 @@
 import Foundation
 import AdSupport
 #if COCOAPODS
-import Airship
+import AirshipKit
 #else
 import AirshipCore
 #endif
@@ -18,55 +18,50 @@ extension AirshipInstance {
        
        public func enableAdvertisingIDs() {
            // Get the current identifiers
-            guard let identifiers = UAirship.analytics()?.currentAssociatedDeviceIdentifiers() else {
-                return
-            }
-        
+            let identifiers = Airship.analytics.currentAssociatedDeviceIdentifiers()
             identifiers.advertisingID = ASIdentifierManager.shared().advertisingIdentifier.uuidString;
             identifiers.advertisingTrackingEnabled = ASIdentifierManager.shared().isAdvertisingTrackingEnabled;
             identifiers.vendorID = UIDevice.current.identifierForVendor?.uuidString
 
-            UAirship.analytics()?.associateDeviceIdentifiers(identifiers)
+           Airship.analytics.associateDeviceIdentifiers(identifiers)
         
        }
        
        public var customIdentifiers: [String: String]? {
            get {
-                UAirship.analytics()?.currentAssociatedDeviceIdentifiers().allIDs as? [String: String]
+               Airship.analytics.currentAssociatedDeviceIdentifiers().allIDs
            }
            
            set {
                guard let customIdentifiers = newValue else {
                    return
                }
-                guard let identifiers = UAirship.analytics()?.currentAssociatedDeviceIdentifiers() else {
-                    return
-                }
+                let identifiers = Airship.analytics.currentAssociatedDeviceIdentifiers()
                customIdentifiers.forEach {
-                   identifiers.setIdentifier($0.key, forKey: $0.value)
+                   identifiers.set(identifier: $0.key, key: $0.value)
                }
-               UAirship.analytics()?.associateDeviceIdentifiers(identifiers)
+               Airship.analytics.associateDeviceIdentifiers(identifiers)
            }
            
        }
        
        public func identifyUser(id: String) {
-           UAirship.namedUser()?.identifier = id
+           Airship.contact.identify(id)
        }
        
        public func trackScreenView(_ screenName: String) {
-            UAirship.analytics()?.trackScreen(screenName)
+           Airship.analytics.trackScreen(screenName)
        }
        
        public func trackEvent(_ eventName: String,
                               value: Float64? = nil,
                               eventProperties: [String: Any]?) {
-           var event: UACustomEvent
+           var event: CustomEvent
            
            if let value = value {
-               event = UACustomEvent(name: eventName, value: NSNumber(value: value))
+               event = CustomEvent(name: eventName, value: NSNumber(value: value))
            } else {
-               event = UACustomEvent(name: eventName)
+               event = CustomEvent(name: eventName)
            }
            
             if let eventProperties = eventProperties {
@@ -78,14 +73,14 @@ extension AirshipInstance {
        
        public var analyticsEnabled: Bool? {
            get {
-               return UAirship.analytics()?.isEnabled
+               return Airship.analytics.isComponentEnabled
            }
            
            set {
                guard let enabled = newValue else {
                    return
                }
-               UAirship.analytics()?.isEnabled = enabled
+               Airship.analytics.isComponentEnabled = enabled
            }
        }
 }

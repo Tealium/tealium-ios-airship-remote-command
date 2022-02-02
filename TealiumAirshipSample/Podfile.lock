@@ -1,50 +1,62 @@
 PODS:
-  - Airship (14.5.1):
-    - Airship/Automation (= 14.5.1)
-    - Airship/Core (= 14.5.1)
-    - Airship/ExtendedActions (= 14.5.1)
-    - Airship/MessageCenter (= 14.5.1)
-  - Airship/Automation (14.5.1):
+  - Airship (16.0.1):
+    - Airship/Automation (= 16.0.1)
+    - Airship/Basement (= 16.0.1)
+    - Airship/Core (= 16.0.1)
+    - Airship/ExtendedActions (= 16.0.1)
+    - Airship/MessageCenter (= 16.0.1)
+  - Airship/Automation (16.0.1):
     - Airship/Core
-  - Airship/Core (14.5.1)
-  - Airship/ExtendedActions (14.5.1):
+  - Airship/Basement (16.0.1)
+  - Airship/Core (16.0.1):
+    - Airship/Basement
+  - Airship/ExtendedActions (16.0.1):
     - Airship/Core
-  - Airship/Location (14.5.1):
+  - Airship/Location (16.0.1):
     - Airship/Core
-  - Airship/MessageCenter (14.5.1):
+  - Airship/MessageCenter (16.0.1):
     - Airship/Core
-  - tealium-swift/Core (2.3.1)
-  - tealium-swift/Lifecycle (2.3.1):
+  - tealium-swift/Core (2.5.1)
+  - tealium-swift/Lifecycle (2.5.1):
     - tealium-swift/Core
-  - tealium-swift/RemoteCommands (2.3.1):
+  - tealium-swift/RemoteCommands (2.5.1):
     - tealium-swift/Core
-  - tealium-swift/TagManagement (2.3.1):
+  - tealium-swift/TagManagement (2.5.1):
     - tealium-swift/Core
   - TealiumAirship (1.0.0):
-    - Airship (~> 14.5)
-    - Airship/Location (~> 14.5)
+    - Airship (~> 16.0.1)
+    - Airship/Location (~> 16.0.1)
     - tealium-swift/Core (~> 2.3)
     - tealium-swift/RemoteCommands (~> 2.3)
     - tealium-swift/TagManagement (~> 2.3)
 
 DEPENDENCIES:
-  - tealium-swift/Lifecycle (~> 2.3)
+  - tealium-swift/Core (from `https://github.com/Tealium/tealium-swift.git`, branch `mt-779`)
+  - tealium-swift/Lifecycle (from `https://github.com/Tealium/tealium-swift.git`, branch `mt-779`)
+  - tealium-swift/RemoteCommands (from `https://github.com/Tealium/tealium-swift.git`, branch `mt-779`)
   - TealiumAirship (from `../`)
 
 SPEC REPOS:
   trunk:
     - Airship
-    - tealium-swift
 
 EXTERNAL SOURCES:
+  tealium-swift:
+    :branch: mt-779
+    :git: https://github.com/Tealium/tealium-swift.git
   TealiumAirship:
     :path: "../"
 
-SPEC CHECKSUMS:
-  Airship: 8aafab3ca796aca500ec3199e7afb0d721da5231
-  tealium-swift: 755e1ab63dc619709ec550c868ee5c293b05c10c
-  TealiumAirship: 07fb3910cdde628cdf85b34dd64326090c71c3d8
+CHECKOUT OPTIONS:
+  tealium-swift:
+    :commit: db174d69eb581f944268257038cfde8b54fc4b43
+    :git: https://github.com/Tealium/tealium-swift.git
 
-PODFILE CHECKSUM: 85e3052557e56b86d70ac813b19f5fd05f4605c1
+SPEC CHECKSUMS:
+  Airship: 5fe7c3e50244f4588971da98f9e3b0aa865f5ec0
+  tealium-swift: a7c0f2b6bff641abb1818efbcf22598c99af0517
+  TealiumAirship: 9f750d70800daacf378924cda7b2c58dfe4b6cc6
+
+PODFILE CHECKSUM: 3b007be6c19aef6bf0c0b59e03f3af60f8b938c7
 
 COCOAPODS: 1.10.1

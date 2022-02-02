@@ -8,7 +8,7 @@
 
 import Foundation
 #if COCOAPODS
-import Airship
+import AirshipKit
 #else
 import AirshipLocation
 #endif
@@ -17,27 +17,27 @@ extension AirshipInstance {
     
     public var locationEnabled: Bool? {
         get {
-            UALocation.shared()?.isLocationUpdatesEnabled
+            UALocation.shared.isLocationUpdatesEnabled
         }
         
         set {
             guard let locationEnabled = newValue else {
                 return
             }
-            UALocation.shared()?.isLocationUpdatesEnabled = locationEnabled
+            UALocation.shared.isLocationUpdatesEnabled = locationEnabled
         }
     }
     
     public var backgroundLocationEnabled: Bool? {
         get {
-            UALocation.shared()?.isBackgroundLocationUpdatesAllowed
+            UALocation.shared.isBackgroundLocationUpdatesAllowed
         }
         
         set {
             guard let backgroundLocationEnabled = newValue else {
                 return
             }
-            UALocation.shared()?.isBackgroundLocationUpdatesAllowed = backgroundLocationEnabled
+            UALocation.shared.isBackgroundLocationUpdatesAllowed = backgroundLocationEnabled
         }
     }
     
