@@ -12,16 +12,8 @@
 		15E986D827AD5F2C00B68C42 /* AirshipMessageCenter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E986D627AD5F2C00B68C42 /* AirshipMessageCenter.xcframework */; };
 		15E986DA27AD5F4A00B68C42 /* AirshipBasement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E986D927AD5F4900B68C42 /* AirshipBasement.xcframework */; };
 		4804EC972722F64D00197E27 /* AirshipCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804EC7A2722F64100197E27 /* AirshipCore.xcframework */; };
-		4804ECA32722F65500197E27 /* TealiumAttribution.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804EC672722F64000197E27 /* TealiumAttribution.xcframework */; };
-		4804ECA52722F65700197E27 /* TealiumAutotracking.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804EC792722F64100197E27 /* TealiumAutotracking.xcframework */; };
-		4804ECA72722F65800197E27 /* TealiumCollect.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804EC722722F64100197E27 /* TealiumCollect.xcframework */; };
 		4804ECA92722F65A00197E27 /* TealiumCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804EC742722F64100197E27 /* TealiumCore.xcframework */; };
-		4804ECAB2722F65B00197E27 /* TealiumLifecycle.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804EC6D2722F64100197E27 /* TealiumLifecycle.xcframework */; };
-		4804ECAD2722F66200197E27 /* TealiumLocation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804EC6A2722F64000197E27 /* TealiumLocation.xcframework */; };
-		4804ECAF2722F66400197E27 /* TealiumMedia.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804EC6B2722F64000197E27 /* TealiumMedia.xcframework */; };
 		4804ECB12722F66500197E27 /* TealiumRemoteCommands.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804EC6F2722F64100197E27 /* TealiumRemoteCommands.xcframework */; };
-		4804ECB32722F66700197E27 /* TealiumTagManagement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804EC772722F64100197E27 /* TealiumTagManagement.xcframework */; };
-		4804ECB52722F66800197E27 /* TealiumVisitorService.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804EC752722F64100197E27 /* TealiumVisitorService.xcframework */; };
 		CF7AD572258C1F930098A0CA /* AirshipLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D709F4FA247FE91300B00D41 /* AirshipLocation.swift */; };
 		CFEABFFF258A9912007D9011 /* AirshipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEABFFA258A9862007D9011 /* AirshipConfig.swift */; };
 		D709F503247FFC4100B00D41 /* MockAirshipInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7996F5C243221FA00E548BC /* MockAirshipInstance.swift */; };
@@ -70,16 +62,8 @@
 		15E986D527AD5F2C00B68C42 /* AirshipAutomation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AirshipAutomation.xcframework; path = Carthage/Build/AirshipAutomation.xcframework; sourceTree = "<group>"; };
 		15E986D627AD5F2C00B68C42 /* AirshipMessageCenter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AirshipMessageCenter.xcframework; path = Carthage/Build/AirshipMessageCenter.xcframework; sourceTree = "<group>"; };
 		15E986D927AD5F4900B68C42 /* AirshipBasement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AirshipBasement.xcframework; path = Carthage/Build/AirshipBasement.xcframework; sourceTree = "<group>"; };
-		4804EC672722F64000197E27 /* TealiumAttribution.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TealiumAttribution.xcframework; path = Carthage/Build/TealiumAttribution.xcframework; sourceTree = "<group>"; };
-		4804EC6A2722F64000197E27 /* TealiumLocation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TealiumLocation.xcframework; path = Carthage/Build/TealiumLocation.xcframework; sourceTree = "<group>"; };
-		4804EC6B2722F64000197E27 /* TealiumMedia.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TealiumMedia.xcframework; path = Carthage/Build/TealiumMedia.xcframework; sourceTree = "<group>"; };
-		4804EC6D2722F64100197E27 /* TealiumLifecycle.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TealiumLifecycle.xcframework; path = Carthage/Build/TealiumLifecycle.xcframework; sourceTree = "<group>"; };
 		4804EC6F2722F64100197E27 /* TealiumRemoteCommands.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TealiumRemoteCommands.xcframework; path = Carthage/Build/TealiumRemoteCommands.xcframework; sourceTree = "<group>"; };
-		4804EC722722F64100197E27 /* TealiumCollect.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TealiumCollect.xcframework; path = Carthage/Build/TealiumCollect.xcframework; sourceTree = "<group>"; };
 		4804EC742722F64100197E27 /* TealiumCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TealiumCore.xcframework; path = Carthage/Build/TealiumCore.xcframework; sourceTree = "<group>"; };
-		4804EC752722F64100197E27 /* TealiumVisitorService.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TealiumVisitorService.xcframework; path = Carthage/Build/TealiumVisitorService.xcframework; sourceTree = "<group>"; };
-		4804EC772722F64100197E27 /* TealiumTagManagement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TealiumTagManagement.xcframework; path = Carthage/Build/TealiumTagManagement.xcframework; sourceTree = "<group>"; };
-		4804EC792722F64100197E27 /* TealiumAutotracking.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TealiumAutotracking.xcframework; path = Carthage/Build/TealiumAutotracking.xcframework; sourceTree = "<group>"; };
 		4804EC7A2722F64100197E27 /* AirshipCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AirshipCore.xcframework; path = Carthage/Build/AirshipCore.xcframework; sourceTree = "<group>"; };
 		4B28C46922FB2901002AE7FA /* TealiumAirship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TealiumAirship.h; sourceTree = "<group>"; };
 		CF1401C12304C098002AC330 /* AirshipRemoteCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipRemoteCommand.swift; sourceTree = "<group>"; };
@@ -111,20 +95,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4804ECAB2722F65B00197E27 /* TealiumLifecycle.xcframework in Frameworks */,
-				4804ECA72722F65800197E27 /* TealiumCollect.xcframework in Frameworks */,
-				4804ECAF2722F66400197E27 /* TealiumMedia.xcframework in Frameworks */,
 				4804ECA92722F65A00197E27 /* TealiumCore.xcframework in Frameworks */,
-				4804ECB32722F66700197E27 /* TealiumTagManagement.xcframework in Frameworks */,
-				4804ECA52722F65700197E27 /* TealiumAutotracking.xcframework in Frameworks */,
 				4804ECB12722F66500197E27 /* TealiumRemoteCommands.xcframework in Frameworks */,
 				15E986DA27AD5F4A00B68C42 /* AirshipBasement.xcframework in Frameworks */,
 				4804EC972722F64D00197E27 /* AirshipCore.xcframework in Frameworks */,
 				15E986D827AD5F2C00B68C42 /* AirshipMessageCenter.xcframework in Frameworks */,
-				4804ECAD2722F66200197E27 /* TealiumLocation.xcframework in Frameworks */,
-				4804ECB52722F66800197E27 /* TealiumVisitorService.xcframework in Frameworks */,
 				15E986D727AD5F2C00B68C42 /* AirshipAutomation.xcframework in Frameworks */,
-				4804ECA32722F65500197E27 /* TealiumAttribution.xcframework in Frameworks */,
 				15E986D427AD5ED500B68C42 /* AirshipLocation.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,16 +188,8 @@
 				15E986D927AD5F4900B68C42 /* AirshipBasement.xcframework */,
 				15E986D527AD5F2C00B68C42 /* AirshipAutomation.xcframework */,
 				15E986D627AD5F2C00B68C42 /* AirshipMessageCenter.xcframework */,
-				4804EC672722F64000197E27 /* TealiumAttribution.xcframework */,
-				4804EC792722F64100197E27 /* TealiumAutotracking.xcframework */,
-				4804EC722722F64100197E27 /* TealiumCollect.xcframework */,
 				4804EC742722F64100197E27 /* TealiumCore.xcframework */,
-				4804EC6D2722F64100197E27 /* TealiumLifecycle.xcframework */,
-				4804EC6A2722F64000197E27 /* TealiumLocation.xcframework */,
-				4804EC6B2722F64000197E27 /* TealiumMedia.xcframework */,
 				4804EC6F2722F64100197E27 /* TealiumRemoteCommands.xcframework */,
-				4804EC772722F64100197E27 /* TealiumTagManagement.xcframework */,
-				4804EC752722F64100197E27 /* TealiumVisitorService.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
