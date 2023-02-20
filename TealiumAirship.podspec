@@ -29,8 +29,8 @@ Pod::Spec.new do |s|
     s.ios.source_files      = "Sources/**/*.{swift}"
     s.ios.exclude_files     = "Sources/Location/*"
     # ――― Dependencies ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-    s.ios.dependency 'tealium-swift/Core', '~> 2.6'
-    s.ios.dependency 'tealium-swift/RemoteCommands', '~> 2.6'
+    s.ios.dependency 'tealium-swift/Core', '~> 2.9'
+    s.ios.dependency 'tealium-swift/RemoteCommands', '~> 2.9'
     s.ios.dependency 'Airship/Core', '~> 16.0'
     s.ios.dependency 'Airship/Automation', '~> 16.0'
     s.ios.dependency 'Airship/MessageCenter', '~> 16.0'

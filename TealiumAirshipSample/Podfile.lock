@@ -18,8 +18,8 @@ PODS:
     - Airship/Core (~> 16.0)
     - Airship/Location (~> 16.0)
     - Airship/MessageCenter (~> 16.0)
-    - tealium-swift/Core (~> 2.6)
-    - tealium-swift/RemoteCommands (~> 2.6)
+    - tealium-swift/Core (~> 2.9)
+    - tealium-swift/RemoteCommands (~> 2.9)
 
 DEPENDENCIES:
   - tealium-swift/Lifecycle (~> 2.6)
@@ -37,7 +37,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Airship: 5fe7c3e50244f4588971da98f9e3b0aa865f5ec0
   tealium-swift: 137769254e97d4c9f7ed6e16e0768b40888e6452
-  TealiumAirship: bcfd88de89310b4c887a19b788700f9aa76d05e8
+  TealiumAirship: 36a2eb4b7e6ad89b6ccb2e836c1dc2362dd4da88
 
 PODFILE CHECKSUM: 253a2c6172add5468f579e195c19f08debd1aaa6
 
