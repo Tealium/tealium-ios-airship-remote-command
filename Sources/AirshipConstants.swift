@@ -14,7 +14,7 @@ enum AirshipConstants {
     static let separator: Character = ","
     static let commandId = "airship"
     static let description = "Airship Remote Command"
-    static let version = "1.0.0"
+    static let version = "1.1.0"
     
     enum Commands: String {
         

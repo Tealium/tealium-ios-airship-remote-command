@@ -24,9 +24,7 @@
 		4804ECB52722F66800197E27 /* TealiumVisitorService.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4804EC752722F64100197E27 /* TealiumVisitorService.xcframework */; };
 		CF7AD572258C1F930098A0CA /* AirshipLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D709F4FA247FE91300B00D41 /* AirshipLocation.swift */; };
 		CFEABFFF258A9912007D9011 /* AirshipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEABFFA258A9862007D9011 /* AirshipConfig.swift */; };
-		D709F4F8247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D709F4F6247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift */; };
 		D709F503247FFC4100B00D41 /* MockAirshipInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7996F5C243221FA00E548BC /* MockAirshipInstance.swift */; };
-		D709F504247FFC4100B00D41 /* HttpTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBA50BE2304DD6F00EF52BC /* HttpTestHelpers.swift */; };
 		D709F505247FFC4100B00D41 /* AirshipTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7996F5A243221BC00E548BC /* AirshipTrackerTests.swift */; };
 		D75D99B524810A6100160978 /* AirshipConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D99B324810A6100160978 /* AirshipConstants.swift */; };
 		D7B3AC06247E97390040A0DE /* TealiumAirship.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B28C46922FB2901002AE7FA /* TealiumAirship.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -86,9 +84,7 @@
 		4B28C46922FB2901002AE7FA /* TealiumAirship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TealiumAirship.h; sourceTree = "<group>"; };
 		CF1401C12304C098002AC330 /* AirshipRemoteCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipRemoteCommand.swift; sourceTree = "<group>"; };
 		CF1401C22304C098002AC330 /* AirshipInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipInstance.swift; sourceTree = "<group>"; };
-		CFBA50BE2304DD6F00EF52BC /* HttpTestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpTestHelpers.swift; sourceTree = "<group>"; };
 		CFEABFFA258A9862007D9011 /* AirshipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipConfig.swift; sourceTree = "<group>"; };
-		D709F4F6247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipLocationDefaultConformance.swift; sourceTree = "<group>"; };
 		D709F4FA247FE91300B00D41 /* AirshipLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipLocation.swift; sourceTree = "<group>"; };
 		D709F50F247FFC4100B00D41 /* TealiumAirshipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TealiumAirshipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D75D99B324810A6100160978 /* AirshipConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipConstants.swift; sourceTree = "<group>"; };
@@ -188,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				15E8E168277E192200F50872 /* Support */,
-				CFBA50BE2304DD6F00EF52BC /* HttpTestHelpers.swift */,
 				D7996F5A243221BC00E548BC /* AirshipTrackerTests.swift */,
 				D7996F5C243221FA00E548BC /* MockAirshipInstance.swift */,
 			);
@@ -201,7 +196,6 @@
 				CFEABFFA258A9862007D9011 /* AirshipConfig.swift */,
 				D7A12E672429290300C09484 /* AirshipPushMessaging.swift */,
 				D7A12E6B242A2BB100C09484 /* AirshipAnalytics.swift */,
-				D709F4F6247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift */,
 				D7A12E6D242A43C800C09484 /* AirshipSegmentation.swift */,
 				D7A12E6F242A45C700C09484 /* AirshipInAppMessaging.swift */,
 				D77DDC7B242E6652005D4596 /* AirshipMessageCenter.swift */,
@@ -341,7 +335,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D709F503247FFC4100B00D41 /* MockAirshipInstance.swift in Sources */,
-				D709F504247FFC4100B00D41 /* HttpTestHelpers.swift in Sources */,
 				D709F505247FFC4100B00D41 /* AirshipTrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,7 +344,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D75D99B524810A6100160978 /* AirshipConstants.swift in Sources */,
-				D709F4F8247FCE9100B00D41 /* AirshipLocationDefaultConformance.swift in Sources */,
 				CF7AD572258C1F930098A0CA /* AirshipLocation.swift in Sources */,
 				D7B3AC0B247E97390040A0DE /* AirshipAnalytics.swift in Sources */,
 				D7B3AC0E247E97390040A0DE /* AirshipMessageCenter.swift in Sources */,

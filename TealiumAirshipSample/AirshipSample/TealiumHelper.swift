@@ -34,7 +34,8 @@ class TealiumHelper {
         config.remoteAPIEnabled = true
         config.logLevel = .info
         config.collectors = [Collectors.Lifecycle]
-        config.dispatchers = [Dispatchers.TagManagement, Dispatchers.RemoteCommands]
+        config.dispatchers = [//Dispatchers.TagManagement,
+            Dispatchers.RemoteCommands]
         
         config.addRemoteCommand(airshipRemoteCommand)
         
