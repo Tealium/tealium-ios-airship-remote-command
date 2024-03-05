@@ -7,6 +7,6 @@ target 'AirshipSample' do
 
   # Pods for TealiumContentsquareExample
   pod "TealiumAirship", :path => "../"
-  pod "tealium-swift/Lifecycle", "~> 2.6"
+  pod "tealium-swift/Lifecycle", "~> 2.12"
 
 end
