@@ -4,13 +4,13 @@ import PackageDescription
 let package = Package(
     name: "TealiumAirship",
     platforms: [
-        .iOS(.v11)
+        .iOS(.v12)
     ],
     products: [
         .library(name: "TealiumAirship", targets: ["TealiumAirship"]),
     ],
     dependencies: [
-        .package(name: "TealiumSwift", url: "https://github.com/tealium/tealium-swift", .upToNextMajor(from: "2.9.0")),
+        .package(name: "TealiumSwift", url: "https://github.com/tealium/tealium-swift", .upToNextMajor(from: "2.12.0")),
         .package(name: "Airship", url: "https://github.com/urbanairship/ios-library", .upToNextMajor(from: "16.0.1"))
     ],
     targets: [
