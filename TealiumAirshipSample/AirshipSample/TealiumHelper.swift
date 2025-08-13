@@ -8,6 +8,7 @@
 import Foundation
 import TealiumSwift
 import TealiumAirship
+import UIKit
 
 enum TealiumConfiguration {
     static let account = "tealiummobile"
@@ -18,6 +19,18 @@ enum TealiumConfiguration {
 class TealiumHelper {
 
     static let shared = TealiumHelper()
+    
+    private init() {
+        config.shouldUseRemotePublishSettings = false
+        config.batchingEnabled = false
+        config.remoteAPIEnabled = true
+        config.logLevel = .info
+        config.collectors = [Collectors.Lifecycle]
+        config.dispatchers = [
+            //Dispatchers.TagManagement,
+            Dispatchers.RemoteCommands
+        ]
+    }
 
     let config = TealiumConfig(account: TealiumConfiguration.account,
                                profile: TealiumConfiguration.profile,
@@ -26,26 +39,21 @@ class TealiumHelper {
     var tealium: Tealium?
     
     // JSON Remote Command
-    let airshipRemoteCommand = AirshipRemoteCommand(type: .local(file: "airship", bundle: Bundle.main))
+    var airshipRemoteCommand: AirshipRemoteCommand?
     
-    private init() {
-        config.shouldUseRemotePublishSettings = false
-        config.batchingEnabled = false
-        config.remoteAPIEnabled = true
-        config.logLevel = .info
-        config.collectors = [Collectors.Lifecycle]
-        config.dispatchers = [//Dispatchers.TagManagement,
-            Dispatchers.RemoteCommands]
+    func configure(with launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        airshipRemoteCommand = AirshipRemoteCommand(
+            type: .local(file: "airship", bundle: Bundle.main),
+            launchOptions: launchOptions
+        )
         
-        config.addRemoteCommand(airshipRemoteCommand)
+        airshipRemoteCommand?.onReady {
+            print("🚀 Airship is ready!")
+        }
+        
+        config.addRemoteCommand(airshipRemoteCommand!)
         
         tealium = Tealium(config: config)
-
-    }
-
-
-    class func start() {
-        _ = TealiumHelper.shared
     }
 
     class func trackView(title: String, data: [String: Any]?) {
