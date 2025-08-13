@@ -6,6 +6,7 @@
 //  Copyright © 2019 Tealium. All rights reserved.
 //
 import Foundation
+import UIKit
 
 import os
 #if COCOAPODS
@@ -19,13 +20,16 @@ public class AirshipRemoteCommand: RemoteCommand {
     
     var airshipInstance: AirshipCommand?
     var loggerLevel: TealiumLogLevel = .error
+    private let launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     override public var version: String? {
         return AirshipConstants.version
     }
     
     public init(airshipInstance: AirshipCommand = AirshipInstance(),
-                type: RemoteCommandType = .webview) {
+                type: RemoteCommandType = .webview,
+                launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) {
         self.airshipInstance = airshipInstance
+        self.launchOptions = launchOptions
         weak var weakSelf: AirshipRemoteCommand?
         super.init(commandId: AirshipConstants.commandId,
                    description: AirshipConstants.description,
@@ -37,6 +41,10 @@ public class AirshipRemoteCommand: RemoteCommand {
                 weakSelf?.processRemoteCommand(with: payload)
             })
         weakSelf = self
+    }
+
+    public func onReady(_ onReady: @escaping () -> Void) {
+        self.airshipInstance?.onReady(onReady)
     }
 
     func processRemoteCommand(with payload: [String: Any]) {
@@ -54,7 +62,7 @@ public class AirshipRemoteCommand: RemoteCommand {
             let command = AirshipConstants.Commands(rawValue: $0.lowercased())
             switch command {
             case .initialize:
-                airshipInstance.initialize(payload)
+                airshipInstance.initialize(payload, launchOptions: self.launchOptions)
                 // MARK: START ANALYTICS
             case .trackEvent:
                 guard let eventName = payload[AirshipConstants.Keys.eventName] as? String else {
@@ -259,8 +267,22 @@ public class AirshipRemoteCommand: RemoteCommand {
     }
     
     private func log(_ message: String) {
+        let osLogType: OSLogType
+        switch loggerLevel {
+        case .info:
+            osLogType = .info
+        case .debug:
+            osLogType = .debug
+        case .error:
+            osLogType = .error
+        case .fault:
+            osLogType = .fault
+        case .silent:
+            return // Don't log if silent
+        }
+        
         os_log("%{public}@",
-               type: OSLogType(UInt8(loggerLevel.rawValue)),
+               type: osLogType,
                "\(AirshipConstants.description): \(message)")
     }
     

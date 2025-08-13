@@ -1,2 +1,2 @@
-github "tealium/tealium-swift" ~> 2.12
-github "urbanairship/ios-library" ~> 16.0
+github "tealium/tealium-swift" ~> 2.18
+github "urbanairship/ios-library" ~> 16.12

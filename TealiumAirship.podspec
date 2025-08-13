@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
     # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
     s.name         = "TealiumAirship"
     s.module_name  = "TealiumAirship"
-    s.version      = "1.2.0"
+    s.version      = "2.0.0"
     s.summary      = "Tealium Swift and Airship integration"
     s.description  = <<-DESC
     Tealium's integration with Airship for iOS.
@@ -29,8 +29,8 @@ Pod::Spec.new do |s|
     s.ios.source_files      = "Sources/**/*.{swift}"
     s.ios.exclude_files     = "Sources/Location/*"
     # ――― Dependencies ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-    s.ios.dependency 'tealium-swift/Core', '~> 2.12'
-    s.ios.dependency 'tealium-swift/RemoteCommands', '~> 2.12'
+    s.ios.dependency 'tealium-swift/Core', '~> 2.18'
+    s.ios.dependency 'tealium-swift/RemoteCommands', '~> 2.18'
     s.ios.dependency 'Airship/Core', '~> 16.0'
     s.ios.dependency 'Airship/Automation', '~> 16.0'
     s.ios.dependency 'Airship/MessageCenter', '~> 16.0'

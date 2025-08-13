@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import UIKit
 @testable import TealiumAirship
 
 class MockAirshipInstance: AirshipCommand {
     
+    var didCallOnReady = false
+    private var onReadyCallbacks: [() -> Void] = []
     var initializeCallCount = 0
     var sendEventCallCount = 0
     var screenViewCount = 0
@@ -42,9 +45,21 @@ class MockAirshipInstance: AirshipCommand {
     var setMessageCenterStyleCallCount = 0
     var displayMessageCenterCallCount = 0
     
+    func triggerOnReadyCallbacks() {
+        for callback in onReadyCallbacks {
+            callback()
+        }
+    }
     
-    func initialize(_ config: [String : Any]) {
+    func onReady(_ onReady: @escaping () -> Void) {
+        didCallOnReady = true
+        onReadyCallbacks.append(onReady)
+        onReady()
+    }
+    
+    func initialize(_ config: [String : Any], launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         initializeCallCount += 1
+        triggerOnReadyCallbacks()
     }
     
     var channelTags: [String]?

@@ -7,16 +7,20 @@
 //
 
 import Foundation
+import UIKit
 #if COCOAPODS
 import AirshipKit
+import TealiumSwift
 #else
 import AirshipCore
+import TealiumCore
 #endif
 
 
 public protocol AirshipCommand {
 
-    func initialize(_ config: [String: Any])
+    func onReady(_ onReady: @escaping () -> Void)
+    func initialize(_ config: [String: Any], launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     // Segmentation
     var channelTags: [String]? { get set }
     func setNamedUserTags(_ group: String,
@@ -66,14 +70,22 @@ public protocol AirshipCommand {
 
 public class AirshipInstance: AirshipCommand {
 
+    private var _onReady = TealiumReplaySubject<Void>(cacheSize: 1)
     var currentNotificationOptions: [String]?
     var currentForegroundPresentationOptions: [String]?
     
     public init() { }
     
-    public func initialize(_ config: [String: Any]) {
+    public func onReady(_ onReady: @escaping () -> Void) {
+        TealiumQueues.secureMainThreadExecution {  
+            self._onReady.subscribeOnce(onReady)
+        }
+    }
+    
+    public func initialize(_ config: [String: Any], launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         DispatchQueue.main.async {
-            Airship.takeOff(launchOptions: [:])
+            Airship.takeOff(launchOptions: launchOptions ?? [:])
+            self._onReady.publish()
         }
     }
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -62,8 +62,8 @@
 		15E986D527AD5F2C00B68C42 /* AirshipAutomation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AirshipAutomation.xcframework; path = Carthage/Build/AirshipAutomation.xcframework; sourceTree = "<group>"; };
 		15E986D627AD5F2C00B68C42 /* AirshipMessageCenter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AirshipMessageCenter.xcframework; path = Carthage/Build/AirshipMessageCenter.xcframework; sourceTree = "<group>"; };
 		15E986D927AD5F4900B68C42 /* AirshipBasement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AirshipBasement.xcframework; path = Carthage/Build/AirshipBasement.xcframework; sourceTree = "<group>"; };
-		4804EC6F2722F64100197E27 /* TealiumRemoteCommands.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TealiumRemoteCommands.xcframework; path = Carthage/Build/TealiumRemoteCommands.xcframework; sourceTree = "<group>"; };
-		4804EC742722F64100197E27 /* TealiumCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TealiumCore.xcframework; path = Carthage/Build/TealiumCore.xcframework; sourceTree = "<group>"; };
+		4804EC6F2722F64100197E27 /* TealiumRemoteCommands.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:XC939GDC9P:Tealium"; lastKnownFileType = wrapper.xcframework; name = TealiumRemoteCommands.xcframework; path = Carthage/Build/TealiumRemoteCommands.xcframework; sourceTree = "<group>"; };
+		4804EC742722F64100197E27 /* TealiumCore.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:XC939GDC9P:Tealium"; lastKnownFileType = wrapper.xcframework; name = TealiumCore.xcframework; path = Carthage/Build/TealiumCore.xcframework; sourceTree = "<group>"; };
 		4804EC7A2722F64100197E27 /* AirshipCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AirshipCore.xcframework; path = Carthage/Build/AirshipCore.xcframework; sourceTree = "<group>"; };
 		4B28C46922FB2901002AE7FA /* TealiumAirship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TealiumAirship.h; sourceTree = "<group>"; };
 		CF1401C12304C098002AC330 /* AirshipRemoteCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipRemoteCommand.swift; sourceTree = "<group>"; };

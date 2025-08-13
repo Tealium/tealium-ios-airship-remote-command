@@ -751,4 +751,19 @@ class AirshipCommandRunnerTests: XCTestCase {
         XCTAssertEqual(0, airshipInstance.displayMessageCenterCallCount)
       }
     
+    // MARK: - onReady Tests
+    func testOnReady() {
+        airshipRemoteCommand.onReady { }
+        XCTAssertTrue(airshipInstance.didCallOnReady)
+    }
+
+    func testOnReadyCalledAfterInitialize() {
+        let onReadyIsCalled = expectation(description: "onReady is called")
+        let command = AirshipRemoteCommand(airshipInstance: AirshipInstance())
+        command.onReady {
+            onReadyIsCalled.fulfill()
+        }
+        command.processRemoteCommand(with: ["command_name": "initialize"])
+        waitForExpectations(timeout: 3.0)
+    }
 }
